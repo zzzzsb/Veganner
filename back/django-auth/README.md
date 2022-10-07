@@ -19,3 +19,6 @@ python manage.py runserver
 아직 장고 공부가 부족해서 코드랑 구조에 대한 이해도가 높아지면 차후에 폴더 정리할 예정입니다.
 
 우선 겹치지 않도록 작업하던 폴더 그대로 옮겨놨습니다.
+
+## API Document
+https://documenter.getpostman.com/view/22491165/2s83zgsPrg
