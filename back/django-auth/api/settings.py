@@ -12,7 +12,18 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import dotenv
+from sshtunnel import SSHTunnelForwarder
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+dotenv.read_dotenv()
+ssh_tunnel = SSHTunnelForwarder(
+    ("144.24.70.5", 22),
+    # ssh_pkey="C:\django_stu\testsite\testsite\KEY_TEST.key",
+    ssh_username="ubuntu",
+    ssh_password=os.environ.get("PASSWORD"),
+    remote_bind_address=("10.0.1.163", 3306),
+)
+ssh_tunnel.start()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -100,8 +111,14 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'localhost',
+        'PORT': ssh_tunnel.local_bind_port,
+        'NAME': "django_test",
+        'USER': "Team1",
+        'PASSWORD': os.environ.get("PASSWORD"),
     }
 }
 
@@ -162,14 +179,15 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 URL_FRONT = 'http://****'
 
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True 
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
 ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # ACCOUNT_EMAIL_VERIFICATION = "none"
 
-EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/' # 사이트와 관련한 자동응답을 받을 이메일 주소,'webmaster@localhost'
+# 사이트와 관련한 자동응답을 받을 이메일 주소,'webmaster@localhost'
+EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 
