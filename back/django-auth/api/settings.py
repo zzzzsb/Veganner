@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'corsheaders', # CORS 관련 추가
 ]
 
 REST_USE_JWT = True
@@ -74,6 +75,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', # CORS 추가
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -109,6 +111,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'api.wsgi.application'
 
+# CORS 권한 설정
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000'
+                         ,'http://localhost:3000']
+CORS_ALLOW_CREDENTIALS = True
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
