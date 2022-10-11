@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 새로 추가한 앱
+    'posts',
     'accounts',
     # 설치한 라이브러리들
     'rest_framework',
@@ -116,7 +117,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': 'localhost',
         'PORT': ssh_tunnel.local_bind_port,
-        'NAME': "django_test",
+        'NAME': "django_test2",
         'USER': "Team1",
         'PASSWORD': os.environ.get("PASSWORD"),
     }
