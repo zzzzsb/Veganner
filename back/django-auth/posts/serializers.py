@@ -5,22 +5,15 @@ from .models import Posts, Comments
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Posts
-        fields = ('ID', 'Title', 'Content', 'Thumbnail', 'Type',
+        fields = ('Title', 'Content', 'Thumbnail', 'Type',
                   'Hashtag', 'Groups', 'RestaurantsId', 'Address')
 
 
-class PostSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Posts
-        fields = ('ID', 'Title', 'Content', 'Thumbnail', 'Type',
-                  'Hashtag', 'Groups', 'RestaurantsId', 'Address')
-
-
-class PostListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Posts
-        fields = ('ID', 'Title', 'Content', 'Thumbnail', 'Type',
-                  'Hashtag', 'Groups', 'RestaurantsId', 'Address')
+# class PostListSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Posts
+#         fields = ('ID', 'Title', 'Content', 'Thumbnail', 'Type',
+#                   'Hashtag', 'Groups', 'RestaurantsId', 'Address')
 
 
 class CommentsItemSerializer(serializers.ModelSerializer):

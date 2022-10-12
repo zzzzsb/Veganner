@@ -12,5 +12,5 @@ urlpatterns = [
     # 유저가 클릭한 이메일(=링크) 확인
     re_path(r'^registration/email/(?P<key>[-:\w]+)/$',
             ConfirmEmailView.as_view(), name='account_confirm_email'),
-    path('posts/', include('posts.urls'))
+    path('board/', include('posts.urls'))
 ]
