@@ -5,7 +5,7 @@ class Posts(models.Model):
     ID = models.AutoField(primary_key=True)
     Title = models.CharField(max_length=255, blank=True, null=False)
     Content = models.TextField(null=False)
-    Thumbnail = models.FileField(upload_to="./thumbnail", null=True)
+    Thumbnail = models.ImageField(upload_to="./thumbnail", null=True)
     Type = models.CharField(max_length=40, blank=True, null=False)
     Hashtag = models.CharField(max_length=255, blank=True, null=True)
     # UserId = models.ForeignKey(id, on_delete=models.accounts_user)

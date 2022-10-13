@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view
 from .models import Posts
 from .serializers import PostSerializer, CommentsItemSerializer
 from rest_framework import status
+import jwt
 
 
 # @api_view(['GET'])
@@ -19,8 +20,14 @@ class PostAllGetAPI(APIView):
     model = Posts
 
     def get(self, request):
-        item = Posts.objects.all().values('Title')
-        return Response(item)
+
+        # item = Posts.objects.all().values('Title')
+        item = Posts.objects.all()
+        serializer = PostSerializer(item, many=True)
+        return Response(serializer.data)
+
+        # jwt_Data = jwt.decode(request.cookies.get(''))
+        # print(self.request.user)
 
     def post(self, request):
         serializer = PostSerializer(data=request.data)
@@ -28,3 +35,12 @@ class PostAllGetAPI(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PostGetAPI(APIView):
+    def get(self, request, ID):
+        item = Posts.objects.get(ID=ID)
+        # jwt_Data = jwt.decode(request.cookies.get(''))
+        serializer = PostSerializer(item)
+        # print(self.request.user)
+        return Response(serializer.data)
