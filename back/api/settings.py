@@ -55,10 +55,14 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+<<<<<<< HEAD
 
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.google',
 
+=======
+    'dj_rest_auth.registration',
+>>>>>>> 55de480 (Commit to merge for user authentication)
     'corsheaders',  # CORS 관련 추가
 ]
 
@@ -82,9 +86,13 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 MIDDLEWARE = [
+<<<<<<< HEAD
 
     'corsheaders.middleware.CorsMiddleware',  # CORS 추가
 
+=======
+    'corsheaders.middleware.CorsMiddleware',  # CORS 추가
+>>>>>>> 55de480 (Commit to merge for user authentication)
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
