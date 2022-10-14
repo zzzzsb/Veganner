@@ -4,6 +4,7 @@ import Main from "./pages/main/Main";
 import Insights from "./pages/Insights";
 import "./styles/styles.css";
 import { Reset } from "styled-reset";
+import Map from "./pages/Map"
 
 function App() {
   return (
@@ -14,8 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/Insigths" element={<Insights />} />
-          {/* <Route path="/Share" element={} />
-          <Route path="/Explore" element={} /> */}
+          {/* <Route path="/Share" element={} /> */}
+          <Route path="/Explore" element={<Map />} />
         </Routes>
       </BrowserRouter>
     </div>
