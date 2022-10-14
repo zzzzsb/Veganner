@@ -14,9 +14,15 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
+<<<<<<< HEAD
           <Route path="/insigths" element={<Insights />} />
           <Route path="/share" element={<View />} />
           {/* <Route path="/login" element={<LoginForm />} /> */}
+=======
+          <Route path="/insights" element={<Insights />} />
+          {/* <Route path="/Share" element={} />
+          <Route path="/Explore" element={} /> */}
+>>>>>>> feature/front/main
         </Routes>
       </BrowserRouter>
     </div>

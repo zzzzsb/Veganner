@@ -8,6 +8,8 @@ export const Main1Layout = styled.div`
   height: 700px;
   font-family: "Noto Sans KR";
   background-image: url(${main1});
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 export const Main1Box = styled.div`
@@ -16,11 +18,13 @@ export const Main1Box = styled.div`
   margin-top: 250px;
   margin-right: 100px;
 `;
+
 export const Text1 = styled.div`
   font-size: 50px;
   font-weight: 800;
   text-align: right;
-  margin: 10px 0;
+  margin: 18px 0;
+  color: #212121;
 `;
 
 export const Button1 = styled.div`
