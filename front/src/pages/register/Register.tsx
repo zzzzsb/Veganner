@@ -1,29 +1,27 @@
 import { ChangeEvent, MouseEvent, useState } from "react";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
-import * as Api from "../../api";
+import * as Api from "../../api/api";
 
 interface RegisterData {
-    email: string;
-    password: string;
-    confirmPassword:string;
-    name:string;
-    [key: string]: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  name: string;
+  [key: string]: string;
 }
-
-
 
 function RegisterForm() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<RegisterData>({
     email: "",
     password: "",
-    confirmPassword:"",
-    name:""
-});
+    confirmPassword: "",
+    name: "",
+  });
 
   //이메일이 abc@example.com 형태인지 regex를 이용해 확인함.
-  const validateEmail = (registerObj:RegisterData) => {
+  const validateEmail = (registerObj: RegisterData) => {
     return registerObj.email
       .toLowerCase()
       .match(
@@ -44,7 +42,7 @@ function RegisterForm() {
   const isFormValid =
     isEmailValid && isPasswordValid && isPasswordSame && isNameValid;
 
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -62,99 +60,88 @@ function RegisterForm() {
     const { name, value } = e.target;
 
     setFormData((prev: RegisterData) => {
-        const newData = {
-            ...prev,
-            [name]: value,
-        };
+      const newData = {
+        ...prev,
+        [name]: value,
+      };
 
-        return newData;
+      return newData;
     });
-};
-
+  };
 
   return (
     <>
-     <form onSubmit={handleSubmit}>
-            <div>
-              <span>이메일 주소</span>
-              <input
-                type="email"
-                name="email"
-                autoComplete="off"
-                value={formData.email}
-                onChange={handleonChange}
-              />
-              {!isEmailValid && (
-                <div className="text-success">
-                  이메일 형식이 올바르지 않습니다.
-                </div>
-              )}
-            </div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <span>이메일 주소</span>
+          <input
+            type="email"
+            name="email"
+            autoComplete="off"
+            value={formData.email}
+            onChange={handleonChange}
+          />
+          {!isEmailValid && (
+            <div className="text-success">이메일 형식이 올바르지 않습니다.</div>
+          )}
+        </div>
 
-            <div>
-              <span>비밀번호</span>
-              <input
-                type="password"
-                name="password"
-                autoComplete="off"
-                value={formData.password}
-                onChange={handleonChange}
-              />
-              {!isPasswordValid && (
-                <div className="text-success">
-                  비밀번호는 4글자 이상으로 설정해 주세요.
-                </div>
-              )}
+        <div>
+          <span>비밀번호</span>
+          <input
+            type="password"
+            name="password"
+            autoComplete="off"
+            value={formData.password}
+            onChange={handleonChange}
+          />
+          {!isPasswordValid && (
+            <div className="text-success">
+              비밀번호는 4글자 이상으로 설정해 주세요.
             </div>
+          )}
+        </div>
 
-            <div>
-              <span>비밀번호 재확인</span>
-              <input
-                type="password"
-                name="confirmPassword"
-                autoComplete="off"
-                value={formData.confirmPassword}
-                onChange={handleonChange}
-              />
-              {!isPasswordSame && (
-                <div className="text-success">
-                  비밀번호가 일치하지 않습니다.
-                </div>
-              )}
-            </div>
+        <div>
+          <span>비밀번호 재확인</span>
+          <input
+            type="password"
+            name="confirmPassword"
+            autoComplete="off"
+            value={formData.confirmPassword}
+            onChange={handleonChange}
+          />
+          {!isPasswordSame && (
+            <div className="text-success">비밀번호가 일치하지 않습니다.</div>
+          )}
+        </div>
 
-            <div>
-              <span>이름</span>
-              <input
-                type="text"
-                name="name"
-                autoComplete="off"
-                value={formData.name}
-                onChange={handleonChange}
-              />
-              {!isNameValid && (
-                <div className="text-success">
-                  이름은 2글자 이상으로 설정해 주세요.
-                </div>
-              )}
+        <div>
+          <span>이름</span>
+          <input
+            type="text"
+            name="name"
+            autoComplete="off"
+            value={formData.name}
+            onChange={handleonChange}
+          />
+          {!isNameValid && (
+            <div className="text-success">
+              이름은 2글자 이상으로 설정해 주세요.
             </div>
+          )}
+        </div>
 
-            <div>
-              
-                <button type="submit" disabled={!isFormValid}>
-                  회원가입
-                </button>
-             
-            </div>
+        <div>
+          <button type="submit" disabled={!isFormValid}>
+            회원가입
+          </button>
+        </div>
 
-            <div>
-             
-                <button onClick={() => navigate("/login")}>
-                  로그인하기
-                </button>
-             
-            </div>
-          </form>
+        <div>
+          <button onClick={() => navigate("/login")}>로그인하기</button>
+        </div>
+      </form>
     </>
   );
 }
