@@ -72,7 +72,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-SITE_ID = 3
+SITE_ID = 1
 LOGIN_REDIRECT_URL = '/user/'
 
 ACCOUNT_UNIQUE_EMAIL = True
