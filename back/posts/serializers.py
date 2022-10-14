@@ -5,7 +5,7 @@ from .models import Posts, Comments, Like
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Posts
-        fields = ("User", 'Title', 'Content', 'Thumbnail', 'Type',
+        fields = ('User', 'Title', 'Content', 'Thumbnail', 'Type',
                   'Hashtag', 'Groups', 'RestaurantsId', 'Address')
 
 
@@ -19,7 +19,7 @@ class PostSerializer(serializers.ModelSerializer):
 class CommentsItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
-        fields = ('CommentId', 'User', 'PostId')  # 변환 원하는 컬럼들
+        fields = ('CommentId', 'User', 'PostId', 'Comment')  # 변환 원하는 컬럼들
 
 
 class LikeSerializer(serializers.ModelSerializer):

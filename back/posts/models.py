@@ -24,6 +24,7 @@ class Comments(models.Model):
     User = models.ForeignKey(
         "accounts.user", to_field="email", on_delete=models.CASCADE)
     PostId = models.ForeignKey(Posts, on_delete=models.CASCADE)
+    Comment = models.TextField(null=False)
 
     def __str__(self):
         return self.CommentId
