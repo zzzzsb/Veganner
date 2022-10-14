@@ -7,6 +7,7 @@ import { Reset } from "styled-reset";
 import LoginForm from "./pages/login/Login";
 import RegisterForm from "./pages/register/Register";
 import View from "./pages/view/View";
+import Map from "./pages/Map"
 
 function App() {
   return (
@@ -16,13 +17,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/insigths" element={<Insights />} />
-          {/* <Route path="/Share" element={} />
-          <Route path="/Explore" element={} /> */}
+          <Route path="/insights" element={<Insights />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/share" element={<View />} />
-          {/* <Route path="/login" element={<LoginForm />} /> */}
+          <Route path="/explore" element={<Map />} />
         </Routes>
       </BrowserRouter>
     </div>
