@@ -13,7 +13,7 @@ function ResList({item, idx, res_id}: ListProps) {
                 {`${item[res_id].name}`}
             </h3>
         <p>주소 : {`${item[res_id].location}`}</p>
-        <p>전화번호 : `${item[res_id].number}`</p>
+        <p>전화번호 : {`${item[res_id].number}`}</p>
         </div>
         
     );
