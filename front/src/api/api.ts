@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const backendPortNumber = "8000";
+const backendPortNumber = "5000";
 // 로컬서버
 const localBaseUrl = "localhost";
 // 개발서버
