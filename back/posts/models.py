@@ -8,7 +8,8 @@ class Posts(models.Model):
     Thumbnail = models.ImageField(upload_to="./thumbnail", null=True)
     Type = models.CharField(max_length=40, blank=True, null=False)
     Hashtag = models.CharField(max_length=255, blank=True, null=True)
-    UserId = models.ForeignKey("accounts.user", on_delete=models.CASCADE)
+    User = models.ForeignKey(
+        "accounts.user", to_field="email", on_delete=models.CASCADE)
     Groups = models.IntegerField(null=False)
     RestaurantsId = models.IntegerField(null=True)
     Address = models.CharField(max_length=255, blank=True, null=True)
@@ -20,8 +21,16 @@ class Posts(models.Model):
 
 class Comments(models.Model):
     CommentId = models.AutoField(primary_key=True)
-    # UserId = models.ForeignKey(id, on_delete=models.accounts_user)
+    User = models.ForeignKey(
+        "accounts.user", to_field="email", on_delete=models.CASCADE)
     PostId = models.ForeignKey(Posts, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.CommentId
+
+
+class Like(models.Model):
+    PostId = models.ForeignKey(Posts, on_delete=models.CASCADE)
+    User = models.ForeignKey(
+        "accounts.user", to_field="email", on_delete=models.CASCADE)
+    Like = models.BooleanField(default=False, null=False)
