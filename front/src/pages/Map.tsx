@@ -46,26 +46,9 @@ function Map(){
               />
             </form>
             <div className="resContainer">
+                {/* 식당 전체 리스트 보여주고 싶은데 방법을 모르겠다... */}
               <ResList item={location} idx={1} res_id={1}/>
-              {/* <div className="pagination">
-                <button
-                  onClick={() => {
-                    if (page === 1) return;
-                    navigate(`/search/${page - 1}`);
-                  }}
-                >
-                  이전
-                </button>
-                {paginations}
-                <button
-                  onClick={() => {
-                    if (page === Math.ceil(pagination.length / 5)) return;
-                    navigate(`/search/${page + 1}`);
-                  }}
-                >
-                  다음
-                </button>
-              </div> */}
+              
             </div>
           </div>
         </div>
