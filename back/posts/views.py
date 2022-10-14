@@ -47,22 +47,25 @@ class PostAllGetAPI(APIView):
             items = items.filter(ID=set_Data)
         elif "Group" in keys:
             set_Data = request.GET["Group"]
-            items = items.filter(Group=set_Data)
+            items = items.filter(Group__contains=set_Data)
         elif "Content" in keys:
             set_Data = request.GET["Content"]
-            items = items.filter(Content=set_Data)
+            items = items.filter(Content__contains=set_Data)
         elif "Address" in keys:
             set_Data = request.GET["Address"]
-            items = items.filter(Address=set_Data)
+            items = items.filter(Address__contains=set_Data)
         elif "Type" in keys:
             set_Data = request.GET["Type"]
-            items = items.filter(Type=set_Data)
+            items = items.filter(Type__contains=set_Data)
         elif "Hashtag" in keys:
             set_Data = request.GET["Hashtag"]
-            items = items.filter(Hashtag=set_Data)
+            items = items.filter(Hashtag__contains=set_Data)
+        elif "Title" in keys:
+            set_Data = request.GET["Title"]
+            items = items.filter(Title__contains=set_Data)
         elif "User" in keys:
             set_Data = request.GET["User"]
-            items = items.filter(User=set_Data)
+            items = items.filter(User__contains=set_Data)
         elif "Sort" in keys:
             Sort = request.GET["Sort"]
         elif "Page" in keys:
