@@ -39,7 +39,9 @@ function LoginForm() {
       const res = await Api.post("login", formData);
       // 유저 정보는 response의 data임.
       const user = res.data;
-      sessionStorage.setItem("loginEmail", user.email);
+      sessionStorage.clear()
+      sessionStorage.setItem('loginEmail', user.email)
+
 
       // 기본 페이지로 이동함.
       navigate("/", { replace: true });

@@ -4,9 +4,8 @@ import * as Api from "../../api/api";
 
 interface RegisterData {
   email: string;
-  password: string;
-  confirmPassword: string;
-  name: string;
+  password1: string;
+  password2: string;
   [key: string]: string;
 }
 
@@ -14,9 +13,9 @@ function RegisterForm() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<RegisterData>({
     email: "",
-    password: "",
-    confirmPassword: "",
-    name: "",
+    password1: "",
+    password2: "",
+    
   });
 
   //이메일이 abc@example.com 형태인지 regex를 이용해 확인함.
@@ -31,11 +30,11 @@ function RegisterForm() {
   //위 validateEmail 함수를 통해 이메일 형태 적합 여부를 확인함.
   const isEmailValid = validateEmail(formData);
   // 비밀번호가 4글자 이상인지 여부를 확인함.
-  const isPasswordValid = formData.password.length >= 4;
+  const isPasswordValid = formData.password1.length >= 4;
   // 비밀번호와 확인용 비밀번호가 일치하는지 여부를 확인함.
-  const isPasswordSame = formData.password === formData.confirmPassword;
+  const isPasswordSame = formData.password1 === formData.password2;
   // 이름이 2글자 이상인지 여부를 확인함.
-  const isNameValid = formData.name.length >= 2;
+  // const isNameValid = formData.name.length >= 2;
 
   // 위 4개 조건이 모두 동시에 만족되는지 여부를 확인함.
   const isFormValid =
@@ -45,8 +44,8 @@ function RegisterForm() {
     e.preventDefault();
 
     try {
-      // "user/register" 엔드포인트로 post요청함.
-      await Api.post("user/register", formData);
+      // "registration" 엔드포인트로 post요청함.
+      await Api.post("registration", formData);
 
       // 로그인 페이지로 이동함.
       navigate("/login");
@@ -89,9 +88,9 @@ function RegisterForm() {
           <span>비밀번호</span>
           <input
             type="password"
-            name="password"
+            name="password1"
             autoComplete="off"
-            value={formData.password}
+            value={formData.password1}
             onChange={handleonChange}
           />
           {!isPasswordValid && (
@@ -105,9 +104,9 @@ function RegisterForm() {
           <span>비밀번호 재확인</span>
           <input
             type="password"
-            name="confirmPassword"
+            name="password2"
             autoComplete="off"
-            value={formData.confirmPassword}
+            value={formData.password2}
             onChange={handleonChange}
           />
           {!isPasswordSame && (

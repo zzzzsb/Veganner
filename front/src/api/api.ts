@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const backendPortNumber = "5001";
+const backendPortNumber = "8000";
 // 로컬서버
 const localBaseUrl = "localhost";
 // 개발서버
@@ -32,7 +32,7 @@ async function post(endpoint: string, data?: any) {
   return axios.post(serverUrl + endpoint, bodyData, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+      // Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
     },
   });
 }
