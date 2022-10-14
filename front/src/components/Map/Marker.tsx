@@ -1,15 +1,19 @@
 import {MapMarker} from 'react-kakao-maps-sdk'
 
 interface Markerprops {
+    key: number;
     location: any;
+    i: number;
 }
 
 function Marker({location}: Markerprops){
     return (
-    location.map((position: any, index: number) => (
+    // location.map((position: any, index: number) => (
         <MapMarker
-        position={{lat: position.y, lng: position.x}}
+        // key={i}
+        position={{lat: location.y, lng: location.x}}
         image={{
+            // 이미지 왜 오류 이미지 뜨지?
             src: "./marker_icon-icons.com_54388.png",
             size: {
             width: 24,
@@ -20,7 +24,7 @@ function Marker({location}: Markerprops){
         
         
         />
-    )))
+    )
 };
   
 

@@ -5,8 +5,10 @@ import Marker from './Marker'
 import Location from '../../datas/seoul.json'
 
 const location = Location.data;
-
-function MainMap(){
+interface MainMapprops {
+  i: any;
+}
+function MainMap({i} :MainMapprops){
   // type image={
   //   src: string,
   //   title: string
@@ -27,7 +29,8 @@ function MainMap(){
         }}
         level={7} // 지도의 확대 레벨
       >
-      {/* <Marker></Marker> */}
+        {/* Marker 컴포넌트로 카테고리 한 식당만 마커표시 */}
+        <Marker location={i} key={1} i={1}></Marker>
       </Map>
 
       </div>
