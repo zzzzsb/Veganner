@@ -6,7 +6,7 @@ const localBaseUrl = "localhost";
 // 개발서버
 const realBaseUrl = "kdt-ai5-team01.elicecoding.com";
 
-const serverUrl = `http://${localBaseUrl}:${backendPortNumber}/`;
+const serverUrl = `http://${realBaseUrl}:${backendPortNumber}/`;
 axios.defaults.withCredentials = true; 
 async function get(endpoint: string, params = "") {
   console.log(
