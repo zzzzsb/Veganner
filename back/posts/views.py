@@ -1,7 +1,6 @@
 from email.headerregistry import Address, Group
 import re
 import jwt
-from mysqlx import Table
 from rest_framework import status
 from django.conf import settings
 from django.db.models import Count, Subquery, OuterRef
