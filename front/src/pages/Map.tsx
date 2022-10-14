@@ -39,32 +39,15 @@ function Map() {
               />
             </form>
             <div className="resContainer">
-<<<<<<< HEAD
-                {/* 식당 전체 리스트 보여주고 싶은데 방법을 모르겠다... */}
-              <ResList item={location} idx={5} res_id={5}/>
-              
-            </div>
-          </div>
-        </div>
-        <MainMap i={location}/>
-        </section>
-        
-        
-        </>
-    );
-        
-};
-=======
               {/* 식당 전체 리스트 보여주고 싶은데 방법을 모르겠다... */}
               <ResList item={location} idx={1} res_id={1} />
             </div>
           </div>
         </div>
-        <MainMap />
+        <MainMap i={location[1]}/>
       </section>
     </>
   );
 }
->>>>>>> 3a2792027da4f8e435faa7480505edaa64cb93a1
 
 export default Map;
