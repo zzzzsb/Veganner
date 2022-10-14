@@ -1,75 +1,10 @@
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
-import styled from "styled-components";
+import * as S from "./Write.styled";
+
 // import { useState } from "react";
 // import React, { SetStateAction, Dispatch } from "react";
 
-const WriteLayout = styled.div`
-  width: 1020px;
-`;
-
-const CategoryButtonBox = styled.div`
-  display: flex;
-  width: 200px;
-  height: 30px;
-  margin: 20px auto;
-`;
-const CategoryButton = styled.div`
-  width: 60px;
-  height: 30px;
-  border-radius: 15px;
-  /* background-color: #004d43;
-  color: #f1f1f1; */
-  background-color: #d9d9d9;
-  color: #004d43;
-  text-align: center;
-  line-height: 30px;
-  margin: 0 10px;
-  font-size: 14px;
-  font-weight: 700;
-`;
-
-const TitleInput = styled.input`
-  width: 580px;
-  height: 50px;
-  border: none;
-  font-size: 16px;
-  display: block;
-  margin: 0 auto 20px auto;
-`;
-
-const SearchBar = styled.input`
-  width: 300px;
-  height: 45px;
-  border-radius: 25px;
-  border: none;
-  border: 0.5px solid #212121;
-  display: block;
-  margin: 0 auto 20px auto;
-`;
-
-const FilterLayout = styled.div`
-  float: left;
-  margin: 0 auto;
-`;
-const FilterBox = styled.div`
-  width: 1200px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  line-height: 30px;
-  font-size: 14px;
-`;
-
-const FilterButton = styled.div`
-  width: 46px;
-  height: 26px;
-  border-radius: 25px;
-  border: 1px solid #212121;
-  text-align: center;
-  line-height: 26px;
-  margin: 0 5px 10px 5px;
-`;
 // interface WriteProps {
 //   categories: Array<string>;
 //   category: string;
@@ -120,25 +55,27 @@ function Write() {
     "인도/중동",
     "중국식",
   ];
-  const locationButtons = location.map((v) => <FilterButton>{v}</FilterButton>);
-  const typeButtons = type.map((v) => <FilterButton>{v}</FilterButton>);
+  const locationButtons = location.map((v) => (
+    <S.FilterButton>{v}</S.FilterButton>
+  ));
+  const typeButtons = type.map((v) => <S.FilterButton>{v}</S.FilterButton>);
   return (
-    <WriteLayout>
+    <S.WriteLayout>
       {/* <CategoryFilter
         categories={categories}
         category={category}
         setCategory={setCategory}
       /> */}
-      <CategoryButtonBox>
-        <CategoryButton>식당</CategoryButton>
-        <CategoryButton>레시피</CategoryButton>
-      </CategoryButtonBox>
-      <TitleInput type="text" placeholder="제목" />
-      <SearchBar type="text" placeholder="장소를 검색해 등록해주세요." />
-      <FilterLayout>
-        <FilterBox>지역별 | {locationButtons}</FilterBox>
-        <FilterBox>종류별 | {typeButtons}</FilterBox>
-      </FilterLayout>
+      <S.CategoryButtonBox>
+        <S.CategoryButton>식당</S.CategoryButton>
+        <S.CategoryButton>레시피</S.CategoryButton>
+      </S.CategoryButtonBox>
+      <S.TitleInput type="text" placeholder="제목" />
+      <S.SearchBar type="text" placeholder="장소를 검색해 등록해주세요." />
+      <S.FilterLayout>
+        <S.FilterBox>지역별 | {locationButtons}</S.FilterBox>
+        <S.FilterBox>종류별 | {typeButtons}</S.FilterBox>
+      </S.FilterLayout>
       <Editor
         initialValue="당신의 채식 경험을 공유해 주세요!"
         previewStyle="vertical"
@@ -146,7 +83,7 @@ function Write() {
         initialEditType="wysiwyg"
         useCommandShortcut={false}
       />
-    </WriteLayout>
+    </S.WriteLayout>
   );
 }
 
