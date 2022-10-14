@@ -45,7 +45,7 @@ function RegisterForm() {
 
     try {
       // "registration" 엔드포인트로 post요청함.
-      await Api.post("registration", formData);
+      await Api.post("registration/", formData);
 
       // 로그인 페이지로 이동함.
       navigate("/login");
