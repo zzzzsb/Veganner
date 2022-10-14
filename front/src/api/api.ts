@@ -8,8 +8,7 @@ const realBaseUrl = "kdt-ai5-team01.elicecoding.com";
 
 const serverUrl = `http://${localBaseUrl}:${backendPortNumber}/`;
 
-
-async function get(endpoint:string, params = "") {
+async function get(endpoint: string, params = "") {
   console.log(
     `%cGET 요청 ${serverUrl + endpoint + "/" + params}`,
     "color: #a25cd1;"
@@ -23,7 +22,7 @@ async function get(endpoint:string, params = "") {
   });
 }
 
-async function post(endpoint:string, data?:any) {
+async function post(endpoint: string, data?: any) {
   // JSON.stringify 함수: Javascript 객체를 JSON 형태로 변환함.
   // 예시: {name: "Kim"} => {"name": "Kim"}
   const bodyData = JSON.stringify(data);
@@ -38,7 +37,7 @@ async function post(endpoint:string, data?:any) {
   });
 }
 
-async function put(endpoint:string, data?:string) {
+async function put(endpoint: string, data?: string) {
   // JSON.stringify 함수: Javascript 객체를 JSON 형태로 변환함.
   // 예시: {name: "Kim"} => {"name": "Kim"}
   const bodyData = JSON.stringify(data);
@@ -55,7 +54,7 @@ async function put(endpoint:string, data?:string) {
 
 // 아래 함수명에 관해, delete 단어는 자바스크립트의 reserved 단어이기에,
 // 여기서는 우선 delete 대신 del로 쓰고 아래 export 시에 delete로 alias 함.
-async function del(endpoint:string, params = "") {
+async function del(endpoint: string, params = "") {
   console.log(`DELETE 요청 ${serverUrl + endpoint + "/" + params}`);
   return axios.delete(serverUrl + endpoint + "/" + params, {
     headers: {
