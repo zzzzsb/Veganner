@@ -5,6 +5,7 @@ import Insights from "./pages/Insights";
 import "./styles/styles.css";
 import { Reset } from "styled-reset";
 import LoginForm from "./pages/login/Login";
+import RegisterForm from "./pages/register/Register";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           {/* <Route path="/Share" element={} />
           <Route path="/Explore" element={} /> */}
           <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
+
+          
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,5 +1,4 @@
 import { ChangeEvent, MouseEvent, useState } from "react";
-import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import * as Api from "../../api/api";
 
@@ -40,7 +39,7 @@ function RegisterForm() {
 
   // 위 4개 조건이 모두 동시에 만족되는지 여부를 확인함.
   const isFormValid =
-    isEmailValid && isPasswordValid && isPasswordSame && isNameValid;
+    isEmailValid && isPasswordValid && isPasswordSame
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -116,7 +115,7 @@ function RegisterForm() {
           )}
         </div>
 
-        <div>
+        {/* <div>
           <span>이름</span>
           <input
             type="text"
@@ -130,7 +129,7 @@ function RegisterForm() {
               이름은 2글자 이상으로 설정해 주세요.
             </div>
           )}
-        </div>
+        </div> */}
 
         <div>
           <button type="submit" disabled={!isFormValid}>

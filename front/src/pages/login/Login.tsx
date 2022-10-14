@@ -36,7 +36,7 @@ function LoginForm() {
 
     try {
       // "user/login" 엔드포인트로 post요청함.
-      const res = await Api.post("user/login", formData);
+      const res = await Api.post("login", formData);
       // 유저 정보는 response의 data임.
       const user = res.data;
       sessionStorage.setItem("loginEmail", user.email);
