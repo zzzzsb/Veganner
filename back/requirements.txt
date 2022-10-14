@@ -21,6 +21,7 @@ mysqlclient==2.1.1
 oauthlib==3.2.0
 paramiko==2.11.0
 pep8==1.7.1
+Pillow==9.2.0
 platformdirs==2.5.1
 pycodestyle==2.8.0
 pycparser==2.21
