@@ -1,3 +1,4 @@
+import re
 import jwt
 from rest_framework import status
 from django.conf import settings
@@ -22,25 +23,26 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 class PostAllGetAPI(APIView):
     model = Posts
 
-    def get(self, request, User=None, Title=None, Content=None, Type=None,
-            Hashtag=None, Groups=None, Sort="CreationTime", Address=None, page=1):
-        print(Sort)
+    def get(self, request):
+        # Sort = (request.GET["Sort"])
+        # if Sort == None:
+        #     Sort = "CreationTime"
+        print(request.GET.keys())
         # filter_set = {
         #     User: User, Title: Title, Content: Content, Type: Type,
         #     Hashtag: Hashtag, Groups: Groups, Sort: Sort, Address: Address
         # }
 
-        queryset = Like.objects.values(
-            "PostId_id").annotate(Count('Like'))
-        print(queryset.query)
-        #values("PostId_id", "Like__count")
+        # queryset = Like.objects.values(
+        #     "PostId_id").annotate(Count('Like')).values("PostId_id", "Like__count")
+        # print(queryset.query)
 
-        items = Posts.objects.filter().values(
-            "ID", "Type", "Title", "Thumbnail", "CreationTime", "User").order_by(Sort)
+        items = Posts.objects.filter().values("ID", "Type", "Title", "Thumbnail",
+                                              "CreationTime", "User").order_by("CreationTime")
 
         # print(items.query)
-        test_data = Posts.objects.select_related(queryset)
-        print(test_data)
+        # test_data = Posts.objects.select_related(queryset)
+        # print(test_data)
         return Response(items)
 
     def post(self, request):
@@ -60,6 +62,16 @@ class PostGetAPI(APIView):
         item = Posts.objects.get(ID=ID)
         serializer = PostSerializer(item)
         return Response(serializer.data)
+
+    def put(self, request, ID):
+        item = Posts.objects.get(ID=ID)
+        data = request.data.copy()
+        data["User"] = request.user
+        serializer = PostSerializer(item, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def post(self, request, ID):
         item = Like.objects.get(PostId=ID, User=request.user)
