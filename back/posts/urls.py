@@ -6,7 +6,7 @@ from django.conf import settings
 urlpatterns = [
     path(r'', PostAllGetAPI.as_view(), name="board"),
     path('<int:ID>/', PostGetAPI.as_view(), name="details"),
-    path('<int:ID>/like', PostLikeAPI.as_view(), name="details"),
+    path('<int:ID>/like/', PostLikeAPI.as_view(), name="like"),
 
 
 

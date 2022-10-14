@@ -1,7 +1,7 @@
 import jwt
 from rest_framework import status
 from django.conf import settings
-from .serializers import PostSerializer, CommentsItemSerializer
+from .serializers import PostSerializer, CommentsItemSerializer, LikeSerializer
 from accounts.models import User
 from .models import Posts, Like
 from rest_framework.response import Response
@@ -66,8 +66,11 @@ class PostLikeAPI(APIView):
         try:
             item = Like.objects.get(PostId=ID, User=request.user)
             item.delete()
+            return Response(Like.objects.filter(PostId=ID).count())
         except Like.DoesNotExist:
-            serializer = PostSerializer(
-                {"PostId": ID, User: request.user, "Like": True})
-            serializer.save()
-        return Response(Like.objects.filter(PostId=ID).count())
+            serializer = LikeSerializer(
+                data={"PostId": ID, "User": request.user, "Like": True})
+            if serializer.is_valid():
+                serializer.save()
+                return Response(Like.objects.filter(PostId=ID).count())
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

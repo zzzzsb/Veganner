@@ -19,10 +19,10 @@ class PostSerializer(serializers.ModelSerializer):
 class CommentsItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
-        fields = ('CommentId', 'UserId', 'PostId')  # 변환 원하는 컬럼들
+        fields = ('CommentId', 'User', 'PostId')  # 변환 원하는 컬럼들
 
 
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
-        fields = ('CommentId', 'UserId', 'Like')  # 변환 원하는 컬럼들
+        fields = ('PostId', 'User', 'Like')  # 변환 원하는 컬럼들
