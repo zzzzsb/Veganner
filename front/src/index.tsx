@@ -5,10 +5,6 @@ import "./styles/index.css";
 import "./assets/fonts/font.css";
 import {
   RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
 } from "recoil"
 
 const root = ReactDOM.createRoot(

@@ -6,6 +6,7 @@ import "./styles/styles.css";
 import { Reset } from "styled-reset";
 import LoginForm from "./pages/login/Login";
 import RegisterForm from "./pages/register/Register";
+import View from "./pages/view/View";
 
 function App() {
   return (
@@ -20,8 +21,8 @@ function App() {
           <Route path="/Explore" element={} /> */}
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
-
-          
+          <Route path="/share" element={<View />} />
+          {/* <Route path="/login" element={<LoginForm />} /> */}
         </Routes>
       </BrowserRouter>
     </div>
