@@ -1,13 +1,16 @@
+from email.headerregistry import Address, Group
 import re
 import jwt
+from mysqlx import Table
 from rest_framework import status
 from django.conf import settings
-from django.db.models import Count
+from django.db.models import Count, Subquery, OuterRef
 from .serializers import PostSerializer, CommentsItemSerializer, LikeSerializer
 from accounts.models import User
 from .models import Posts, Like, Comments
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.core.paginator import Paginator
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
@@ -32,18 +35,59 @@ class PostAllGetAPI(APIView):
         #     User: User, Title: Title, Content: Content, Type: Type,
         #     Hashtag: Hashtag, Groups: Groups, Sort: Sort, Address: Address
         # }
-
-        # queryset = Like.objects.values(
+        items = Posts.objects
+        # test_data_set = Like.objects.values(
         #     "PostId_id").annotate(Count('Like')).values("PostId_id", "Like__count")
         # print(queryset.query)
+        Page = 1
+        Sort = "CreationTime"
+        keys = request.GET.keys()
+        if "ID" in keys:
+            set_Data = request.GET["ID"]
+            items = items.filter(ID=set_Data)
+        elif "Group" in keys:
+            set_Data = request.GET["Group"]
+            items = items.filter(Group=set_Data)
+        elif "Content" in keys:
+            set_Data = request.GET["Content"]
+            items = items.filter(Content=set_Data)
+        elif "Address" in keys:
+            set_Data = request.GET["Address"]
+            items = items.filter(Address=set_Data)
+        elif "Type" in keys:
+            set_Data = request.GET["Type"]
+            items = items.filter(Type=set_Data)
+        elif "Hashtag" in keys:
+            set_Data = request.GET["Hashtag"]
+            items = items.filter(Hashtag=set_Data)
+        elif "User" in keys:
+            set_Data = request.GET["User"]
+            items = items.filter(User=set_Data)
+        elif "Sort" in keys:
+            Sort = request.GET["Sort"]
+        elif "Page" in keys:
+            Page = request.GET["Page"]
 
-        items = Posts.objects.filter().values("ID", "Type", "Title", "Thumbnail",
-                                              "CreationTime", "User").order_by("CreationTime")
+        # test_data = items.annotate(PostId_id=Subquery(
+        #     test_data_set)).values()
 
+        items = items.values("ID", "Type", "Title", "Thumbnail",
+                             "CreationTime", "User").order_by(Sort)
+        # print(type(items))
+        # print(type(test_data_set))
+
+        # print(test_data)
+        paginator = Paginator(items, 10)
+        responseData = paginator.get_page(Page)
+
+        # print(items)
+        # items = Posts.objects.filter().values("ID", "Type", "Title", "Thumbnail",
+        #                                       "CreationTime", "User").order_by("CreationTime")
         # print(items.query)
         # test_data = Posts.objects.select_related(queryset)
         # print(test_data)
-        return Response(items)
+        return Response(responseData.object_list)
+        # return Response(test_data)
 
     def post(self, request):
         # user = User.objects.get(email=request.user).id
