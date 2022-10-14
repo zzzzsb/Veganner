@@ -1,18 +1,19 @@
-import Location from '../../datas/seoul.json'
+// import Location from '../../datas/seoul.json'
 
-const location = Location.data;
+// const location = Location.data;
 interface ListProps {
-    item: string;
+    item: any;
     idx: number;
+    res_id: number
 }
-function ResList({idx}: ListProps) {
+function ResList({item, idx, res_id}: ListProps) {
     return (
         <div key={idx} className="restaurant">
             <h3>
-                {`${location[idx].name}`}
+                {`${item[res_id].name}`}
             </h3>
-        <p>주소 : {`${location[idx].location}`}</p>
-        <p>전화번호 : `${location[idx].number}`</p>
+        <p>주소 : {`${item[res_id].location}`}</p>
+        <p>전화번호 : `${item[res_id].number}`</p>
         </div>
         
     );

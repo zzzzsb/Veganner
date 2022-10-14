@@ -25,7 +25,7 @@ function MainMap(){
           width: "870px",
           height: "730px",
         }}
-        level={3} // 지도의 확대 레벨
+        level={7} // 지도의 확대 레벨
       >
       {/* <Marker></Marker> */}
       </Map>
