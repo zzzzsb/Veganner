@@ -1,5 +1,6 @@
 import React from 'react';
-import {Map, MapMarker} from 'react-kakao-maps-sdk'
+import {Map} from 'react-kakao-maps-sdk'
+import Marker from './Marker'
 
 import Location from '../../datas/seoul.json'
 
@@ -26,21 +27,7 @@ function MainMap(){
         }}
         level={3} // 지도의 확대 레벨
       >
-        {location.map((position, index) => (
-        <MapMarker
-          position={{lat: position.y, lng: position.x}}
-          image={{
-            src: "./marker_icon-icons.com_54388.png",
-            size: {
-              width: 24,
-              height: 35
-            }
-            // title = {position.name}
-          }}
-          
-          
-        />
-      ))}
+      {/* <Marker></Marker> */}
       </Map>
 
       </div>
