@@ -8,7 +8,7 @@ function View() {
         <S.Label>레시피</S.Label>
         <S.Title>토마토 파프리카 그린 샐러드</S.Title>
       </S.TitleLayout>
-      <S.InfoLayout>
+      {/* <S.InfoLayout>
         <S.PostInfo>
           <S.UserPic></S.UserPic>
           <S.UserName>김현정</S.UserName>
@@ -21,7 +21,7 @@ function View() {
           <S.LikeIcon></S.LikeIcon>
           <S.LikeCount>0</S.LikeCount>
         </S.Like>
-      </S.InfoLayout>
+      </S.InfoLayout> */}
     </S.Layout>
   );
 }

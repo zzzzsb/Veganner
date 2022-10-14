@@ -1,46 +1,45 @@
 import styled from "styled-components";
 
+/* 전체 레이아웃 */
 export const Layout = styled.div`
-  position: absolute;
-  width: 1020px;
-  height: 2057px;
-  left: 198px;
-  top: 57px;
+  width: 100%;
+  padding-top: 75px;
+  justify-content: center;
+  display: flex;
 `;
 
 /* 제목 레이아웃 */
 export const TitleLayout = styled.div`
-  position: absolute;
-  width: 1020px;
+  width: 100%;
   height: 94.96px;
-  left: 198px;
-  top: 158px;
+  justify-content: center;
+  margin: 50px;
 `;
 
 /* 레시피 or 식당 */
 export const Label = styled.div`
-  position: absolute;
+  width: 100%;
   height: 27.14px;
   left: 451px;
   right: 451px;
-  top: 0px;
 
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
+
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: center;
 
   color: #004d43;
 `;
 
 /* 제목 */
 export const Title = styled.div`
-  position: absolute;
-  width: 1020px;
+  width: 100%;
   height: 66.81px;
   left: 0px;
   top: 28.14px;
@@ -49,18 +48,19 @@ export const Title = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 40px;
-  line-height: 54px;
+
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: center;
 
   color: #212121;
 `;
 
 /* 글 정보 레이아웃 */
 export const InfoLayout = styled.div`
-  position: absolute;
-  width: 1020px;
+  position: relative;
+  width: 100%;
   height: 56px;
   left: 198px;
   top: 313px;
@@ -68,16 +68,16 @@ export const InfoLayout = styled.div`
 
 /* 유저, 작성일, 분류 */
 export const PostInfo = styled.div`
-  position: absolute;
-  width: 261px;
-  height: 31px;
+  // position: absolute;
+  width: 260px;
+  height: 30px;
   left: 220px;
   top: 313px;
 `;
 
 /* 유저 프로필 사진 */
 export const UserPic = styled.div`
-  position: absolute;
+  // position: absolute;
   width: 22px;
   height: 22px;
   left: 220px;
@@ -87,7 +87,7 @@ export const UserPic = styled.div`
 `;
 /* 유저이름 */
 export const UserName = styled.div`
-  position: absolute;
+  // position: absolute;
   width: 48.59px;
   height: 17px;
   left: 251px;
@@ -108,7 +108,7 @@ export const UserName = styled.div`
 
 /* 작성일 */
 export const PostDate = styled.div`
-  position: absolute;
+  // position: absolute;
   width: 93px;
   height: 18px;
   left: 313px;
@@ -128,7 +128,7 @@ export const PostDate = styled.div`
 
 /* 분류 */
 export const PostCate = styled.div`
-  position: absolute;
+  // position: absolute;
   width: 62px;
   height: 31px;
   left: 419px;
@@ -137,7 +137,7 @@ export const PostCate = styled.div`
 
 /* 구분선 */
 export const InfoLine1 = styled.div`
-  position: absolute;
+  // position: absolute;
   width: 0.5px;
   height: 22.02px;
   left: 306px;
