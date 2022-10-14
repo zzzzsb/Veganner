@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const WriteLayout = styled.div`
   width: 1020px;
+  margin: 0 auto;
 `;
 
 export const CategoryButtonBox = styled.div`
@@ -10,7 +11,7 @@ export const CategoryButtonBox = styled.div`
   height: 30px;
   margin: 20px auto;
 `;
-export const CategoryButton = styled.div`
+export const CategoryButton = styled.button`
   width: 60px;
   height: 30px;
   border-radius: 15px;
@@ -46,7 +47,7 @@ export const SearchBar = styled.input`
 
 export const FilterLayout = styled.div`
   float: left;
-  margin: 0 auto;
+  margin-bottom: 20px;
 `;
 export const FilterBox = styled.div`
   width: 1200px;
@@ -65,4 +66,32 @@ export const FilterButton = styled.div`
   text-align: center;
   line-height: 26px;
   margin: 0 5px 10px 5px;
+`;
+
+export const EditorLayout = styled.div`
+  display: block;
+  height: 700px;
+`;
+
+export const ButtonBox = styled.div`
+  display: flex;
+  float: right;
+  width: 250px;
+  height: 30px;
+  margin-bottom: 50px;
+`;
+export const Button = styled.button`
+  width: 60px;
+  height: 30px;
+  border: none;
+  border-radius: 15px;
+  background-color: #004d43;
+  color: #f1f1f1;
+  background-color: #d9d9d9;
+  color: #004d43;
+  text-align: center;
+  line-height: 30px;
+  margin: 0 10px;
+  font-size: 14px;
+  font-weight: 700;
 `;

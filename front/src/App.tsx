@@ -6,6 +6,7 @@ import Share from "./pages/Share";
 import Write from "./pages/write/Write";
 import "./styles/styles.css";
 import { Reset } from "styled-reset";
+import { IEditor } from "./pages/write/Write";
 
 function App() {
   return (
