@@ -2,35 +2,57 @@ import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import * as S from "./Write.styled";
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import * as Api from "../../api/api";
 // interface WriteProps {
 //   categories: Array<string>;
 //   category: string;
 //   setCategory: Dispatch<SetStateAction<boolean>>;
 // }
+import { IEditor } from "../../types/iEditor";
+//import { Post } from "../../types/post";
 
-export interface IEditor {
-  htmlStr?: string;
-  setHtmlStr?: React.Dispatch<React.SetStateAction<string>>;
+interface AddPostProps {
+  editor?: IEditor;
+  //post?: Post;
 }
-function Write(props: IEditor) {
+
+function AddPost({ editor }: AddPostProps) {
+  // 포스트 제목
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
+  const [group, setGroup] = useState<number>(0);
+
   // editor DOM 선택용
   const editorRef = useRef<Editor>(null);
-  // const [text, setText] = useState<string>("");
-  const handleRegisterButton = () => {
-    console.log(editorRef.current?.getInstance().getHTML());
-    console.log(editorRef.current?.getInstance().getMarkdown());
+  const handleRegister = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    // console.log(editorRef.current?.getInstance().getHTML());
+    // console.log(editorRef.current?.getInstance().getMarkdown());
+
     if (editorRef.current) {
-      if (props.setHtmlStr) {
-        props.setHtmlStr(editorRef.current.getInstance().getHTML());
+      setContent(editorRef.current.getInstance().getHTML());
+      const post = {
+        Title: title,
+        Content: content,
+        Groups: group,
+        Types: "",
+      };
+      try {
+        await Api.post("board/", post);
+      } catch (e) {
+        console.error(e);
       }
     }
   };
+
+  // 이미지 base64 처리
   useEffect(() => {
     if (editorRef.current) {
       // 전달받은 html값으로 초기화
-      if (props.htmlStr) editorRef.current.getInstance().setHTML(props.htmlStr);
-
+      if (editor?.htmlStr) {
+        editorRef.current.getInstance().setHTML(editor?.htmlStr);
+      }
       // 기존 이미지 업로드 기능 제거
       editorRef.current.getInstance().removeHook("addImageBlobHook");
       // 이미지 서버로 데이터를 전달하는 기능 추가
@@ -41,7 +63,7 @@ function Write(props: IEditor) {
             const formData = new FormData();
             formData.append("multipartFiles", blob);
 
-            const res = await axios.post(
+            const res = await Api.post(
               "http://localhost:8080/uploadImage",
               formData
             );
@@ -92,10 +114,15 @@ function Write(props: IEditor) {
   return (
     <S.WriteLayout>
       <S.CategoryButtonBox>
-        <S.CategoryButton>식당</S.CategoryButton>
-        <S.CategoryButton>레시피</S.CategoryButton>
+        <S.CategoryButton onClick={(e) => setGroup(0)}>식당</S.CategoryButton>
+        <S.CategoryButton onClick={(e) => setGroup(1)}>레시피</S.CategoryButton>
       </S.CategoryButtonBox>
-      <S.TitleInput type="text" placeholder="제목" />
+      <S.TitleInput
+        type="text"
+        value={title}
+        placeholder="제목"
+        onChange={(e) => setTitle(e.target.value)}
+      />
       <S.SearchBar type="text" placeholder="장소를 검색해 등록해주세요." />
       <S.FilterLayout>
         <S.FilterBox>지역별 | {locationButtons}</S.FilterBox>
@@ -120,11 +147,11 @@ function Write(props: IEditor) {
         />
       </S.EditorLayout>
       <S.ButtonBox>
-        <S.Button onClick={handleRegisterButton}>등록</S.Button>
+        <S.Button onClick={handleRegister}>등록</S.Button>
         <S.Button>취소</S.Button>
       </S.ButtonBox>
     </S.WriteLayout>
   );
 }
 
-export default Write;
+export default AddPost;
