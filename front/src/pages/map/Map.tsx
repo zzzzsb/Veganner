@@ -1,11 +1,12 @@
-import MainMap from "../components/Map/MainMap";
-import SideBar from "../components/Map/SideBar";
-import Resitem from "../components/Map/Resitem";
+import MainMap from "../../components/Map/MainMap";
+import SideBar from "../../components/Map/SideBar";
+import Resitem from "../../components/Map/Resitem";
 import { useState, useEffect } from "react";
-import Location from "../datas/seoul.json";
-import { Restaurant } from "../types/restaurant";
+import Location from "../../datas/seoul.json";
+import { Restaurant } from "../../types/restaurant";
 import { useParams, useNavigate } from "react-router-dom";
-import Paging from "../components/Map/Paging"
+import Paging from "../../components/Map/Paging"
+import * as S from "./Map.styled";
 
 
 const list = Location.data;
@@ -32,12 +33,11 @@ function Map() {
 
   return (
     <>
-      <section className="Title">
+      <S.Title>
         <div>Explore the Vegan World.</div>
         <div>비거너의 비건 맛집 지도를 자유롭게 이용해 보세요.</div>
-      </section>
-      <section className="map">
-        <SideBar />
+      </S.Title>
+      <S.Layout>
         <div className="resList">
           <div className="searchContainer">
             <form>
@@ -101,18 +101,18 @@ function Map() {
                 <option value="possible">채식가능음식점</option>
               </select>
             </form>
-            <div className="resContainer">
+            <S.resContainer>
               {currentPosts.map((item) => (
                 <Resitem key={item.index} item={item as Restaurant} />
               ))}
-              <div className="pagination">
+              <S.pagination>
                 <Paging item={result} page={currentpage} setPage={setCurrentpage}/>
-              </div>
-            </div>
+              </S.pagination>
+            </S.resContainer>
           </div>
         </div>
         <MainMap items={result}/>
-      </section>
+      </S.Layout>
     </>
   );
 }
