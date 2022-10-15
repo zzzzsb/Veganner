@@ -1,7 +1,7 @@
 import MainMap from "../components/Map/MainMap";
 import SideBar from "../components/Map/SideBar";
 import Resitem from "../components/Map/Resitem";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Location from "../datas/seoul.json";
 import { Restaurant } from "../types/restaurant";
 import { useParams, useNavigate } from "react-router-dom";
@@ -12,51 +12,23 @@ const list = Location.data;
 
 function Map() {
   const navigate = useNavigate();
-  const [searchValue, setSearchValue] = useState("");
-  const [activePage, setActivePage] = useState(1);
-  const [perPage, setPerPage] = useState(5);
-  const [item, setItem] = useState();
-  const [pagination, setPagination] = useState([]);
-  const [result, setResult] = useState(list);
-
-// //페이지네이션 생성, 클릭시 해당 페이지 이동
-// useEffect(() => {
-//   let paginations = [];
-//   for (let i = 1; i <= Math.ceil(result.length / 5); i++) {
-//     paginations.push(
-//       <button onClick={() => {
-        
-
-//       }}>
-//         {i}
-//       </button>
-//     );
-//   }
-//   setPagination(paginations);
-// }, [result]);
+  const [searchValue, setSearchValue] = useState("");  
+  const [result, setResult] = useState(list); //리스트에 나타낼 전체 아이템
+  const [currentpage, setCurrentpage] = useState(1); //현재페이지
+  const [indexOfLastPost, setIndexOfLastPost] = useState(0);
+  const [indexOfFirstPost, setIndexOfFirstPost] = useState(0);
+  const [currentPosts, setCurrentPosts] = useState(result);
 
 
-//   // pagination 클릭하면 해당 페이지로 가는 로직
-//   const params = useParams();
-//   let page = Number(params.page);
-//   let page_count = 1;
-//   let pagination_count = 0;
 
-//   // pagination 5개가 1페이지
-//   const paginations = pagination.filter((item) => {
-//     pagination_count += 1;
-//     if (pagination_count === 1) page_count = 1;
-//     else if (pagination_count % 5 === 1) {
-//       page_count += 1;
-//     }
-//     return page === page_count;
-//   });
 
-  const onChangePaginate = (pageNumber: number) => {
-    setActivePage(pageNumber);
-    // to set offset
-    console.log(pageNumber * 10 - 10)
-  };
+  useEffect(() => {
+    
+    setIndexOfLastPost(currentpage * 10);
+    setIndexOfFirstPost(indexOfLastPost - 10);
+    setCurrentPosts(result.slice(indexOfFirstPost, indexOfLastPost));
+  }, [currentpage, indexOfFirstPost, indexOfLastPost, result, 10]);
+  
 
   return (
     <>
@@ -130,27 +102,11 @@ function Map() {
               </select>
             </form>
             <div className="resContainer">
-              {result.map((item) => (
+              {currentPosts.map((item) => (
                 <Resitem key={item.index} item={item as Restaurant} />
               ))}
               <div className="pagination">
-                {/* <button
-                  onClick={() => {
-                    if (page === 1) return;
-                    navigate(`/search/${page - 1}`);
-                  }}
-                >
-                  이전
-                </button> */}
-                <Paging item={result} />
-                {/* <button
-                  onClick={() => {
-                    if (page === Math.ceil(pagination.length / 5)) return;
-                    navigate(`/search/${page + 1}`);
-                  }}
-                >
-                  다음
-                </button> */}
+                <Paging item={result} page={currentpage} setPage={setCurrentpage}/>
               </div>
             </div>
           </div>

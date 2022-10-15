@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import Pagination from 'react-js-pagination';
 
-
 interface PagingProps {
     item: any;
+    page: number;
+    setPage: any;
 }
-function Paging ({item} : PagingProps) {
-  const [page, setPage] = useState(1);
-  function handlePageChange (page: number) {
-    setPage(page);
-  };
+function Paging ({item, page, setPage} : PagingProps) {
+  
   return (
     <Pagination
       activePage={page}
@@ -18,7 +16,7 @@ function Paging ({item} : PagingProps) {
       pageRangeDisplayed={5}
       prevPageText="‹"
       nextPageText="›"
-      onChange={handlePageChange}
+      onChange={setPage}
     />
   );
 };
