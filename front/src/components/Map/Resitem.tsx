@@ -6,7 +6,7 @@ interface ListProps {
     idx: number;
     res_id: number
 }
-function ResList({item, idx, res_id}: ListProps) {
+function Resitem({item, idx, res_id}: ListProps) {
     return (
         <div key={idx} className="restaurant">
             <h3>
@@ -20,4 +20,4 @@ function ResList({item, idx, res_id}: ListProps) {
 
 }
 
-export default ResList;
+export default Resitem;
