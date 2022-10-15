@@ -3,6 +3,7 @@ import SideBar from "../components/Map/SideBar";
 import Resitem from "../components/Map/Resitem";
 import React, { useState, useEffect } from "react";
 import Location from "../datas/seoul.json";
+import { Restaurant } from "../types/restaurant";
 
 const location = Location.data;
 
@@ -68,47 +69,32 @@ function Map() {
                 <option value="jungnang">중랑구</option>
 
               </select>
-              {/* <select
-                name="sort-"
+              <select
+                name="sort-type"
               >
-                <option value="">지역별</option>
-                <option value="gangnam">강남구</option>
-                <option value="gangdong">강동구</option>
-                <option value="gangbuk">강북구</option>
-                <option value="gangseo">강서구</option>
-                <option value="gwanak">관악구</option>
-                <option value="gwangjin">광진구</option>
-                <option value="guro">구로구</option>
-                <option value="geumcheon">금천구</option>
-                <option value="nowon">노원구</option>
-                <option value="dobong">도봉구</option>
-                <option value="dondaemun">동대문구</option>
-                <option value="dongjak">동작구</option>
-   
-
+                <option value="">종류별</option>
+                <option value="korean">한식</option>
+                <option value="western">양식</option>
+                <option value="cafe">카페</option>
+                <option value="snack">분식</option>
+                <option value="southeast">동남아</option>
+                <option value="bar">술집</option>
+                <option value="bakery">베이커리</option>
+                <option value="india/middleeast">인도/중동</option>
+                <option value="chinese">중국식</option>
               </select>
               <select
-                name="sort-location"
+                name="sort-vegantype"
               >
-                <option value="">지역별</option>
-                <option value="gangnam">강남구</option>
-                <option value="gangdong">강동구</option>
-                <option value="gangbuk">강북구</option>
-                <option value="gangseo">강서구</option>
-                <option value="gwanak">관악구</option>
-                <option value="gwangjin">광진구</option>
-                <option value="guro">구로구</option>
-                <option value="geumcheon">금천구</option>
-                <option value="nowon">노원구</option>
-                <option value="dobong">도봉구</option>
-                <option value="dondaemun">동대문구</option>
-                
-
-              </select> */}
+                <option value="">비건</option>
+                <option value="full">채식전문점</option>
+                <option value="possible">채식가능음식점</option>
+              </select>
             </form>
             <div className="resContainer">
-              {/* 식당 전체 리스트 보여주고 싶은데 방법을 모르겠다... */}
-              <Resitem item={location} idx={1} res_id={1} />
+              {location.map((item) => (
+                <Resitem key={item.index} item={item as Restaurant} />
+              ))}
             </div>
           </div>
         </div>

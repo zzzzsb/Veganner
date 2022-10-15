@@ -1,19 +1,16 @@
-// import Location from '../../datas/seoul.json'
+import {Restaurant} from "../../types/restaurant";
 
-// const location = Location.data;
-interface ListProps {
-    item: any;
-    idx: number;
-    res_id: number
+interface ItemProps {
+    item:Restaurant;
 }
-function Resitem({item, idx, res_id}: ListProps) {
+function Resitem({item}: ItemProps) {
     return (
-        <div key={idx} className="restaurant">
+        <div className="restaurant">
             <h3>
-                {`${item[res_id].name}`}
+                {`${item.name}`}
             </h3>
-        <p>주소 : {`${item[res_id].location}`}</p>
-        <p>전화번호 : {`${item[res_id].number}`}</p>
+        <p>주소 : {`${item.location}`}</p>
+        
         </div>
         
     );
