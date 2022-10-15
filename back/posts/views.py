@@ -14,30 +14,11 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
-
-# @api_view(['GET'])
-# def PostAllGetAPI(request):
-#     item = Posts.objects.all().values('Title')
-#     # serializer = PostListSerializer(item)
-#     return Response(item)
-
-
 class PostAllGetAPI(APIView):
     model = Posts
 
     def get(self, request):
-        # Sort = (request.GET["Sort"])
-        # if Sort == None:
-        #     Sort = "CreationTime"
-        print(request.GET.keys())
-        # filter_set = {
-        #     User: User, Title: Title, Content: Content, Type: Type,
-        #     Hashtag: Hashtag, Groups: Groups, Sort: Sort, Address: Address
-        # }
         items = Posts.objects
-        # test_data_set = Like.objects.values(
-        #     "PostId_id").annotate(Count('Like')).values("PostId_id", "Like__count")
-        # print(queryset.query)
         Page = 1
         Sort = "CreationTime"
         keys = request.GET.keys()
@@ -69,30 +50,27 @@ class PostAllGetAPI(APIView):
             Sort = request.GET["Sort"]
         elif "Page" in keys:
             Page = request.GET["Page"]
-
-        # test_data = items.annotate(PostId_id=Subquery(
-        #     test_data_set)).values()
-
         items = items.values("ID", "Type", "Title", "Thumbnail",
                              "CreationTime", "User").order_by(Sort)
-        # print(type(items))
-        # print(type(test_data_set))
-
-        # print(test_data)
         paginator = Paginator(items, 10)
-        responseData = paginator.get_page(Page)
+        responseData = list(paginator.get_page(Page).object_list)
 
-        # print(items)
-        # items = Posts.objects.filter().values("ID", "Type", "Title", "Thumbnail",
-        #                                       "CreationTime", "User").order_by("CreationTime")
-        # print(items.query)
-        # test_data = Posts.objects.select_related(queryset)
-        # print(test_data)
-        return Response(responseData.object_list)
-        # return Response(test_data)
+        test_data_p = [responseData[i]["ID"] for i in range(len(responseData))]
+        test_data_set = Like.objects.values(
+            "PostId_id").annotate(Count('Like')).values("PostId_id", "Like__count").filter(PostId_id__in=test_data_p)
 
+        test_data_l = [test_data_set[i]["PostId_id"]
+                       for i in range(len(test_data_set))]
+
+        for i in range(len(test_data_p)):
+            if test_data_p[i] in test_data_l:
+                index_l = test_data_l.index(test_data_p[i])
+                responseData[i]["Likes"] = test_data_set[index_l]["Like__count"]
+            else:
+                responseData[i]["Likes"] = 0
+
+        return Response(responseData)
     def post(self, request):
-        # user = User.objects.get(email=request.user).id
         user = request.user
         data = request.data.copy()
         data["User"] = user
@@ -106,8 +84,8 @@ class PostAllGetAPI(APIView):
 class PostGetAPI(APIView):
     def get(self, request, ID):
         item = Posts.objects.get(ID=ID)
-        serializer = PostSerializer(item)
-        return Response(serializer.data)
+        responseData = PostSerializer(item)
+        return Response(responseData.data)
 
     def put(self, request, ID):
         item = Posts.objects.get(ID=ID)
