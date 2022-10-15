@@ -111,7 +111,7 @@ function Map() {
             </div>
           </div>
         </div>
-        <MainMap i={list[1]}/>
+        <MainMap items={result}/>
       </section>
     </>
   );

@@ -1,9 +1,7 @@
 import {MapMarker} from 'react-kakao-maps-sdk'
-
+import { Restaurant } from "../../types/restaurant";
 interface Markerprops {
-    key: number;
-    location: any;
-    i: number;
+    location: Restaurant;
 }
 
 function Marker({location}: Markerprops){
@@ -19,8 +17,8 @@ function Marker({location}: Markerprops){
             width: 24,
             height: 35
             }
-            // title = {position.name}
         }}
+        title = {location.name}
         
         
         />
