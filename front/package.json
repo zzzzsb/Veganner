@@ -51,7 +51,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "localhost:8000/",
+  //"proxy": "localhost:8000/",
   "devDependencies": {
     "styled-components": "^5.3.6"
   }
