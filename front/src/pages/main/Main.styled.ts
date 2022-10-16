@@ -61,9 +61,10 @@ export const PageLayout = styled.div<MainStyledProps>`
 `;
 
 export const RowTextBox = styled.div`
+  width: 1000px;
   height: 120px;
   text-align: left;
-  margin: 70px 120px 0;
+  margin: 70px auto 20px auto;
   color: #212121;
 `;
 
