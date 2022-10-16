@@ -6,6 +6,12 @@ interface ItemProps {
 function Resitem({item}: ItemProps) {
     return (
         <S.restaurant>
+            <div>
+                {`${item.industry}`}
+            </div>
+            <div>
+                {`${item.food}`}
+            </div>
             <h3>
                 {`${item.name}`}
             </h3>

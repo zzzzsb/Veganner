@@ -115,9 +115,10 @@ function Map() {
                     <S.optionitem key={region} onClick={handleSelectRegion}>{region}</S.optionitem>
                   ))}                  
                 </S.optionList>)}
+              </S.selectBox1>
               
               
-              
+              <S.selectBox1>
                 {/* 종류 */}
                 <S.select_location
                 type="button"
@@ -131,9 +132,9 @@ function Map() {
                     <S.optionitem key={type} onClick={handleSelectType}>{type}</S.optionitem>
                   ))}                  
                 </S.optionList>)}
+              </S.selectBox1>
               
-              
-              
+              <S.selectBox1>
                 {/* 비건 */}
                 <S.select_location
                 type="button"
@@ -141,7 +142,7 @@ function Map() {
                   {selectedVegan ?? "비건"}
                 </S.select_location>
 
-                {isOpenRegionList&&
+                {isOpenVeganList&&
                 (<S.optionList>
                   {vegans.map((vegan) => (
                     <S.optionitem key={vegan} onClick={handleSelectVegan}>{vegan}</S.optionitem>
@@ -149,6 +150,7 @@ function Map() {
                 </S.optionList>)}
               </S.selectBox1>
             </form>
+
             <S.resContainer>
               {currentPosts.map((item) => (
                 <Resitem key={item.index} item={item as Restaurant} />
