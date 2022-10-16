@@ -1,5 +1,6 @@
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import * as Api from "../../api/api";
 
 interface RegisterData {
@@ -15,8 +16,17 @@ function RegisterForm() {
     email: "",
     password1: "",
     password2: "",
-    
   });
+
+  const [user,setUser]=useState("")
+
+  
+// useEffect(() => {
+//   // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
+//   Api.get("user", portfolioOwnerId).then((res) => setUser(res.data));
+// }, [portfolioOwnerId]);
+
+
 
   //이메일이 abc@example.com 형태인지 regex를 이용해 확인함.
   const validateEmail = (registerObj: RegisterData) => {
@@ -30,15 +40,14 @@ function RegisterForm() {
   //위 validateEmail 함수를 통해 이메일 형태 적합 여부를 확인함.
   const isEmailValid = validateEmail(formData);
   // 비밀번호가 4글자 이상인지 여부를 확인함.
-  const isPasswordValid = formData.password1.length >= 4;
+  const isPasswordValid = formData.password1.length >= 8;
   // 비밀번호와 확인용 비밀번호가 일치하는지 여부를 확인함.
   const isPasswordSame = formData.password1 === formData.password2;
   // 이름이 2글자 이상인지 여부를 확인함.
   // const isNameValid = formData.name.length >= 2;
 
   // 위 4개 조건이 모두 동시에 만족되는지 여부를 확인함.
-  const isFormValid =
-    isEmailValid && isPasswordValid && isPasswordSame
+  const isFormValid = isEmailValid && isPasswordValid && isPasswordSame;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -52,6 +61,14 @@ function RegisterForm() {
     } catch (err) {
       console.log("회원가입에 실패하였습니다.", err);
     }
+  };
+
+  const isEmailSame = async () => {
+    const res = await Api.get("user", formData.email);
+    // Api.get("user", formData.email).then((res) => setUser(res.data));
+    if(res.data.email)
+    
+
   };
 
   const handleonChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -79,6 +96,7 @@ function RegisterForm() {
             value={formData.email}
             onChange={handleonChange}
           />
+          <button onClick={isEmailSame}>중복확인</button>
           {!isEmailValid && (
             <div className="text-success">이메일 형식이 올바르지 않습니다.</div>
           )}
@@ -95,7 +113,7 @@ function RegisterForm() {
           />
           {!isPasswordValid && (
             <div className="text-success">
-              비밀번호는 4글자 이상으로 설정해 주세요.
+              비밀번호가 너무 짧습니다. 최소 8 문자를 포함해야 합니다.
             </div>
           )}
         </div>

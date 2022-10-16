@@ -7,19 +7,21 @@ const localBaseUrl = "localhost";
 const realBaseUrl = "kdt-ai5-team01.elicecoding.com";
 
 const serverUrl = `http://${localBaseUrl}:${backendPortNumber}/`;
-axios.defaults.withCredentials = true; 
+axios.defaults.withCredentials = true;
 async function get(endpoint: string, params = "") {
   console.log(
     `%cGET 요청 ${serverUrl + endpoint + "/" + params}`,
     "color: #a25cd1;"
   );
 
-  return axios.get(serverUrl + endpoint + "/" + params, {
-    // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
-    headers: {
-      Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-    },
-  });
+  return axios.get(
+    serverUrl + endpoint + "/" + params,
+    {
+      // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
+      headers: {
+        "Content-Type": "application/json"},
+    }
+  );
 }
 
 async function post(endpoint: string, data?: any) {
@@ -56,11 +58,14 @@ async function put(endpoint: string, data?: string) {
 // 여기서는 우선 delete 대신 del로 쓰고 아래 export 시에 delete로 alias 함.
 async function del(endpoint: string, params = "") {
   console.log(`DELETE 요청 ${serverUrl + endpoint + "/" + params}`);
-  return axios.delete(serverUrl + endpoint + "/" + params, {
-    headers: {
-      Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-    },
-  });
+  return axios.delete(
+    serverUrl + endpoint + "/" + params
+    // {
+    //   headers: {
+    //     Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+    //   },
+    // }
+  );
 }
 
 // 아래처럼 export한 후, import * as A 방식으로 가져오면,
