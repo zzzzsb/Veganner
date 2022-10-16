@@ -73,6 +73,7 @@ function AddPost({ tuiEditor }: AddPostProps) {
                 headers: { "Content-type": "multipart/formdata" },
               }
             );
+
             console.log(
               `%cPOST 요청 데이터: ${JSON.stringify(url)}`,
               "color: #296aba;"
