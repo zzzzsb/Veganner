@@ -59,7 +59,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'dj_rest_auth.registration',
+    'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.google',
+
     'corsheaders', # CORS 관련 추가
 ]
 REST_FRAMEWORK = {
@@ -71,9 +73,8 @@ REST_FRAMEWORK = {
     ),
 }
 
-REST_USE_JWT = True
-JWT_AUTH_COOKIE = 'my-app-auth'
-JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+SITE_ID = 3
+LOGIN_REDIRECT_URL = '/user/'
 
 SITE_ID = 1
 ACCOUNT_UNIQUE_EMAIL = True
@@ -85,6 +86,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', # CORS 추가
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -99,6 +101,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'api.urls'
+SESSION_COOKIE_AGE = 1800 # for 30 minutes timestamp
+SESSION_SAVE_EVERY_REQUEST = True
 
 TEMPLATES = [
     {
@@ -121,7 +125,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'api.wsgi.application'
 
 # CORS 권한 설정
-CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://kdt-ai5-team01.elicecoding.com:3000']
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000',
+                         'http://localhost:3000', 'http://kdt-ai5-team01.elicecoding.com:3000']
 CORS_ALLOW_CREDENTIALS = True
 
 # Database
@@ -134,7 +139,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '127.0.0.1',
         'PORT': ssh_tunnel.local_bind_port,
-        'NAME': "django_test",
+        'NAME': "veganner",
         'USER': "Team1",
         'PASSWORD': os.environ.get("PASSWORD"),
     }
