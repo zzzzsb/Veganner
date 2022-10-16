@@ -63,13 +63,13 @@ function RegisterForm() {
     }
   };
 
-  const isEmailSame = async () => {
-    const res = await Api.get("user", formData.email);
-    // Api.get("user", formData.email).then((res) => setUser(res.data));
-    if(res.data.email)
+  // const isEmailSame = async () => {
+  //   const res = await Api.get("user", formData.email);
+  //   // Api.get("user", formData.email).then((res) => setUser(res.data));
+  //   if(res.data.email)
     
 
-  };
+  // };
 
   const handleonChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -96,7 +96,7 @@ function RegisterForm() {
             value={formData.email}
             onChange={handleonChange}
           />
-          <button onClick={isEmailSame}>중복확인</button>
+          {/* <button onClick={isEmailSame}>중복확인</button> */}
           {!isEmailValid && (
             <div className="text-success">이메일 형식이 올바르지 않습니다.</div>
           )}
