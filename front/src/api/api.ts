@@ -7,7 +7,7 @@ const localBaseUrl = "localhost";
 const realBaseUrl = "kdt-ai5-team01.elicecoding.com";
 
 const serverUrl = `http://${localBaseUrl}:${backendPortNumber}/`;
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true; 
 async function get(endpoint: string, params = "") {
   console.log(
     `%cGET 요청 ${serverUrl + endpoint + "/" + params}`,

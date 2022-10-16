@@ -18,6 +18,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/img/'
 
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY"),
 
@@ -50,11 +55,14 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.google',
 
-    'corsheaders', # CORS 관련 추가
+
+    'corsheaders',  # CORS 관련 추가
 ]
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
@@ -75,7 +83,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # CORS 추가
+
+    'corsheaders.middleware.CorsMiddleware',  # CORS 추가
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -91,7 +100,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'api.urls'
-SESSION_COOKIE_AGE = 1800 # for 30 minutes timestamp
+SESSION_COOKIE_AGE = 1800  # for 30 minutes timestamp
 SESSION_SAVE_EVERY_REQUEST = True
 
 TEMPLATES = [
@@ -115,7 +124,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'api.wsgi.application'
 
 # CORS 권한 설정
-CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://kdt-ai5-team01.elicecoding.com:3000']
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000', 'http://localhost:3000']
 CORS_ALLOW_CREDENTIALS = True
 
 # Database
