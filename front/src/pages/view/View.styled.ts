@@ -2,197 +2,178 @@ import styled from "styled-components";
 
 /* 전체 레이아웃 */
 export const Layout = styled.div`
-  width: 100%;
+  width: 70%;
+  margin: auto;
   padding-top: 75px;
-  justify-content: center;
+  padding-bottom: 75px;
+
   display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 400px;
+  font-size: 16px;
+  color: #212121;
 `;
 
 /* 제목 레이아웃 */
 export const TitleLayout = styled.div`
-  width: 100%;
-  height: 94.96px;
-  justify-content: center;
   margin: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 `;
 
 /* 레시피 or 식당 */
 export const Label = styled.div`
-  width: 100%;
-  height: 27.14px;
-  left: 451px;
-  right: 451px;
-
-  font-family: "Noto Sans";
-  font-style: normal;
+  height: 27px;
   font-weight: 600;
-  font-size: 14px;
-  line-height: 19px;
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-
   color: #004d43;
 `;
 
 /* 제목 */
 export const Title = styled.div`
-  width: 100%;
-  height: 66.81px;
-  left: 0px;
-  top: 28.14px;
-
-  font-family: "Noto Sans";
-  font-style: normal;
+  height: 67px;
   font-weight: 500;
   font-size: 40px;
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-
-  color: #212121;
 `;
 
 /* 글 정보 레이아웃 */
 export const InfoLayout = styled.div`
-  position: relative;
   width: 100%;
-  height: 56px;
-  left: 198px;
-  top: 313px;
+  display: flex;
+  align-items: center;
+  margin: 0 15px 15px 15px;
 `;
 
 /* 유저, 작성일, 분류 */
 export const PostInfo = styled.div`
-  // position: absolute;
-  width: 260px;
-  height: 30px;
-  left: 220px;
-  top: 313px;
+  flex: none;
 `;
 
 /* 유저 프로필 사진 */
-export const UserPic = styled.div`
-  // position: absolute;
-  width: 22px;
-  height: 22px;
-  left: 220px;
-  top: 318px;
-
-  background: #a5a5a5;
+export const UserPic = styled.span`
+  width: 20px;
+  height: 20px;
+  background-color: #21212180;
+  border-radius: 50%;
+  float: left;
+  margin-right: 10px;
 `;
 /* 유저이름 */
-export const UserName = styled.div`
-  // position: absolute;
-  width: 48.59px;
-  height: 17px;
-  left: 251px;
-  top: 320px;
-
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: #212121;
+export const UserName = styled.span`
+  margin-right: 10px;
 `;
 
 /* 작성일 */
-export const PostDate = styled.div`
-  // position: absolute;
-  width: 93px;
-  height: 18px;
-  left: 313px;
-  top: 320px;
-
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  color: #212121;
+export const PostDate = styled.span`
+  margin: 0 10px 0 10px;
 `;
 
 /* 분류 */
-export const PostCate = styled.div`
-  // position: absolute;
-  width: 62px;
-  height: 31px;
-  left: 419px;
-  top: 313px;
+export const PostCate = styled.span`
+  margin: 0 10px 0 10px;
 `;
 
 /* 구분선 */
-export const InfoLine1 = styled.div`
-  // position: absolute;
-  width: 0.5px;
-  height: 22.02px;
-  left: 306px;
-  top: 317px;
-
-  border: 0.5px solid rgba(33, 33, 33, 0.5);
-  transform: rotate(0.94deg);
-`;
-export const InfoLine2 = styled.div`
-  position: absolute;
-  width: 0.5px;
-  height: 22.02px;
-  left: 409.57px;
-  top: 317.01px;
-
-  border: 0.5px solid rgba(33, 33, 33, 0.5);
-  transform: rotate(0.94deg);
+export const InfoLine = styled.span`
+  border: 0.5px solid #21212180;
+  transform: rotate(0.95deg);
 `;
 
 /* 좋아요 */
 export const Like = styled.div`
-  position: absolute;
-  width: 34px;
-  height: 18px;
-  left: 1159px;
-  top: 323px;
+  margin-left: auto;
+  flex: none;
+  align-items: center;
 `;
 
 /* 좋아요 아이콘 */
-export const LikeIcon = styled.div`
-  position: absolute;
-  left: 81.91%;
-  right: 16.96%;
-  top: 15.33%;
-  bottom: 84.07%;
-
-  background: #000000;
+export const LikeIcon = styled.span`
+  margin-right: 5px;
 `;
 
 /* 좋아요 수 */
-export const LikeCount = styled.div`
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  left: 1175px;
-  top: 323px;
+export const LikeCount = styled.span`
+  color: #004d43;
+`;
 
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 19px;
+export const Line = styled.div`
+  width: 1070px;
+  border: 0.5px solid #21212180;
+`;
+
+export const Content = styled.pre`
+  line-height: 27px;
+
   display: flex;
   align-items: center;
-  text-align: center;
+  text-align: justify;
+  white-space: pre-line;
+  margin-top: 80px;
+  margin-bottom: 100px;
+`;
 
-  color: #212121;
+export const CommentLayout = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+`;
+
+export const CommentLabel = styled.div`
+  line-height: 19px;
+  width: 100%;
+  margin-bottom: 10px;
+  margin-left: 5px;
+`;
+
+export const CommentWord = styled.span`
+  margin-right: 5px;
+`;
+
+export const CommentCount = styled.span`
+  color: #004d43;
+`;
+
+export const CommentInputBox = styled.div`
+  border: 0.5px solid;
+  width: 100%;
+  height: 135px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+`;
+
+export const CommentInputText = styled.div`
+  margin: 15px 0 0 15px;
+  color: #21212180;
+`;
+
+export const CommentInfo = styled.div`
+  display: flex;
+  margin: 5px 5px 5px 5px;
+`;
+
+export const CommentDate = styled.span`
+  margin: 0 5px 0 5px;
+  color: #21212180;
+`;
+
+export const Comment = styled.div`
+  margin: 10px 0 10px 5px;
+`;
+
+export const CommentButton = styled.div`
+  color: #21212180;
+`;
+
+export const Button = styled.button`
+  width: 60px;
+  height: 30px;
+  border: 1px solid #004d43;
+  border-radius: 30px;
+  color: #004d43;
+  box-sizing: border-box;
 `;
