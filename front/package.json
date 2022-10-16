@@ -6,17 +6,24 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@toast-ui/react-editor": "^3.2.2",
+    "@types/axios": "^0.14.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.64",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.26",
+    "axios": "^1.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-kakao-maps-sdk": "^1.1.4",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+<<<<<<< HEAD
+=======
+    "react-simple-maps": "^3.0.0",
+>>>>>>> origin/dev
     "recoil": "^0.7.6",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.2",
@@ -47,7 +54,13 @@
       "last 1 safari version"
     ]
   },
+<<<<<<< HEAD
   "devDependencies": {
     "@types/styled-components": "^5.1.26"
+=======
+  "proxy": "http://kdt-ai5-team01.elicecoding.com:5000/",
+  "devDependencies": {
+    "styled-components": "^5.3.6"
+>>>>>>> origin/dev
   }
 }
