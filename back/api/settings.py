@@ -15,9 +15,11 @@ ssh_tunnel = SSHTunnelForwarder(
 ssh_tunnel.start()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/img/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-aa2ujlm5aunb2dt6(lc%nln)ub1*h4p((%v*%om3=ih5t1)5me'
+SECRET_KEY = os.environ.get("SECRET_KEY"),
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     # 새로 추가한 앱
+    'posts',
     'accounts',
 
     # 설치한 라이브러리들
@@ -43,7 +46,7 @@ INSTALLED_APPS = [
 
     'dj_rest_auth',
     'dj_rest_auth.registration',
-   
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -52,10 +55,9 @@ INSTALLED_APPS = [
 
     'corsheaders', # CORS 관련 추가
 ]
-
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
@@ -79,7 +81,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    
+
     # CSRF Token 비활성화 미들웨어 추가
     'api.middleware.DisableCSRF',
 
@@ -113,8 +115,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'api.wsgi.application'
 
 # CORS 권한 설정
-CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000'
-                         ,'http://localhost:3000']
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://kdt-ai5-team01.elicecoding.com:3000']
 CORS_ALLOW_CREDENTIALS = True
 
 # Database
