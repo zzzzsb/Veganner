@@ -20,21 +20,22 @@ export const HeaderLogo = styled.div`
 `;
 
 export const Navbar = styled.div`
-  width: 350px;
+  width: 200px;
   // background-color: #ffffff;
   font-size: 16px;
   /* margin-left: auto; */
   margin: 0 auto;
-  flex-direction: column;
+  display: flex;
+  flex-direction: row;
   text-align: center;
 `;
 
 export const StyledLink = styled(Link)`
   margin: 0 20px;
-  text-align: center;
   text-decoration-line: none;
   color: #212121;
+  text-align: center;
+
   &:last-child {
-    margin-left: 420px;
   }
 `;
