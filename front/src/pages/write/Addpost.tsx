@@ -2,20 +2,16 @@ import * as S from "./Write.styled";
 import { useEffect, useRef, useState } from "react";
 import * as Api from "../../api/api";
 import { Editor } from "@toast-ui/react-editor";
-import { IEditor } from "../../types/iEditor";
 import Category from "./Category";
 import Filter from "./Filter";
 import TuiEditor from "./Editor";
-//import { Post } from "../../types/post";
 import { EditorProps } from "../write/Editor";
 
 interface AddPostProps {
-  editor?: IEditor;
-  //post?: Post;
   tuiEditor?: EditorProps;
 }
 
-function AddPost({ editor, tuiEditor }: AddPostProps) {
+function AddPost({ tuiEditor }: AddPostProps) {
   // 포스트 제목
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
@@ -44,35 +40,36 @@ function AddPost({ editor, tuiEditor }: AddPostProps) {
     }
   };
 
-  // // 이미지 base64 처리
-  // useEffect(() => {
-  //   if (editorRef.current) {
-  //     // 전달받은 html값으로 초기화
-  //     if (editor?.htmlStr) {
-  //       editorRef.current.getInstance().setHTML(editor?.htmlStr);
-  //     }
-  //     // 기존 이미지 업로드 기능 제거
-  //     editorRef.current.getInstance().removeHook("addImageBlobHook");
-  //     // 이미지 서버로 데이터를 전달하는 기능 추가
-  //     editorRef.current
-  //       .getInstance()
-  //       .addHook("addImageBlobHook", (blob, callback) => {
-  //         (async () => {
-  //           const formData = new FormData();
-  //           formData.append("multipartFiles", blob);
+  // 이미지 base64 처리
+  useEffect(() => {
+    if (editorRef.current) {
+      // // 전달받은 html값으로 초기화
+      // if (editor?.htmlStr) {
+      //   editorRef.current.getInstance().setHTML(editor?.htmlStr);
+      // }
+      // 기존 이미지 업로드 기능 제거
+      editorRef.current.getInstance().removeHook("addImageBlobHook");
+      // 이미지 서버로 데이터를 전달하는 기능 추가
+      editorRef.current
+        .getInstance()
+        .addHook("addImageBlobHook", (blob, callback) => {
+          (async () => {
+            const formData = new FormData();
+            formData.append("image", blob);
 
-  //           const res = await Api.post(
-  //             "http://localhost:8080/uploadImage",
-  //             formData
-  //           );
+            const res = await Api.post("board/uploadedImg/", {
+              data: formData,
+              headers: { "Content-type": "multipart/form-data" },
+            });
 
-  //           callback(res.data, "input alt text");
-  //         })();
+            callback(res.data, "input alt text");
+            console.log(res.data);
+          })();
 
-  //         return false;
-  //       });
-  //   }
-  // }, []);
+          return false;
+        });
+    }
+  });
 
   return (
     <S.WriteLayout>
