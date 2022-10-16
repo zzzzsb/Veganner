@@ -1,9 +1,9 @@
 import React from "react";
 import * as S from "./Header.styled";
 
-interface HeaderProps {
-  src: string;
-}
+// interface HeaderProps {
+//   src: string;
+// }
 
 function Header() {
   return (
