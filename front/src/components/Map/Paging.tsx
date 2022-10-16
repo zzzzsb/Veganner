@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Pagination from 'react-js-pagination';
-import styled from "styled-components";
+import * as S from "../../pages/map/Map.styled"
 
 interface PagingProps {
     item: any;
@@ -8,26 +8,24 @@ interface PagingProps {
     setPage: any;
 }
 
-const navs = styled.nav`
-  text-align: center;
-`
+
 
 function Paging ({item, page, setPage} : PagingProps) {
   
   return (
-    <div>
-      <nav>
+
+    <S.paging>
       <Pagination
         activePage={page}
-        itemsCountPerPage={10}
+        itemsCountPerPage={5}
         totalItemsCount={item.length}
         pageRangeDisplayed={5}
         prevPageText="‹"
         nextPageText="›"
         onChange={setPage}
       />
-      </nav>
-    </div>
+    </S.paging>
+  
   );
 };
 export default Paging;

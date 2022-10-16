@@ -30,7 +30,7 @@ function MainMap({items} :MainMapprops){
           width: "100%",
           height: "100%",
         }}
-        level={8} // 지도의 확대 레벨
+        level={9} // 지도의 확대 레벨
       >
         {/* Marker 컴포넌트로 카테고리 한 식당만 마커표시 */}
         {items.map((item) => (

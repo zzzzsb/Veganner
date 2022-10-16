@@ -8,36 +8,67 @@ export const Title = styled.section`
     text-align: center;
 `
 export const Layout = styled.section`
-  position: flex;
-  margin: 0 auto;
-  width: 1400px;
-  height: 1400px;
-  border-radius: 3px 5px 8px 10px;
+    display: flex;
+    margin: 80px auto;
+    width: 1400px;
+    height: 100vh;
+    border-radius: 5px;
+
+
+    
 
 `;
 
 //
-export const resList = styled.div`
+export const resMenu = styled.div`
     position:flex;
     border-radius: 3px 5px 8px 10px;
+    background: white;
+    margin-bottom: 100px;
+    
 `
 
 
 export const searchContainer = styled.div`
+    background: #FFFFFF;
+    margin-bottom: 100px;
+`
+
+export const searchForm = styled.form`
+    border-bottom: 2px solid #F1F1F1;
+`
+
+export const search = styled.input`
+    border: 2px solid lightgray;
+    border-radius: 9999px;
+    // box-sizing: border-box;
+    font-size: 16px;
+    height: 48px;
+    margin: 28px 0 10px 28px;
+    padding-left: 20px;
+    width: 320px;
 `
 
 // 카테고리 버튼
-export const selectBox1 = styled.div`
-    position: flex;
-    width: 100px;
-    height: 25px;
-    border-radius: 5px;
-    border: 2px solid #004D43;
-    background: #004D43 calc(100% - 7px) center no-repeat;
-    background-size: 10px;
-    cursor: pointer;
+export const selectContainer = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    width: 500px;
+    padding: 0 10px 10px 0;
+`
+export const selectBox = styled.div`
     
+    width: 80px;
+    height: 30px;
+    border-radius: 9999px;
+    border: 2px solid #004D43;
+    background: #FFFFFF calc(100% - 7px) center no-repeat;
+    background-size: 10px;
+    margin: 5px 3px 5px 3px;
+
     :after {
+        color: white;
+        background: #004D43 calc(100% - 7px) center no-repeat;
         content: '';
         display: block; 
         width: 2px;
@@ -45,81 +76,144 @@ export const selectBox1 = styled.div`
         position: absolute; 
         top: 0; 
         right: 35px;
-        background: white;
+        
     }
+    
+    
+    
+    // :after {
+    //     content: '';
+    //     display: block; 
+    //     width: 2px;
+    //     height: 100%; 
+    //     position: absolute; 
+    //     top: 0; 
+    //     right: 35px;
+    //     background: white;
+    // }
 
 
 `
 
-export const select_location = styled.button`
-    display: flex;
+export const select_button = styled.button`
+    // display: block;
     align-items: center;
+    text-align : center;
+    color : #004D43;
+    font-weight: bold;
     width: inherit;
     height: inherit;
     border: 0 none;
     outline: 0 none;
-    padding-left: 15px;
+    
     background: transparent;
-    cursor: pointer;
+
+    
+    
 
 `
 export const optionList = styled.ul`
-    // position: absolute; 
-    // top: 28px;
-    // left: 0;
-    // width: 100%;
-    // background: lightcoral;
+    position: stickey; // 안보임..... 열리긴 하는데
+    
+    top: 28px;
+    left: 0;
+    margin: 5px;
+    width: 70px;
+    border-radius: 5px;
+    border: 2px lightgray solid;
+    margin: 5px 3px 5px 3px;
+    background: #FFFFFF;
     // color: #fff;
     // list-style-type: none;
     // padding: 0;
     // border-radius: 6px;
-    // overflow: hidden;
+    overflow: hidden;
     // max-height: 0;
-    // transition: .3s ease-in;
+    transition: .3s ease-in;
 
     
 `
 export const optionitem = styled.li`
-    // border-bottom: 1px dashed rgb(170, 72, 72);
-    // padding: 5px 15px 5px;
-    // transition: .1s;
 
-    // :hover {
-    //     background: rgb(175, 93, 93);
-    // }
+    border-bottom:2px solid lightgray;
+    padding: 5px 15px 5px;
+    transition: .1s;
+    
+    
+    text-align: center;
+    font-size: 10px;
+    background: transparent;
 
-    // :last-child {
-    //     border-bottom: 0 none;
-    // }
+    :hover {
+        background: #CDEA67;
+    }
+
+    
+
+    :last-child {
+        border-bottom: 0 none;
+    }
     
 
 `
-
-
-
-
 
 
 
 export const resContainer = styled.div`
-    position: flex;
+    position: relative;
     width: 500px;
-    height: 1400px;
+    height: 100%;
 
     background: #FFFFFF;
 
 `
+// Resitem
 // 식당 리스트 1개
 export const restaurant = styled.div`
-    height: 100px;
+    // stickey
+    // height: 100px;
+    display: block;
     border-color: #F1F1F1;
-    border-style: none none solid none;
-    border-width: 2px;
-    background: #FFFFFF;
+    border-bottom: 2px solid #F1F1F1;
+    width: 100%;
+    // border-width: 2px;
+    // background: #FFFFFF;
+    display: block;
+    padding: 28px 0 28px 48px;
     
 `
+export const h2 = styled.h2`
+    font-weight: 700;
+    margin-bottom: 8px;
+    position: relative;
+`
+
+export const p = styled.p`
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+`
+
+export const box = styled.div`
+    
+    float: left;
+    text-align: center;
+    width: 80px;
+    height: 30px;
+    border-radius: 9999px;
+    border: 2px solid #CDEA67;
+    background: #CDEA67;
+    background-size: 10px;
+    margin: 5px 3px 5px 3px;
+
+    font-size: 13px
+	box-sizing: border-box; 
+`
+
 export const pagination = styled.div`
-    position: flex;
+    display: block;
 `
 
 
@@ -128,4 +222,10 @@ export const MainMap = styled.div`
     position: flex;
     height: 100%;
     width: 100%;
+`
+
+
+// Paging
+export const paging = styled.div`
+    display: flex;
 `
