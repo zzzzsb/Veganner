@@ -12,7 +12,7 @@ function Marker({location}: Markerprops){
         position={{lat: location.y, lng: location.x}}
         image={{
             // 이미지 왜 오류 이미지 뜨지?
-            src: "./marker_icon-icons.com_54388.png",
+            src: "./assets/image/marker_icon-icons.com_54388.png",
             size: {
             width: 24,
             height: 35
