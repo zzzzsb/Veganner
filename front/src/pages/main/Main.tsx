@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "../main/Main.styled";
+import * as S from "./Main.styled";
 import foodEmission from "../../assets/data-analysis/foodEmission.png";
 import foodEmissionToCar from "../../assets/data-analysis/foodEmissionToCar.png";
 import left_img from "../../assets/img/left_img.png";
@@ -16,7 +16,7 @@ function Main() {
         </S.Main1Box>
       </S.Main1Layout>
 
-      <S.PageLayout height={700}>
+      <S.PageLayout height={"100vh"}>
         <S.RowTextBox>
           <S.MediumTitleText color={"#212121"} textAlign={"left"}>
             “오늘도 고기 드셨나요?”
@@ -44,7 +44,7 @@ function Main() {
         </S.ChartLayout>
       </S.PageLayout>
 
-      <S.PageLayout height={350}>
+      <S.PageLayout height={"350px"}>
         <S.RowTextBox>
           <S.MediumTitleText color={"#004d43"} textAlign={"center"}>
             “Begin a Vegan” with Vegganer.
@@ -55,8 +55,8 @@ function Main() {
         </S.RowTextBox>
       </S.PageLayout>
 
-      <S.PageLayout height={500}>
-        <S.ChartLayout>
+      <S.PageLayout height={"100vh"}>
+        <S.CardLayout>
           <S.Card>
             <S.CardImgBox backgroundImg={left_img}></S.CardImgBox>
             <S.Text fontSize={24} color={"#004d43"} textAlign={"left"}>
@@ -82,7 +82,7 @@ function Main() {
             </S.Text>
             <S.CardButton></S.CardButton>
           </S.Card>
-        </S.ChartLayout>
+        </S.CardLayout>
       </S.PageLayout>
     </S.Main>
   );

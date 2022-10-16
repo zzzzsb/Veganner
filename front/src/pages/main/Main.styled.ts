@@ -3,7 +3,7 @@ import main1 from "../../assets/img/메인1.png";
 import button1 from "../../assets/img/btn_동참하기.png";
 import cardButton from "../../assets/img/바로가기Btn.png";
 export interface MainStyledProps {
-  height?: number;
+  height?: string;
   backgroundImg?: string;
   textAlign?: string;
   fontSize?: number;
@@ -16,7 +16,7 @@ export const Main = styled.div`
 export const Main1Layout = styled.div`
   display: flex;
   width: auto;
-  height: 700px;
+  height: 100vh;
   font-family: "Noto Sans KR";
   background-image: url(${main1});
   background-size: cover;
@@ -26,12 +26,12 @@ export const Main1Layout = styled.div`
 export const Main1Box = styled.div`
   width: 100%;
   margin-left: auto;
-  margin-top: 250px;
-  margin-right: 100px;
+  margin-top: 30vh;
+  margin-right: 15vh;
 `;
 
 export const Text1 = styled.div`
-  font-size: 50px;
+  font-size: 60px;
   font-weight: 800;
   text-align: right;
   margin: 18px 0;
@@ -40,8 +40,8 @@ export const Text1 = styled.div`
 
 export const Button1 = styled.button`
   display: block;
-  width: 180px;
-  height: 45px;
+  width: 200px;
+  height: 50px;
   border: none;
   background-color: transparent;
   background-image: url(${button1});
@@ -53,7 +53,7 @@ export const Button1 = styled.button`
 
 export const PageLayout = styled.div<MainStyledProps>`
   width: auto;
-  height: ${(props) => `${props.height}px`};
+  height: ${(props) => props.height};
   font-family: "Noto Sans KR";
   text-align: center;
   display: flex;
@@ -64,7 +64,7 @@ export const RowTextBox = styled.div`
   width: 1000px;
   height: 120px;
   text-align: left;
-  margin: 70px auto 20px auto;
+  margin: 15vh auto 5vh auto;
   color: #212121;
 `;
 
@@ -116,6 +116,11 @@ export const ChartText = styled.div`
   color: #212121;
 `;
 
+export const CardLayout = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 25vh auto;
+`;
 export const Card = styled.div`
   width: 450px;
   height: 350px;
