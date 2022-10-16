@@ -1,21 +1,25 @@
-import * as S from "./Write.styled";
+import * as S from "./Post.styled";
 import { useEffect, useRef, useState } from "react";
 import * as Api from "../../api/api";
 import { Editor } from "@toast-ui/react-editor";
-import Category from "./Category";
-import Filter from "./Filter";
-import TuiEditor from "./Editor";
-import { EditorProps } from "../write/Editor";
+import Category from "../../components/category/Category";
+import Filter from "../../components/filter/Filter";
+import TuiEditor from "../../components/editor/Editor";
+import { EditorProps } from "../../components/editor/Editor";
+import axios from "axios";
 
 interface AddPostProps {
   tuiEditor?: EditorProps;
 }
 
 function AddPost({ tuiEditor }: AddPostProps) {
+  // 에디터 initialValue
+  const defaultContent = "당신의 채식 경험을 공유해 주세요!";
   // 포스트 제목
   const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("");
+  const [content, setContent] = useState<string>(defaultContent);
   const [group, setGroup] = useState<number>(0);
+  //const [type, setType] = useState<string>("");
 
   // editor DOM 선택용
   const editorRef = useRef<Editor>(null);
@@ -31,7 +35,7 @@ function AddPost({ tuiEditor }: AddPostProps) {
       Title: title,
       Content: content,
       Groups: group,
-      Types: "",
+      //Types: type,
     };
     try {
       await Api.post("board/", post);
@@ -54,25 +58,35 @@ function AddPost({ tuiEditor }: AddPostProps) {
         .getInstance()
         .addHook("addImageBlobHook", (blob, callback) => {
           (async () => {
+            console.log(blob);
             const formData = new FormData();
             formData.append("image", blob);
-
-            const res = await Api.post("board/uploadedImg/", {
-              data: formData,
-              headers: { "Content-type": "multipart/form-data" },
-            });
-
-            callback(res.data, "input alt text");
-            console.log(res.data);
+            axios.defaults.withCredentials = true;
+            // const res = await Api.post("board/uploadedImg/", {
+            //   data: formData,
+            //   headers: { "Content-type": "multipart/form-data" },
+            // });
+            const { data: url } = await axios.post(
+              "http://localhost:8000/img/",
+              formData,
+              {
+                headers: { "Content-type": "multipart/formdata" },
+              }
+            );
+            console.log(
+              `%cPOST 요청 데이터: ${JSON.stringify(url)}`,
+              "color: #296aba;"
+            );
+            callback(url, "input alt text");
+            console.log(url);
           })();
-
           return false;
         });
     }
-  });
+  }, [editorRef]);
 
   return (
-    <S.WriteLayout>
+    <S.PostLayout>
       <Category setGroup={setGroup} />
       <S.TitleInput
         type="text"
@@ -82,12 +96,12 @@ function AddPost({ tuiEditor }: AddPostProps) {
       />
       <S.SearchBar type="text" placeholder="장소를 검색해 등록해주세요." />
       <Filter />
-      <TuiEditor editorRef={editorRef} />
+      <TuiEditor editorRef={editorRef} initialValue={defaultContent} />
       <S.ButtonBox>
         <S.Button onClick={handleRegister}>등록</S.Button>
         <S.Button>취소</S.Button>
       </S.ButtonBox>
-    </S.WriteLayout>
+    </S.PostLayout>
   );
 }
 

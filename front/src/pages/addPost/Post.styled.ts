@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const WriteLayout = styled.div`
+export const PostLayout = styled.div`
   width: 1020px;
   margin: 0 auto;
 `;

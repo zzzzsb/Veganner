@@ -5,6 +5,7 @@ import React, { useRef, useState, Dispatch, SetStateAction } from "react";
 
 export interface EditorProps {
   editorRef: React.ForwardedRef<Editor>;
+  initialValue: string;
 }
 
 function TuiEditor(props: EditorProps) {
@@ -15,10 +16,11 @@ function TuiEditor(props: EditorProps) {
   // if (editorRef.current) {
   //   setContent(editorRef.current.getInstance().getHTML());
   // }
+
   return (
     <EditorLayout>
       <Editor
-        initialValue="당신의 채식 경험을 공유해 주세요!"
+        initialValue={props.initialValue}
         previewStyle="vertical"
         height="600px"
         initialEditType="wysiwyg"

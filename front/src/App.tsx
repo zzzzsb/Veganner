@@ -8,7 +8,8 @@ import LoginForm from "./pages/login/Login";
 import RegisterForm from "./pages/register/Register";
 import View from "./pages/view/View";
 import Map from "./pages/Map";
-import AddPost from "./pages/write/Addpost";
+import AddPost from "./pages/addPost/Addpost";
+//import EditPost from "./pages/editPost/EditPost";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           {/* <Route path="/board" element={} /> */}
           <Route path="/view" element={<View />} />
           <Route path="/write" element={<AddPost />} />
+          {/* <Route path="/edit" element={<EditPost />} /> */}
           <Route path="/explore" element={<Map />} />
         </Routes>
       </BrowserRouter>
