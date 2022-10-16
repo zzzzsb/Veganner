@@ -28,7 +28,7 @@ export const searchContainer = styled.div`
 
 // 카테고리 버튼
 export const selectBox1 = styled.div`
-    position: relative;
+    position: flex;
     width: 100px;
     height: 25px;
     border-radius: 5px;
@@ -64,35 +64,34 @@ export const select_location = styled.button`
 
 `
 export const optionList = styled.ul`
-    position: absolute; 
-    top: 28px;
-    left: 0;
-    width: 100%;
-    background: lightcoral;
-    color: #fff;
-    list-style-type: none;
-    padding: 0;
-    border-radius: 6px;
-    overflow: hidden;
-    max-height: 0;
-    transition: .3s ease-in;
+    // position: absolute; 
+    // top: 28px;
+    // left: 0;
+    // width: 100%;
+    // background: lightcoral;
+    // color: #fff;
+    // list-style-type: none;
+    // padding: 0;
+    // border-radius: 6px;
+    // overflow: hidden;
+    // max-height: 0;
+    // transition: .3s ease-in;
 
-    : active {
-        max-height: 500px
-    }
+    
 `
 export const optionitem = styled.li`
-    border-bottom: 1px dashed rgb(170, 72, 72);
-    padding: 5px 15px 5px;
-    transition: .1s;
+    // border-bottom: 1px dashed rgb(170, 72, 72);
+    // padding: 5px 15px 5px;
+    // transition: .1s;
 
-    :hover {
-        background: rgb(175, 93, 93);
-    }
+    // :hover {
+    //     background: rgb(175, 93, 93);
+    // }
 
-    :last-child {
-        border-bottom: 0 none;
-    }
+    // :last-child {
+    //     border-bottom: 0 none;
+    // }
+    
 
 `
 
