@@ -4,13 +4,13 @@ import { Reset } from "styled-reset";
 import Header from "./components/header/Header";
 import Main from "./pages/main/Main";
 import Insights from "./pages/Insights";
-import Share from "./pages/Share";
+// import Share from "./pages/Share";
 import Write from "./pages/write/Write";
 import LoginForm from "./pages/login/Login";
 import RegisterForm from "./pages/register/Register";
 import View from "./pages/view/View";
 import Map from "./pages/Map";
-import { IEditor } from "./pages/write/Write";
+// import { IEditor } from "./pages/write/Write";
 
 function App() {
   return (

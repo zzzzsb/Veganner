@@ -61,7 +61,7 @@ const LikeBlock = styled.div`
 `;
 
 const Line = styled.div`
-  width: 1070px;
+  width: 100%;
   border: 0.5px solid #21212180;
 `;
 
