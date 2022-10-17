@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+// import { useRecoilState } from 'recoil';
 
 const ViewCommentBlock = styled.div`
   width: 100%;
@@ -106,6 +107,7 @@ const Line = styled.div`
 `;
 
 function ViewComment() {
+  // const isLogin
   // const [input, setInput] = useState('');
   // const [comments, setComments] = useState([]);
 
