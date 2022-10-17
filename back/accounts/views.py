@@ -50,6 +50,7 @@ class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
     client_class = OAuth2Client
 
+
 # 이메일 중복 확인
 class Checkemail(APIView):
     def get(self, request, email):
