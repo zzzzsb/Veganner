@@ -45,14 +45,14 @@ function Main() {
       </S.PageLayout>
 
       <S.PageLayout height={"350px"}>
-        <S.RowTextBox>
+        <S.TextBox>
           <S.MediumTitleText color={"#004d43"} textAlign={"center"}>
             “Begin a Vegan” with Vegganer.
           </S.MediumTitleText>
           <S.Text fontSize={18} color={"#212121"} textAlign={"center"}>
             비건 정보 공유부터 검색까지, 한번에!
           </S.Text>
-        </S.RowTextBox>
+        </S.TextBox>
       </S.PageLayout>
 
       <S.PageLayout height={"100vh"}>

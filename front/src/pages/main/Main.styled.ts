@@ -58,6 +58,8 @@ export const PageLayout = styled.div<MainStyledProps>`
   text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const RowTextBox = styled.div`
@@ -76,6 +78,11 @@ export const MediumTitleText = styled.div<MainStyledProps>`
   color: ${(props) => props.color};
 `;
 
+export const TextBox = styled.div`
+  width: 600px;
+  height: 120px;
+  /* margin: 0 auto; */
+`;
 export const Text = styled.div<MainStyledProps>`
   font-size: ${(props) => `${props.fontSize}px`};
   font-weight: 500;
