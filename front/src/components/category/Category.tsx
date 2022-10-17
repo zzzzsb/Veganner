@@ -5,7 +5,6 @@ interface CategoryProps {
   setGroup: Dispatch<SetStateAction<number>>;
 }
 function Category(props: CategoryProps) {
-  //const [group, setGroup] = useState<number>(0);
   return (
     <>
       <S.CategoryButtonBox>

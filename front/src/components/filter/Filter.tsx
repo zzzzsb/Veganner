@@ -1,6 +1,9 @@
 import * as S from "././Filter.styled";
 
-function Filter() {
+interface FilterProps {
+  group: number;
+}
+function Filter(props: FilterProps) {
   const location = [
     "전체",
     "서울",
@@ -48,11 +51,21 @@ function Filter() {
       return <S.FilterButton width={62}>{v}</S.FilterButton>;
     }
   });
+
+  let restaurant = false;
+  let recipe = false;
+  if (props.group === 0) {
+    restaurant = true;
+  } else if (props.group === 1) {
+    recipe = true;
+  }
   return (
     <>
       <S.FilterLayout>
-        <S.FilterBox>지역별 | {locationButtons}</S.FilterBox>
-        <S.FilterBox>종류별 | {typeButtons}</S.FilterBox>
+        {restaurant && <S.FilterBox>지역별 | {locationButtons}</S.FilterBox>}
+        {(restaurant || recipe) && (
+          <S.FilterBox>종류별 | {typeButtons}</S.FilterBox>
+        )}
       </S.FilterLayout>
     </>
   );
