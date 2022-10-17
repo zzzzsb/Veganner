@@ -1,7 +1,6 @@
 import { Restaurant } from "../../types/restaurant";
-import ResitemDetail from "./ResitemDetail";
 import * as S from "../../pages/map/Map.styled";
-import { Routes, Route, Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface ItemProps {
   item: Restaurant;

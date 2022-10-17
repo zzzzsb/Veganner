@@ -1,7 +1,6 @@
 import * as S from "../../pages/map/Map.styled";
-import { Restaurant } from "../../types/restaurant";
 import MiniMap from "./MiniMap";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 interface ItemProps {
   detail: any[];

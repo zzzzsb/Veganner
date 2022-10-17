@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
+import { Map, CustomOverlayMap, MapMarker } from "react-kakao-maps-sdk";
 import { Restaurant } from "../../types/restaurant";
 import * as S from "../../pages/map/Map.styled";
 import Marker from "./Marker";
@@ -21,11 +21,34 @@ function MiniMap({ item }: itemProps) {
           // 지도의 크기
           position: "relative",
           width: "100%",
-          height: "100%",
+          height: "90%",
         }}
-        level={9} // 지도의 확대 레벨
+        level={4} // 지도의 확대 레벨
       >
-        <Marker location={item} />
+        <MapMarker
+          position={{ lat: item.y, lng: item.x }}
+          image={{
+            src: "../assets/image/marker_icon-icons.com_54388.png",
+            size: {
+              width: 24,
+              height: 35,
+            },
+          }}
+          title={item.name}
+        />
+        <CustomOverlayMap position={{ lat: item.y, lng: item.x }}>
+          <div className="wrap">
+            <div className="info">
+              <div className="title">{item.name}</div>
+              <div className="body">
+                <div className="desc">
+                  <div className="ellipsis">{item.location}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          ;
+        </CustomOverlayMap>
       </Map>
     </S.MainMap>
   );
