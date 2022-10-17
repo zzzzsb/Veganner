@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 // 전체 
 export const Title = styled.section`
-    margin: 10px auto;
+    margin: auto;
     font-size: 25px;
     text-align: center;
 `
@@ -13,9 +13,6 @@ export const Layout = styled.section`
     width: 1400px;
     height: 100vh;
     border-radius: 5px;
-
-
-    
 
 `;
 
@@ -44,9 +41,9 @@ export const search = styled.input`
     // box-sizing: border-box;
     font-size: 16px;
     height: 48px;
-    margin: 28px 0 10px 28px;
+    margin: 28px 10px 10px 28px;
     padding-left: 20px;
-    width: 320px;
+    width: 100%;
 `
 
 // 카테고리 버튼
@@ -66,33 +63,6 @@ export const selectBox = styled.div`
     background-size: 10px;
     margin: 5px 3px 5px 3px;
 
-    :after {
-        color: white;
-        background: #004D43 calc(100% - 7px) center no-repeat;
-        content: '';
-        display: block; 
-        width: 2px;
-        height: 100%; 
-        position: absolute; 
-        top: 0; 
-        right: 35px;
-        
-    }
-    
-    
-    
-    // :after {
-    //     content: '';
-    //     display: block; 
-    //     width: 2px;
-    //     height: 100%; 
-    //     position: absolute; 
-    //     top: 0; 
-    //     right: 35px;
-    //     background: white;
-    // }
-
-
 `
 
 export const select_button = styled.button`
@@ -105,7 +75,6 @@ export const select_button = styled.button`
     height: inherit;
     border: 0 none;
     outline: 0 none;
-    
     background: transparent;
 
     
@@ -134,7 +103,7 @@ export const optionList = styled.ul`
     
 `
 export const optionitem = styled.li`
-
+    
     border-bottom:2px solid lightgray;
     padding: 5px 15px 5px;
     transition: .1s;
@@ -142,25 +111,18 @@ export const optionitem = styled.li`
     
     text-align: center;
     font-size: 10px;
-    background: transparent;
+    background: #FFFFFF;
 
     :hover {
         background: #CDEA67;
     }
-
-    
-
-    :last-child {
-        border-bottom: 0 none;
-    }
-    
 
 `
 
 
 
 export const resContainer = styled.div`
-    position: relative;
+    position: block;
     width: 500px;
     height: 100%;
 

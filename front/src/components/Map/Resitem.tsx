@@ -1,4 +1,5 @@
 import {Restaurant} from "../../types/restaurant";
+import ResitemDetail from "./ResitemDetail";
 import * as S from "../../pages/map/Map.styled"
 
 
@@ -10,7 +11,7 @@ interface ItemProps {
 
 function Resitem({item}: ItemProps) {
     return (
-        <S.restaurant>
+        <S.restaurant onClick={() => ResitemDetail}>
             <S.h2>
                 {item.name}
             </S.h2>
@@ -22,10 +23,6 @@ function Resitem({item}: ItemProps) {
             <S.box>
                 {item.food}
             </S.box>
-            
-                
-            
-        
         </S.restaurant>
         
     );

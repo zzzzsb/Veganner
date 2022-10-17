@@ -52,8 +52,12 @@ function Map() {
     setSelectedRegion(innerText);
     setIsOpenRegionList(!isOpenRegionList);
     
-    const filteredStores = result.filter((item) => item.borough === innerText);
+    // region 조건은 리셋하기 --- 어떻게???
+    const reset = list.filter((item) => item);
+    
+    const filteredStores = reset.filter((item) => item.borough === innerText);
     setResult(filteredStores);
+    console.log(filteredStores);
   }
 
   function handleSelectType(e: React.MouseEvent<HTMLElement>) {
@@ -159,8 +163,9 @@ function Map() {
 
             <S.resContainer>
               {currentPosts.map((item) => (
-                <Resitem key={item.index} item={item as Restaurant} />
+                <Resitem key={item.index} item={item as Restaurant}/>
               ))}
+              {/* 클릭시 ResitemDetail로 넘어가야 함 & 지도에는 마커 클릭된 것만 표시 */}
               <S.pagination>
                 <Paging item={result} page={currentpage} setPage={setCurrentpage}/>
               </S.pagination>
