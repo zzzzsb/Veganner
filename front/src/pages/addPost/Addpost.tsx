@@ -60,14 +60,15 @@ function AddPost({ tuiEditor }: AddPostProps) {
           (async () => {
             console.log(blob);
             const formData = new FormData();
-            formData.append("image", blob);
+            formData.append("file", blob);
             axios.defaults.withCredentials = true;
             // const res = await Api.post("board/uploadedImg/", {
             //   data: formData,
             //   headers: { "Content-type": "multipart/form-data" },
             // });
+            console.log(formData);
             const { data: url } = await axios.post(
-              "http://localhost:8000/img/",
+              "http://localhost:8000/board/img/",
               formData,
               {
                 headers: { "Content-type": "multipart/formdata" },
