@@ -46,7 +46,7 @@ class PostAllGetAPI(APIView):
             items = items.filter(Title__contains=set_Data)
         elif "User" in keys:
             set_Data = request.GET["User"]
-            items = items.filter(User__contains=set_Data)
+            items = items.filter(User=set_Data)
         elif "Sort" in keys:
             Sort = request.GET["Sort"]
         elif "Page" in keys:
@@ -79,6 +79,7 @@ class PostAllGetAPI(APIView):
         serializer = PostSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -98,9 +99,6 @@ class PostGetAPI(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def post(self, request, ID):
-        item = Like.objects.get(PostId=ID, User=request.user)
 
     def delete(self, request, ID):
         item = Posts.objects.get(ID=ID)
