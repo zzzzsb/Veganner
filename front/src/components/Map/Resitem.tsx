@@ -1,6 +1,7 @@
 import { Restaurant } from "../../types/restaurant";
 import ResitemDetail from "./ResitemDetail";
 import * as S from "../../pages/map/Map.styled";
+import { Routes, Route, Link, useParams } from "react-router-dom";
 
 interface ItemProps {
   item: Restaurant;
@@ -8,13 +9,16 @@ interface ItemProps {
 
 function Resitem({ item }: ItemProps) {
   return (
-    <S.restaurant onClick={() => ResitemDetail}>
-      <S.h2>{item.name}</S.h2>
-      <S.p>주소 : {item.location}</S.p>
-
-      <S.box>{item.industry}</S.box>
-      <S.box>{item.food}</S.box>
-    </S.restaurant>
+    <>
+      <Link to={`./detail/${item.index}`}>
+        <S.restaurant>
+          <S.h2>{item.name}</S.h2>
+          <S.p>주소 : {item.location}</S.p>
+          <S.box>{item.industry}</S.box>
+          <S.box>{item.food}</S.box>
+        </S.restaurant>
+      </Link>
+    </>
   );
 }
 

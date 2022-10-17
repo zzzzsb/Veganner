@@ -1,6 +1,8 @@
 import React from "react";
 import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { Restaurant } from "../../types/restaurant";
+import * as S from "../../pages/map/Map.styled";
+import Marker from "./Marker";
 
 interface itemProps {
   item: Restaurant;
@@ -8,7 +10,7 @@ interface itemProps {
 
 function MiniMap({ item }: itemProps) {
   return (
-    <div>
+    <S.MainMap>
       <Map // 지도를 표시할 Container
         center={{
           // 지도의 중심좌표
@@ -22,8 +24,10 @@ function MiniMap({ item }: itemProps) {
           height: "100%",
         }}
         level={9} // 지도의 확대 레벨
-      ></Map>
-    </div>
+      >
+        <Marker location={item} />
+      </Map>
+    </S.MainMap>
   );
 }
 
