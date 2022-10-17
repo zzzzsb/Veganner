@@ -32,10 +32,22 @@ function Filter() {
     "인도/중동",
     "중국식",
   ];
-  const locationButtons = location.map((v) => (
-    <S.FilterButton>{v}</S.FilterButton>
-  ));
-  const typeButtons = type.map((v) => <S.FilterButton>{v}</S.FilterButton>);
+  const locationButtons = location.map((v: string) => {
+    if (v.length === 2) {
+      return <S.FilterButton width={42}>{v}</S.FilterButton>;
+    } else if (v.length === 3) {
+      return <S.FilterButton width={46}>{v}</S.FilterButton>;
+    }
+  });
+  const typeButtons = type.map((v: string) => {
+    if (v.length === 2) {
+      return <S.FilterButton width={42}>{v}</S.FilterButton>;
+    } else if (v.length === 3) {
+      return <S.FilterButton width={50}>{v}</S.FilterButton>;
+    } else {
+      return <S.FilterButton width={62}>{v}</S.FilterButton>;
+    }
+  });
   return (
     <>
       <S.FilterLayout>
