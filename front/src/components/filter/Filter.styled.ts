@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export interface FilterStyledProps {
   width: number;
+  active?: boolean;
 }
 
 export const FilterLayout = styled.div`
@@ -30,4 +31,11 @@ export const FilterButton = styled.button<FilterStyledProps>`
   &:hover {
     opacity: 1;
   }
+
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: #004d43;
+      color: #f1f1f1;
+    `}
 `;

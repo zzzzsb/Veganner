@@ -96,7 +96,7 @@ function AddPost({ tuiEditor }: AddPostProps) {
 
   return (
     <S.PostLayout>
-      <Category setGroup={setGroup} />
+      <Category group={group} setGroup={setGroup} />
       <S.TitleInput
         type="text"
         value={title}
@@ -104,7 +104,13 @@ function AddPost({ tuiEditor }: AddPostProps) {
         onChange={(e) => setTitle(e.target.value)}
       />
       <S.SearchBar type="text" placeholder="장소를 검색해 등록해주세요." />
-      <Filter group={group} setAddress={setAddress} setType={setType} />
+      <Filter
+        address={address}
+        type={type}
+        group={group}
+        setAddress={setAddress}
+        setType={setType}
+      />
       <TuiEditor editorRef={editorRef} initialValue={defaultContent} />
       <S.ButtonBox>
         <S.Button onClick={handleRegister}>등록</S.Button>

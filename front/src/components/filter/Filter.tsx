@@ -2,6 +2,8 @@ import * as S from "././Filter.styled";
 import { SetStateAction, Dispatch } from "react";
 
 interface FilterProps {
+  address: string;
+  type: string;
   group: number;
   setAddress: Dispatch<SetStateAction<string>>;
   setType: Dispatch<SetStateAction<string>>;
@@ -41,13 +43,21 @@ function Filter(props: FilterProps) {
   const locationButtons = location.map((v: string) => {
     if (v.length === 2) {
       return (
-        <S.FilterButton width={42} onClick={(e) => props.setAddress(v)}>
+        <S.FilterButton
+          width={42}
+          onClick={(e) => props.setAddress(v)}
+          active={props.address === v}
+        >
           {v}
         </S.FilterButton>
       );
     } else if (v.length === 3) {
       return (
-        <S.FilterButton width={46} onClick={(e) => props.setAddress(v)}>
+        <S.FilterButton
+          width={46}
+          onClick={(e) => props.setAddress(v)}
+          active={props.address === v}
+        >
           {v}
         </S.FilterButton>
       );
@@ -56,19 +66,31 @@ function Filter(props: FilterProps) {
   const typeButtons = type.map((v: string) => {
     if (v.length === 2) {
       return (
-        <S.FilterButton width={42} onClick={(e) => props.setType(v)}>
+        <S.FilterButton
+          width={42}
+          onClick={(e) => props.setType(v)}
+          active={props.type === v}
+        >
           {v}
         </S.FilterButton>
       );
     } else if (v.length === 3) {
       return (
-        <S.FilterButton width={50} onClick={(e) => props.setType(v)}>
+        <S.FilterButton
+          width={50}
+          onClick={(e) => props.setType(v)}
+          active={props.type === v}
+        >
           {v}
         </S.FilterButton>
       );
     } else {
       return (
-        <S.FilterButton width={62} onClick={(e) => props.setType(v)}>
+        <S.FilterButton
+          width={62}
+          onClick={(e) => props.setType(v)}
+          active={props.type === v}
+        >
           {v}
         </S.FilterButton>
       );
