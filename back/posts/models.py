@@ -41,3 +41,6 @@ class Image(models.Model):
     User = models.ForeignKey(
         "accounts.user", to_field="email", on_delete=models.CASCADE)
     Image = models.ImageField(upload_to="./post", null=False)
+    is_editing = models.BooleanField(default=True, null=False)
+    PostId = models.ForeignKey(Posts, on_delete=models.CASCADE, null=True)
+    CreationTime = models.DateTimeField(auto_now_add=True)
