@@ -139,7 +139,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '127.0.0.1',
         'PORT': ssh_tunnel.local_bind_port,
-        'NAME': "veganner",
+        'NAME': "django_test2",
         'USER': "Team1",
         'PASSWORD': os.environ.get("PASSWORD"),
     }
