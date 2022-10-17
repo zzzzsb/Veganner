@@ -9,10 +9,12 @@ const ViewTitleBlock = styled.div`
   text-align: center;
 
   h1 {
+    height: 67px;
     font-weight: 500;
     font-size: 40px;
   }
   .label {
+    height: 27px;
     font-weight: 600;
     color: #004d43;
   }
@@ -24,18 +26,14 @@ const ViewInfoBlock = styled.div`
   align-items: center;
   margin: 0 15px 15px 15px;
 
-  p {
+  span {
     margin: 0 10px 0 10px;
   }
-  .postinfoblock {
-    flex: none;
-  }
-  .likeblock {
-    margin-left: auto;
-    flex: none;
-    align-items: center;
-  }
-  .line {
+`;
+
+const PostInfoBlock = styled.div`
+  flex: none;
+  .infoline {
     border: 0.5px solid #21212180;
     transform: rotate(0.95deg);
   }
@@ -47,12 +45,24 @@ const ViewInfoBlock = styled.div`
     float: left;
     // margin-right: 10px;
   }
+`;
+
+const LikeBlock = styled.div`
+  margin-left: auto;
+  flex: none;
+  align-items: center;
+
   .like {
     margin-right: 5px;
   }
   .count {
     color: #004d43;
   }
+`;
+
+const Line = styled.div`
+  width: 1070px;
+  border: 0.5px solid #21212180;
 `;
 
 function ViewHead() {
@@ -63,20 +73,20 @@ function ViewHead() {
         <h1>토마토 파프리카 그린 샐러드</h1>
       </ViewTitleBlock>
       <ViewInfoBlock>
-        <div className="postinfoblock">
+        <PostInfoBlock>
           <span className="pic"></span>
-          <p>김현정</p>
-          <span className="line"></span>
-          <p>2022-10-10</p>
-          <span className="line"></span>
-          <p>양식</p>
-        </div>
-        <div className="likeblock">
+          <span>김현정</span>
+          <span className="infoline"></span>
+          <span>2022-10-10</span>
+          <span className="infoline"></span>
+          <span>양식</span>
+        </PostInfoBlock>
+        <LikeBlock>
           <span className="like">좋아요</span>
           <span className="count">24</span>
-        </div>
-        <span className="line"></span>
+        </LikeBlock>
       </ViewInfoBlock>
+      <Line></Line>
     </>
   );
 }

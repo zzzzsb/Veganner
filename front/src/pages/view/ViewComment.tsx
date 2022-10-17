@@ -5,11 +5,6 @@ const ViewCommentBlock = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  .line {
-    border: 0.5px solid #21212180;
-    transform: rotate(0.95deg);
-  }
 `;
 
 const CommentLabel = styled.div`
@@ -31,7 +26,7 @@ const CommentInputBox = styled.div`
   width: 100%;
   height: 135px;
   margin-top: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 
   .inputDefault {
     margin: 15px 0 0 15px;
@@ -41,16 +36,19 @@ const CommentInputBox = styled.div`
 
 const Comments = styled.div`
   .comment {
-    margin: 10px 0 10px 5px;
+    margin: 15px 0 15px 5px;
   }
+
   button {
     color: #21212180;
+    border: none;
+    margin-bottom: 15px;
   }
 `;
 
 const CommentsInfo = styled.div`
   display: flex;
-  margin: 5px 5px 5px 5px;
+  margin: 25px 5px 10px 5px;
 
   .pic {
     width: 20px;
@@ -69,6 +67,11 @@ const CommentsInfo = styled.div`
   }
 `;
 
+const Line = styled.div`
+  width: 1070px;
+  border: 0.5px solid #21212180;
+`;
+
 function ViewComment() {
   return (
     <ViewCommentBlock>
@@ -76,7 +79,7 @@ function ViewComment() {
         <span className="label">댓글</span>
         <span className="count">2</span>
       </CommentLabel>
-      <span className="line"></span>
+      <Line></Line>
       <CommentInputBox>
         <div className="inputDefault">로그인하고 댓글을 입력해보세요.</div>
       </CommentInputBox>
@@ -90,8 +93,17 @@ function ViewComment() {
         <div className="comment">와!!!! 이렇게 많은 메뉴가 있었다니!!!</div>
         <button>답글</button>
       </Comments>
-      <span className="line"></span>
-      <Comments></Comments>
+      <Line></Line>
+      <Comments>
+        <CommentsInfo>
+          <span className="pic"></span>
+          <p>지수빈</p>
+          <span className="date">2022-10-10</span>
+          <span className="date">12:26</span>
+        </CommentsInfo>
+        <div className="comment">와!!!! 이렇게 많은 메뉴가 있었다니!!!</div>
+        <button>답글</button>
+      </Comments>
     </ViewCommentBlock>
   );
 }
