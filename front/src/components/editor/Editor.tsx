@@ -34,6 +34,7 @@ function TuiEditor(props: EditorProps) {
   };
   const onUploadImage = async (blob: any, callback: any) => {
     const url = await uploadImage(blob);
+    console.log(url);
     callback(url, "alt text");
     return false;
   };

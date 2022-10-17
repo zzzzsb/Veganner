@@ -24,7 +24,6 @@ export const FilterButton = styled.button<FilterStyledProps>`
   border-radius: 25px;
   border: 1px solid #212121;
   text-align: center;
-  line-height: 26px;
   margin: 0 2px 10px 2px;
   opacity: 0.5;
   &:hover {
