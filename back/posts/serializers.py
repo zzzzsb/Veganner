@@ -1,0 +1,27 @@
+from rest_framework import serializers
+from .models import Posts, Comments, Like, Image
+
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Posts
+        fields = ('User', 'Title', 'Content', 'Thumbnail', 'Type',
+                  'Hashtag', 'Groups', 'RestaurantsId', 'Address')
+
+
+class CommentsItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comments
+        fields = ('CommentId', 'User', 'PostId', 'Comment')
+
+
+class LikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Like
+        fields = ('PostId', 'User', 'Like')
+
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ('User', 'Image')

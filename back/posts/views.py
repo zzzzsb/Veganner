@@ -4,16 +4,15 @@ import jwt
 from rest_framework import status
 from django.conf import settings
 from django.db.models import Count, Subquery, OuterRef
-from .serializers import PostSerializer, CommentsItemSerializer, LikeSerializer
+from .serializers import PostSerializer, CommentsItemSerializer, LikeSerializer, ImageSerializer
 from accounts.models import User
-from .models import Posts, Like, Comments
+from .models import Image, Posts, Like, Comments
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.core.paginator import Paginator
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-
 
 class PostAllGetAPI(APIView):
     model = Posts
@@ -61,7 +60,7 @@ class PostAllGetAPI(APIView):
             items = items.filter(Title__contains=set_Data)
         elif "User" in keys:
             set_Data = request.GET["User"]
-            items = items.filter(User__contains=set_Data)
+            items = items.filter(User=set_Data)
         elif "Sort" in keys:
             Sort = request.GET["Sort"]
         elif "Page" in keys:
@@ -89,6 +88,7 @@ class PostAllGetAPI(APIView):
         return Response(responseData.object_list)
         # return Response(test_data)
 
+        return Response(responseData)
     def post(self, request):
         # user = User.objects.get(email=request.user).id
 
@@ -98,6 +98,7 @@ class PostAllGetAPI(APIView):
         serializer = PostSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -119,9 +120,6 @@ class PostGetAPI(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def post(self, request, ID):
-        item = Like.objects.get(PostId=ID, User=request.user)
 
     def delete(self, request, ID):
         item = Posts.objects.get(ID=ID)
@@ -168,4 +166,15 @@ class PostLikeAPI(APIView):
             if serializer.is_valid():
                 serializer.save()
                 return Response(Like.objects.filter(PostId=ID).count())
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ImageApi(APIView):
+    def post(self, request):
+        data = request.data.copy()
+        data["User"] = request.user
+        serializer = ImageSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
