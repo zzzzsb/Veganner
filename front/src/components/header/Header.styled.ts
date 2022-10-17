@@ -11,7 +11,7 @@ export const HeaderWrapper = styled.header`
   font-family: "PP Neue Montreal";
 `;
 
-export const HeaderLogo = styled.div`
+export const HeaderLogo = styled(Link)`
   width: 120px;
   height: 70px;
   background-image: url(${logo});

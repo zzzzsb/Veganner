@@ -9,7 +9,7 @@ function Header() {
   return (
     <div>
       <S.HeaderWrapper>
-        <S.HeaderLogo />
+        <S.HeaderLogo to="/" />
         <S.Navbar>
           <S.StyledLink to="/insights">Insights.</S.StyledLink>
           <S.StyledLink to="/share">Share.</S.StyledLink>
