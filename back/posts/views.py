@@ -8,6 +8,8 @@ from accounts.models import User
 from .models import Image, Posts, Like, Comments
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.core.paginator import Paginator
+
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
