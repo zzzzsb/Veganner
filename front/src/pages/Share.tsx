@@ -1,6 +1,6 @@
 import React from "react";
 import { useState,useEffect } from "react";
-import Search from "./view/Search";
+import Search from "./list/Search";
 import View from "../pages/view/View";
 import * as Api from "../api/api";
 import { useNavigate } from "react-router-dom";

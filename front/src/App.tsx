@@ -8,6 +8,7 @@ import "./styles/styles.css";
 import Write from "./pages/write/Write";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import List from "./pages/list/List";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/Insigths" element={<Insights />} />
           <Route path="/Explore" element={<Write/>} />
           <Route path="/register" element={<Register/>} />  
+          <Route path="/share" element={<List/>} /> 
           {/* <Route path="/Share" element={} />
           */}
         </Routes>
