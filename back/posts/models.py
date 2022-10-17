@@ -35,3 +35,9 @@ class Like(models.Model):
     User = models.ForeignKey(
         "accounts.user", to_field="email", on_delete=models.CASCADE)
     Like = models.BooleanField(default=False, null=False)
+
+
+class Image(models.Model):
+    User = models.ForeignKey(
+        "accounts.user", to_field="email", on_delete=models.CASCADE)
+    Image = models.ImageField(upload_to="./post", null=False)

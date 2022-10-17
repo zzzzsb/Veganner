@@ -4,15 +4,16 @@ import jwt
 from rest_framework import status
 from django.conf import settings
 from django.db.models import Count, Subquery, OuterRef
-from .serializers import PostSerializer, CommentsItemSerializer, LikeSerializer
+from .serializers import PostSerializer, CommentsItemSerializer, LikeSerializer, ImageSerializer
 from accounts.models import User
-from .models import Posts, Like, Comments
+from .models import Image, Posts, Like, Comments
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.core.paginator import Paginator
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
 
 class PostAllGetAPI(APIView):
     model = Posts
@@ -70,6 +71,7 @@ class PostAllGetAPI(APIView):
                 responseData[i]["Likes"] = 0
 
         return Response(responseData)
+
     def post(self, request):
         user = request.user
         data = request.data.copy()
@@ -145,4 +147,15 @@ class PostLikeAPI(APIView):
             if serializer.is_valid():
                 serializer.save()
                 return Response(Like.objects.filter(PostId=ID).count())
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ImageApi(APIView):
+    def post(self, request):
+        data = request.data.copy()
+        data["User"] = request.user
+        serializer = ImageSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
