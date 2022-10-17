@@ -17,9 +17,10 @@ export const FilterBox = styled.div`
   font-size: 14px;
 `;
 
-export const FilterButton = styled.div<FilterStyledProps>`
+export const FilterButton = styled.button<FilterStyledProps>`
   width: ${(props) => `${props.width}px`};
-  height: 24px;
+  height: 25px;
+  border: none;
   border-radius: 25px;
   border: 1px solid #212121;
   text-align: center;

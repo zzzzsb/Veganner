@@ -32,12 +32,16 @@ function AddPost({ tuiEditor }: AddPostProps) {
     if (editorRef.current) {
       setContent(editorRef.current.getInstance().getHTML());
     }
+    // 예외처리(레시피는 주소 항목 없음.)
+    if (group === 1) {
+      setAddress("");
+    }
     const post = {
       Title: title,
       Content: content,
       Groups: group,
       Address: address,
-      Types: type,
+      Type: type,
     };
     try {
       await Api.post("board/", post);
@@ -100,7 +104,7 @@ function AddPost({ tuiEditor }: AddPostProps) {
         onChange={(e) => setTitle(e.target.value)}
       />
       <S.SearchBar type="text" placeholder="장소를 검색해 등록해주세요." />
-      <Filter group={group} />
+      <Filter group={group} setAddress={setAddress} setType={setType} />
       <TuiEditor editorRef={editorRef} initialValue={defaultContent} />
       <S.ButtonBox>
         <S.Button onClick={handleRegister}>등록</S.Button>

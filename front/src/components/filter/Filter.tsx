@@ -1,7 +1,10 @@
 import * as S from "././Filter.styled";
+import { SetStateAction, Dispatch } from "react";
 
 interface FilterProps {
   group: number;
+  setAddress: Dispatch<SetStateAction<string>>;
+  setType: Dispatch<SetStateAction<string>>;
 }
 function Filter(props: FilterProps) {
   const location = [
@@ -37,18 +40,38 @@ function Filter(props: FilterProps) {
   ];
   const locationButtons = location.map((v: string) => {
     if (v.length === 2) {
-      return <S.FilterButton width={42}>{v}</S.FilterButton>;
+      return (
+        <S.FilterButton width={42} onClick={(e) => props.setAddress(v)}>
+          {v}
+        </S.FilterButton>
+      );
     } else if (v.length === 3) {
-      return <S.FilterButton width={46}>{v}</S.FilterButton>;
+      return (
+        <S.FilterButton width={46} onClick={(e) => props.setAddress(v)}>
+          {v}
+        </S.FilterButton>
+      );
     }
   });
   const typeButtons = type.map((v: string) => {
     if (v.length === 2) {
-      return <S.FilterButton width={42}>{v}</S.FilterButton>;
+      return (
+        <S.FilterButton width={42} onClick={(e) => props.setType(v)}>
+          {v}
+        </S.FilterButton>
+      );
     } else if (v.length === 3) {
-      return <S.FilterButton width={50}>{v}</S.FilterButton>;
+      return (
+        <S.FilterButton width={50} onClick={(e) => props.setType(v)}>
+          {v}
+        </S.FilterButton>
+      );
     } else {
-      return <S.FilterButton width={62}>{v}</S.FilterButton>;
+      return (
+        <S.FilterButton width={62} onClick={(e) => props.setType(v)}>
+          {v}
+        </S.FilterButton>
+      );
     }
   });
 
