@@ -78,10 +78,10 @@ function Map() {
   const [isOpenVeganList, setIsOpenVeganList] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("useEffect");
-    console.log("selectedRegion", selectedRegion);
-    console.log("selectedType", selectedType);
-    console.log("selectedVegan", selectedVegan);
+    // console.log("useEffect");
+    // console.log("selectedRegion", selectedRegion);
+    // console.log("selectedType", selectedType);
+    // console.log("selectedVegan", selectedVegan);
 
     const filteredStores = list
       .filter((item) =>
@@ -120,8 +120,6 @@ function Map() {
     // const filteredStores = result.filter((item) => item.food === innerText);
     // setResult(filteredStores);
   }
-
-  function handleItem() {}
 
   //페이지네이션
   useEffect(() => {
