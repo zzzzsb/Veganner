@@ -1,5 +1,5 @@
 import * as S from "./Post.styled";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as Api from "../../api/api";
 import { Editor } from "@toast-ui/react-editor";
 import Category from "../../components/category/Category";
@@ -19,11 +19,17 @@ function AddPost({ tuiEditor }: AddPostProps) {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>(defaultContent);
   const [group, setGroup] = useState<number>(0);
-  const [address, setAddress] = useState<string>("전체");
-  const [type, setType] = useState<string>("전체");
+  const [address, setAddress] = useState<string>("");
+  const [type, setType] = useState<string>("");
+  const [thumbnail, setThumbnail] = useState<File>();
 
   // editor DOM 선택용
   const editorRef = useRef<Editor>(null);
+
+  const handleThumbnail = async (e: any) => {
+    setThumbnail(e.target.files[0]);
+    //console.log(typeof formData);
+  };
   const handleRegister = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -36,18 +42,34 @@ function AddPost({ tuiEditor }: AddPostProps) {
     if (group === 1) {
       setAddress("");
     }
-    const post = {
-      Title: title,
-      Content: content,
-      Groups: group,
-      Address: address,
-      Type: type,
-    };
-    try {
-      await Api.post("board/", post);
-    } catch (e) {
-      console.error(e);
-    }
+    const formData = new FormData();
+    formData.append("Title", title);
+    formData.append("Content", content);
+    formData.append("Groups", group.toString());
+    formData.append("Address", address);
+    formData.append("Type", type);
+    if (thumbnail) formData.append("Thumbnail", thumbnail);
+    // const post = {
+    //   Title: title,
+    //   Content: content,
+    //   Groups: group,
+    //   Address: address,
+    //   Type: type,
+    //   Thumbnail: thumbnail,
+    // };
+    // try {
+    //   await Api.post("board/", post);
+    // } catch (e) {
+    //   console.error(e);
+    // }
+    await axios
+      .post("http://localhost:8000/board/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   // // 이미지 base64 처리
@@ -102,6 +124,11 @@ function AddPost({ tuiEditor }: AddPostProps) {
         value={title}
         placeholder="제목"
         onChange={(e) => setTitle(e.target.value)}
+      />
+      <S.ThumbnailInput
+        type="file"
+        accept="image/*"
+        onChange={handleThumbnail}
       />
       <S.LocationRegisterBar
         type="text"

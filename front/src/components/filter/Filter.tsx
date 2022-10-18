@@ -10,7 +10,6 @@ interface FilterProps {
 }
 function Filter(props: FilterProps) {
   const location = [
-    "전체",
     "서울",
     "경기",
     "강원",
@@ -29,7 +28,6 @@ function Filter(props: FilterProps) {
     "제주도",
   ];
   const type = [
-    "전체",
     "한식",
     "양식",
     "카페",

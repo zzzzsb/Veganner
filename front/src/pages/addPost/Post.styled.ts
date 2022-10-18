@@ -40,6 +40,14 @@ export const LocationRegisterBar = styled.input`
   }
 `;
 
+export const ThumbnailInput = styled.input`
+  width: 300px;
+  height: 50px;
+  display: block;
+  line-height: 50px;
+  float: right;
+`;
+
 export const ButtonBox = styled.div`
   display: flex;
   float: right;
