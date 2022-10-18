@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const ViewContentBlock = styled.pre`
   line-height: 27px;
@@ -26,6 +27,8 @@ export const ButtonBlock = styled.div`
 `;
 
 function ViewContent() {
+  const navigate = useNavigate();
+
   return (
     <>
       <ViewContentBlock>
@@ -139,7 +142,9 @@ function ViewContent() {
         voluptate consectetur ad proident et sint consequat ea adipisicing anim.
       </ViewContentBlock>
       <ButtonBlock>
-        <button>수정</button>
+        <button type="button" onClick={() => navigate("/write")}>
+          수정
+        </button>
         <button>삭제</button>
       </ButtonBlock>
     </>
