@@ -1,6 +1,6 @@
 import * as S from "../../pages/map/Map.styled";
 import MiniMap from "./MiniMap";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 interface ItemProps {
   detail: any[];
@@ -20,7 +20,14 @@ function ResitemDetail({ detail }: ItemProps) {
         <S.resMenu>
           <S.searchContainer>
             <S.resContainer>
-              <div>{/* 뒤로가기 버튼 */}</div>
+              <Link to="/explore">
+                <img
+                  src="../../../public/assets/image/back.png"
+                  width="24"
+                  height="24"
+                  className="backIcon"
+                />
+              </Link>
               <S.restaurant>
                 <h3>{`${matched.name}`}</h3>
                 <p>주소 : {`${matched.location}`}</p>

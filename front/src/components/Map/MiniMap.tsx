@@ -2,7 +2,6 @@ import React from "react";
 import { Map, CustomOverlayMap, MapMarker } from "react-kakao-maps-sdk";
 import { Restaurant } from "../../types/restaurant";
 import * as S from "../../pages/map/Map.styled";
-import Marker from "./Marker";
 
 interface itemProps {
   item: Restaurant;
@@ -28,7 +27,7 @@ function MiniMap({ item }: itemProps) {
         <MapMarker
           position={{ lat: item.y, lng: item.x }}
           image={{
-            src: "../assets/image/marker_icon-icons.com_54388.png",
+            src: "./assets/image/marker_icon-icons.com_54388.png",
             size: {
               width: 24,
               height: 35,

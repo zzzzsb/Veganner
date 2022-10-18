@@ -13,7 +13,7 @@ function Marker({ location }: Markerprops) {
         onClick={() => setIsOpen(!isOpen)}
         position={{ lat: location.y, lng: location.x }}
         image={{
-          src: "../assets/image/marker_icon-icons.com_54388.png",
+          src: "./assets/image/marker.png",
           size: {
             width: 24,
             height: 35,
