@@ -16,11 +16,16 @@ function TuiEditor(props: EditorProps) {
     formData.append("Image", blob);
     console.log(formData);
 
-    const url = await axios.post("http://localhost:8000/board/img/", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    console.log(url);
-    callback(url, "alt text");
+    const { data: url } = await axios.post(
+      "http://localhost:8000/board/img/",
+      formData,
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
+    console.log(url["Image"]);
+    const imgSrc = "http://localhost:8000/board" + url["Image"];
+    callback(imgSrc, "이미지");
   };
 
   return (

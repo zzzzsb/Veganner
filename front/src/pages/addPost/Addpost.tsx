@@ -25,16 +25,21 @@ function AddPost({ tuiEditor }: AddPostProps) {
 
   // editor DOM 선택용
   const editorRef = useRef<Editor>(null);
+  useEffect(() => {
+    if (editorRef.current) {
+      //console.log(editorRef.current?.getInstance().getHTML());
+      // console.log(editorRef.current?.getInstance().getMarkdown());
+      setContent(editorRef.current.getInstance().getHTML());
+    }
+  }, [editorRef]);
 
   const handleThumbnail = async (e: any) => {
     setThumbnail(e.target.files[0]);
     //console.log(typeof formData);
   };
+
   const handleRegister = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-    // console.log(editorRef.current?.getInstance().getHTML());
-    // console.log(editorRef.current?.getInstance().getMarkdown());
     if (editorRef.current) {
       setContent(editorRef.current.getInstance().getHTML());
     }
@@ -49,19 +54,7 @@ function AddPost({ tuiEditor }: AddPostProps) {
     formData.append("Address", address);
     formData.append("Type", type);
     if (thumbnail) formData.append("Thumbnail", thumbnail);
-    // const post = {
-    //   Title: title,
-    //   Content: content,
-    //   Groups: group,
-    //   Address: address,
-    //   Type: type,
-    //   Thumbnail: thumbnail,
-    // };
-    // try {
-    //   await Api.post("board/", post);
-    // } catch (e) {
-    //   console.error(e);
-    // }
+
     await axios
       .post("http://localhost:8000/board/", formData, {
         headers: {
@@ -71,50 +64,6 @@ function AddPost({ tuiEditor }: AddPostProps) {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
-
-  // // 이미지 base64 처리
-  // useEffect(() => {
-  //   if (editorRef.current) {
-  //     // // 전달받은 html값으로 초기화
-  //     // if (editor?.htmlStr) {
-  //     //   editorRef.current.getInstance().setHTML(editor?.htmlStr);
-  //     // }
-  //     // 기존 이미지 업로드 기능 제거
-  //     editorRef.current.getInstance().removeHook("addImageBlobHook");
-  //     // 이미지 서버로 데이터를 전달하는 기능 추가
-  //     editorRef.current
-  //       .getInstance()
-  //       .addHook("addImageBlobHook", (blob, callback) => {
-  //         (async () => {
-  //           console.log("Hi");
-  //           console.log("blob:" + blob);
-  //           const formData = new FormData();
-  //           formData.append("image", blob);
-  //           axios.defaults.withCredentials = true;
-  //           // const res = await Api.post("board/uploadedImg/", {
-  //           //   data: formData,
-  //           //   headers: { "Content-type": "multipart/form-data" },
-  //           // });
-  //           console.log(formData);
-  //           const { data: url } = await axios.post(
-  //             "http://localhost:8000/board/img/",
-  //             formData,
-  //             {
-  //               headers: { "Content-type": "multipart/formdata" },
-  //             }
-  //           );
-
-  //           console.log(
-  //             `%cPOST 요청 데이터: ${JSON.stringify(url)}`,
-  //             "color: #296aba;"
-  //           );
-  //           callback(url, "input alt text");
-  //           console.log(url);
-  //         })();
-  //         return false;
-  //       });
-  //   }
-  // }, [editorRef]);
 
   return (
     <S.PostLayout>
