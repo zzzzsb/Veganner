@@ -1,28 +1,31 @@
 import React from "react";
-import * as S from "../view/View.styled";
+import Search from "../list/Search";
+import List from "../list/List";
+import { createGlobalStyle } from "styled-components";
+import ViewTemplate from "./ViewTemplate";
+import ViewHead from "./ViewHead";
+import ViewContent from "./ViewContent";
+import ViewComment from "./ViewComment";
+// import * as S from "../view/View.styled";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #f1f1f1;
+  }
+`;
+
 
 function View() {
   return (
-    <S.Layout>
-      <S.TitleLayout>
-        <S.Label>레시피</S.Label>
-        <S.Title>토마토 파프리카 그린 샐러드</S.Title>
-      </S.TitleLayout>
-      <S.InfoLayout>
-        <S.PostInfo>
-          <S.UserPic></S.UserPic>
-          <S.UserName>김현정</S.UserName>
-          <S.InfoLine1></S.InfoLine1>
-          <S.PostDate>2022-10-10</S.PostDate>
-          <S.InfoLine2></S.InfoLine2>
-          <S.PostCate></S.PostCate>
-        </S.PostInfo>
-        <S.Like>
-          <S.LikeIcon></S.LikeIcon>
-          <S.LikeCount>0</S.LikeCount>
-        </S.Like>
-      </S.InfoLayout>
-    </S.Layout>
+    <>
+      <GlobalStyle />
+      <ViewTemplate>
+        <ViewHead></ViewHead>
+        <ViewContent></ViewContent>
+        <ViewComment></ViewComment>
+      </ViewTemplate>
+
+    </>
   );
 }
 

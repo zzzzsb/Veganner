@@ -122,7 +122,6 @@ export const restaurant = styled.div`
   width: 100%;
   // border-width: 2px;
   // background: #FFFFFF;
-  display: block;
   padding: 28px 0 28px 48px;
 `;
 export const h2 = styled.h2`

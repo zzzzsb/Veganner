@@ -8,6 +8,8 @@ export const Main1Layout = styled.div`
   height: 700px;
   font-family: "Noto Sans KR";
   background-image: url(${main1});
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 export const Main1Box = styled.div`

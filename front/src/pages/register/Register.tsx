@@ -36,17 +36,30 @@ function RegisterForm() {
   // 이름이 2글자 이상인지 여부를 확인함.
   // const isNameValid = formData.name.length >= 2;
 
+  const isEmailSame = async () => {
+    
+    // Api.get("user", formData.email).then((res) => setUser(res.data));
+    try{
+      const res = await Api.get("email",formData.email);
+      alert(res.data.message)
+    }catch{
+      alert("이메일이 사용중입니다.")
+    }
+    
+    
+  };
+
   // 위 4개 조건이 모두 동시에 만족되는지 여부를 확인함.
   const isFormValid =
     isEmailValid && isPasswordValid && isPasswordSame
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    
     try {
       // "registration" 엔드포인트로 post요청함.
       await Api.post("registration/", formData);
-
+      
       // 로그인 페이지로 이동함.
       navigate("/login");
     } catch (err) {
@@ -79,9 +92,11 @@ function RegisterForm() {
             value={formData.email}
             onChange={handleonChange}
           />
+         <button onClick={isEmailSame}>중복확인</button>
           {!isEmailValid && (
             <div className="text-success">이메일 형식이 올바르지 않습니다.</div>
           )}
+         
         </div>
 
         <div>
@@ -140,6 +155,7 @@ function RegisterForm() {
           <button onClick={() => navigate("/login")}>로그인하기</button>
         </div>
       </form>
+      
     </>
   );
 }
