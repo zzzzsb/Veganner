@@ -1,7 +1,7 @@
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import styled from "styled-components";
-import React, { useRef, useState, Dispatch, SetStateAction } from "react";
+import React from "react";
 import axios from "axios";
 import * as Api from "../../api/api";
 export interface EditorProps {
@@ -10,33 +10,17 @@ export interface EditorProps {
 }
 
 function TuiEditor(props: EditorProps) {
-  // const [content, setContent] = useState<string>("");
-
-  // // editor DOM 선택용
-  // const editorRef = useRef<Editor>(null);
-  // if (editorRef.current) {
-  //   setContent(editorRef.current.getInstance().getHTML());
-  // }
-  const uploadImage = async (blob: any) => {
-    console.log("blob:" + blob);
-    const formData = new FormData();
-    formData.append("file", blob);
-    axios.defaults.withCredentials = true;
-    console.log(formData);
-    const { data: url } = await axios.post(
-      "http://localhost:8000/board/img/",
-      formData,
-      {
-        headers: { "Content-type": "multipart/formdata" },
-      }
-    );
-    return url;
-  };
   const onUploadImage = async (blob: any, callback: any) => {
-    const url = await uploadImage(blob);
+    console.log(blob);
+    const formData = new FormData();
+    formData.append("Image", blob);
+    console.log(formData);
+
+    const url = await axios.post("http://localhost:8000/board/img/", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
     console.log(url);
     callback(url, "alt text");
-    return false;
   };
 
   return (
