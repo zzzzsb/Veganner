@@ -2,16 +2,18 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import * as Api from "../../api/api";
+import listsState from "../../atoms/search";
+import { useRecoilValue, useResetRecoilState, useRecoilState,useSetRecoilState} from "recoil";
 
 function ListSearch() {
-  const [lists, setLists] = useState([]);
+  const [lists, setLists] = useRecoilState(listsState);
   const [search, setSearch] = useState("");
   const [currentPosts, setCurrentPosts] = useState([]);
 
   useEffect(() => {
     const userData = async () => {
       await Api.get("board").then((res) => {
-        setLists(res.data.patientList);
+        setLists(res.data);
         // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
       });
     };
@@ -27,12 +29,14 @@ function ListSearch() {
       if (search === null || search === "") {
         //검색어가 없을 경우 전체 리스트 반환
         await Api.get("board").then((res) => {
-          setLists(res.data.userList);
+          setLists(res.data);
         });
       } else {
         //검색 구현
         const filterData = lists.filter((row) => row['Title'].includes(search));
+        console.log(filterData)
         setLists(filterData);
+        console.log("fil",filterData)
       }
 
       // setPosting(res.data);
