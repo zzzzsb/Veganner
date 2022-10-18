@@ -103,7 +103,10 @@ function AddPost({ tuiEditor }: AddPostProps) {
         placeholder="제목"
         onChange={(e) => setTitle(e.target.value)}
       />
-      <S.SearchBar type="text" placeholder="장소를 검색해 등록해주세요." />
+      <S.LocationRegisterBar
+        type="text"
+        placeholder="장소를 검색해 등록해주세요."
+      />
       <Filter
         address={address}
         type={type}

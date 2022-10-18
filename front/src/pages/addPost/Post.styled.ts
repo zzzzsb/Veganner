@@ -22,7 +22,7 @@ export const TitleInput = styled.input`
   }
 `;
 
-export const SearchBar = styled.input`
+export const LocationRegisterBar = styled.input`
   width: 300px;
   height: 40px;
   border-radius: 25px;
@@ -32,6 +32,7 @@ export const SearchBar = styled.input`
   margin: 0 auto 30px auto;
   font-size: 16px;
   text-align: left;
+  padding-left: 20px;
   &:focus,
   &:active {
     outline: none;

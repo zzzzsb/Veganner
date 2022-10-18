@@ -54,7 +54,7 @@ function Filter(props: FilterProps) {
     } else if (v.length === 3) {
       return (
         <S.FilterButton
-          width={46}
+          width={50}
           onClick={(e) => props.setAddress(v)}
           active={props.address === v}
         >
@@ -87,7 +87,7 @@ function Filter(props: FilterProps) {
     } else {
       return (
         <S.FilterButton
-          width={62}
+          width={64}
           onClick={(e) => props.setType(v)}
           active={props.type === v}
         >
