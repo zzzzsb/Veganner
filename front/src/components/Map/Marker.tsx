@@ -1,30 +1,43 @@
-import {MapMarker} from 'react-kakao-maps-sdk'
+import { MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { Restaurant } from "../../types/restaurant";
+import { useState } from "react";
 interface Markerprops {
-    location: Restaurant;
+  location: Restaurant;
 }
 
-function Marker({location}: Markerprops){
-    return (
-    // location.map((position: any, index: number) => (
-        <MapMarker
-        // key={i}
-        position={{lat: location.y, lng: location.x}}
+function Marker({ location }: Markerprops) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <MapMarker
+        onClick={() => setIsOpen(!isOpen)}
+        position={{ lat: location.y, lng: location.x }}
         image={{
-            // 이미지 왜 오류 이미지 뜨지?
-            src: "./assets/image/marker_icon-icons.com_54388.png",
-            size: {
+          src: "./assets/image/marker.png",
+          size: {
             width: 24,
-            height: 35
-            }
+            height: 35,
+          },
         }}
-        title = {location.name}
-        
-        
-        />
-    )
-};
-  
-
+        title={location.name}
+      />
+      {isOpen && (
+        <CustomOverlayMap position={{ lat: location.y, lng: location.x }}>
+          <div className="wrap">
+            <div className="info">
+              <div className="title">{location.name}</div>
+              <div className="body">
+                <div className="desc">
+                  <div className="ellipsis">{location.location}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          ;
+        </CustomOverlayMap>
+      )}
+    </>
+  );
+}
 
 export default Marker;

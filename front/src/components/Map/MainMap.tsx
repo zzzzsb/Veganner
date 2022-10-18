@@ -1,16 +1,13 @@
-import React from 'react';
-import {Map} from 'react-kakao-maps-sdk'
-import Marker from './Marker'
-import * as S from '../../pages/map/Map.styled'
-import { findByLabelText } from '@testing-library/react';
-
-
-
+import React from "react";
+import { Map } from "react-kakao-maps-sdk";
+import Marker from "./Marker";
+import * as S from "../../pages/map/Map.styled";
+import { findByLabelText } from "@testing-library/react";
 
 interface MainMapprops {
   items: Array<any>;
 }
-function MainMap({items} :MainMapprops){
+function MainMap({ items }: MainMapprops) {
   // type image={
   //   src: string,
   //   title: string
@@ -18,7 +15,7 @@ function MainMap({items} :MainMapprops){
 
   return (
     <S.MainMap>
-    <Map // 지도를 표시할 Container
+      <Map // 지도를 표시할 Container
         center={{
           // 지도의 중심좌표
           lat: 37.5642135,
@@ -34,14 +31,11 @@ function MainMap({items} :MainMapprops){
       >
         {/* Marker 컴포넌트로 카테고리 한 식당만 마커표시 */}
         {items.map((item) => (
-                <Marker key={item.index} location={item}/>
-              ))}
+          <Marker key={item.index} location={item} />
+        ))}
       </Map>
-      
-      </S.MainMap>
-    );
-};
-
-
+    </S.MainMap>
+  );
+}
 
 export default MainMap;

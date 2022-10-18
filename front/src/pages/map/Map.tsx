@@ -1,9 +1,10 @@
 import MainMap from "../../components/Map/MainMap";
 import Resitem from "../../components/Map/Resitem";
+import ResitemDetail from "../../components/Map/ResitemDetail";
 import React, { useState, useEffect } from "react";
 import Location from "../../datas/seoul.json";
 import { Restaurant } from "../../types/restaurant";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, Route, Routes } from "react-router-dom";
 import Paging from "../../components/Map/Paging";
 import * as S from "./Map.styled";
 
@@ -59,9 +60,6 @@ function Map() {
   const [indexOfFirstPost, setIndexOfFirstPost] = useState(0);
   const [currentPosts, setCurrentPosts] = useState(result);
 
-  // Error!!!!! 같은 카테고리에서 선택을 2번하면 값이 안나온다 ->
-  // 아마 같은 카테고리에서 이전에 filter 한것에 또 filter를 했기 때문 -> 어떻게 고치지???
-
   //카테고리 지역관련
   const [regions, setRegions] = useState<string[]>(initialRegionValues);
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
@@ -78,14 +76,14 @@ function Map() {
   const [isOpenVeganList, setIsOpenVeganList] = useState<boolean>(false);
 
   useEffect(() => {
-    // console.log("useEffect");
-    // console.log("selectedRegion", selectedRegion);
-    // console.log("selectedType", selectedType);
-    // console.log("selectedVegan", selectedVegan);
+    console.log("useEffect");
+    console.log("selectedRegion", selectedRegion);
+    console.log("selectedType", selectedType);
+    console.log("selectedVegan", selectedVegan);
 
     const filteredStores = list
       .filter((item) =>
-        selectedVegan ? item.borough === selectedRegion : item
+        selectedRegion ? item.borough === selectedRegion : item
       )
       .filter((item) => (selectedType ? item.industry === selectedType : item))
       .filter((item) => (selectedVegan ? item.food === selectedVegan : item));
@@ -212,7 +210,7 @@ function Map() {
               {currentPosts.map((item) => (
                 <Resitem key={item.index} item={item as Restaurant} />
               ))}
-              {/* 클릭시 ResitemDetail로 넘어가야 함 & 지도에는 마커 클릭된 것만 표시 */}
+              ;
               <S.pagination>
                 <Paging
                   item={result}
@@ -223,6 +221,7 @@ function Map() {
             </S.resContainer>
           </S.searchContainer>
         </S.resMenu>
+
         <MainMap items={result} />
       </S.Layout>
     </>
