@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // 전체
 export const Title = styled.section`
@@ -25,20 +26,23 @@ export const resMenu = styled.div`
 export const searchContainer = styled.div`
   background: #ffffff;
   margin-bottom: 100px;
+  border-radius: 20px;
 `;
 
 export const searchForm = styled.form`
   border-bottom: 2px solid #f1f1f1;
+  width: 400px;
 `;
 
 export const search = styled.input`
+  display: block;
   border: 2px solid lightgray;
   border-radius: 9999px;
   // box-sizing: border-box;
   font-size: 16px;
   height: 48px;
   margin: 28px 10px 10px 28px;
-  padding-left: 20px;
+  padding: 0 20px 0 20px;
   width: 100%;
 `;
 
@@ -56,7 +60,7 @@ export const selectBox = styled.div`
   border: 2px solid #004d43;
   background: #ffffff calc(100% - 7px) center no-repeat;
   background-size: 10px;
-  margin: 5px 3px 5px 3px;
+  margin: 5px 10px 5px 0;
 `;
 
 export const select_button = styled.button`
@@ -110,24 +114,28 @@ export const resContainer = styled.div`
   height: 100%;
 
   background: #ffffff;
+  border-radius: 20px;
 `;
 // Resitem
 // 식당 리스트 1개
 export const restaurant = styled.div`
-  // stickey
-  // height: 100px;
   display: block;
-  border-color: #f1f1f1;
   border-bottom: 2px solid #f1f1f1;
-  width: 100%;
-  // border-width: 2px;
-  // background: #FFFFFF;
-  padding: 28px 0 28px 48px;
+  padding: 28px 48px 28px 48px;
 `;
+
+export const stylelink = styled(Link)`
+  text-decoration-line: none;
+`;
+
 export const h2 = styled.h2`
+  display: block;
   font-weight: 700;
   margin-bottom: 8px;
   position: relative;
+  text-decoration-line: none;
+  color: rgb(58, 58, 58);
+  font-family: Noto Sans KR;
 `;
 
 export const p = styled.p`
@@ -136,22 +144,30 @@ export const p = styled.p`
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
+  color: rgb(58, 58, 58);
+`;
+
+export const boxdiv = styled.div`
+  display: block;
+  margin: 10px 0 0 0;
+  height: 25px;
 `;
 
 export const box = styled.div`
-    
-    float: left;
-    text-align: center;
-    width: 80px;
-    height: 30px;
-    border-radius: 9999px;
-    border: 2px solid #CDEA67;
-    background: #CDEA67;
-    background-size: 10px;
-    margin: 5px 3px 5px 3px;
+  display: flex;
+  float: left;
+  text-align: center;
+  word-break:break-all
+  height: 30px;
+  border-radius: 9999px;
+  border: 2px solid #cdea67;
+  background: #cdea67;
+  background-size: 10px;
+  padding: 5px;
+  margin: 5px 10px 5px 0;
 
-    font-size: 13px
-	box-sizing: border-box; 
+  font-size: 15px;
+  // box-sizing: border-box;
 `;
 
 export const pagination = styled.div`
@@ -163,6 +179,7 @@ export const MainMap = styled.div`
   position: flex;
   height: 100%;
   width: 100%;
+  border-radius: 20px;
 `;
 
 // Paging

@@ -29,9 +29,9 @@ function ResitemDetail({ detail }: ItemProps) {
                 />
               </Link>
               <S.restaurant>
-                <h3>{`${matched.name}`}</h3>
-                <p>주소 : {`${matched.location}`}</p>
-                <p>전화번호 : {`${matched.number}`}</p>
+                <S.h2>{`${matched.name}`}</S.h2>
+                <S.p>주소 : {`${matched.location}`}</S.p>
+                <S.p>전화번호 : {`${matched.number}`}</S.p>
               </S.restaurant>
             </S.resContainer>
           </S.searchContainer>
