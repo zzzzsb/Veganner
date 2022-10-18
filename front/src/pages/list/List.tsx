@@ -3,14 +3,22 @@ import { useState, useEffect } from "react";
 import * as Api from "../../api/api";
 import styled from "styled-components";
 import Search from "./Search"
+import listsState from "../../atoms/search";
+import { useRecoilValue, useResetRecoilState, useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
 
 function useViewList() {
-  const [lists, setLists] = useState([]);
-
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const navigateToWrite = () => {
+    navigate("/write");
+  };
+  // const [lists,setLists] = useRecoilState(listsState);
+  const lists=useRecoilValue(listsState)
   useEffect(() => {
-    // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
-    Api.get("board").then((res) => setLists(res.data));
-  }, []);
+    console.log("ist",lists)
+    // const lists=useRecoilValue(listsState)
+  }, [lists]);
 
   return (
     <>
@@ -22,6 +30,7 @@ function useViewList() {
         return <div key={index}>{list["Title"]}</div>;
       })}
     </div>
+    <button onClick={navigateToWrite}>글쓰기</button>
     </>
   );
 }
