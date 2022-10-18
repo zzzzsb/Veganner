@@ -9,8 +9,13 @@ import Write from "./pages/write/Write";
 import LoginForm from "./pages/login/Login";
 import RegisterForm from "./pages/register/Register";
 import View from "./pages/view/View";
+<<<<<<< HEAD
 import Map from "./pages/Map";
 // import { IEditor } from "./pages/write/Write";
+=======
+import Map from "./pages/map/Map";
+import { IEditor } from "./pages/write/Write";
+>>>>>>> feature/front/map
 
 function App() {
   return (

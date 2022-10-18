@@ -1,26 +1,28 @@
 import {MapMarker} from 'react-kakao-maps-sdk'
-
+import { Restaurant } from "../../types/restaurant";
 interface Markerprops {
-    location: any;
+    location: Restaurant;
 }
 
 function Marker({location}: Markerprops){
     return (
-    location.map((position: any, index: number) => (
+    // location.map((position: any, index: number) => (
         <MapMarker
-        position={{lat: position.y, lng: position.x}}
+        // key={i}
+        position={{lat: location.y, lng: location.x}}
         image={{
-            src: "./marker_icon-icons.com_54388.png",
+            // 이미지 왜 오류 이미지 뜨지?
+            src: "./assets/image/marker_icon-icons.com_54388.png",
             size: {
             width: 24,
             height: 35
             }
-            // title = {position.name}
         }}
+        title = {location.name}
         
         
         />
-    )))
+    )
 };
   
 
