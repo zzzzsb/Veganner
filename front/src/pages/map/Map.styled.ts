@@ -72,7 +72,7 @@ export const select_button = styled.button`
   background: transparent;
 `;
 export const optionList = styled.ul`
-  position: stickey; // 안보임..... 열리긴 하는데
+  position: stickey;
 
   top: 28px;
   left: 0;
