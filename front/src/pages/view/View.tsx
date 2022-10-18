@@ -1,4 +1,6 @@
 import React from "react";
+import Search from "../list/Search";
+import List from "../list/List";
 import { createGlobalStyle } from "styled-components";
 import ViewTemplate from "./ViewTemplate";
 import ViewHead from "./ViewHead";
@@ -12,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+
 function View() {
   return (
     <>
@@ -21,6 +24,7 @@ function View() {
         <ViewContent></ViewContent>
         <ViewComment></ViewComment>
       </ViewTemplate>
+
     </>
   );
 }
