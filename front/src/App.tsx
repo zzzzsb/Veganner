@@ -3,7 +3,7 @@ import "./styles/styles.css";
 import { Reset } from "styled-reset";
 import Header from "./components/header/Header";
 import Main from "./pages/main/Main";
-import Insights from "./pages/Insights";
+import Insight from "./pages/insight/Insight";
 
 // import Share from "./pages/Share";
 import Login from "./pages/login/Login";
@@ -25,7 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/share" element={<List />} />
-          <Route path="/insights" element={<Insights />} />
+          <Route path="/insights" element={<Insight />} />
           <Route path="/view" element={<View />} />
           <Route path="/write" element={<AddPost />} />
           {/* <Route path="/edit" element={<EditPost />} /> */}
