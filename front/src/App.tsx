@@ -8,23 +8,14 @@ import Insight from "./pages/insight/Insight";
 // import Share from "./pages/Share";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import View from "./pages/view/View";
+import View from "./pages/postView/PostView";
 import Map from "./pages/map/Map";
 import data from "./datas/seoul.json";
 import ResitemDetail from "./components/Map/ResitemDetail";
 import List from "./pages/list/List";
-<<<<<<< HEAD
 import Kakao from "./pages/login/Kakao";
-import GoogleCallback from "./pages/login/GoogleCallback";
-
-
-=======
 import AddPost from "./pages/addPost/Addpost";
-<<<<<<< HEAD
->>>>>>> 06c8994341f76dd561177b9ff2379e7cf9cc0ef6
-=======
 
->>>>>>> 6817cd0f2877dc22e7c8734bbed96f748d851767
 function App() {
   return (
     <div>
@@ -36,9 +27,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/share" element={<List />} />
+          <Route path="/board/:postId" element={<View />} />
           <Route path="/insights" element={<Insight />} />
-          <Route path="/view" element={<View />} />
-          <Route path="/write" element={<AddPost />} />
+          <Route path="/addPost" element={<AddPost />} />
           {/* <Route path="/edit" element={<EditPost />} /> */}
           <Route path="/explore" element={<Map />} />
           <Route
@@ -46,7 +37,6 @@ function App() {
             element={<ResitemDetail detail={data.data} />}
           />
           <Route path="/auth/kakao/callback" element={<Kakao />} />
-          <Route path="/auth/google/callback" element={<GoogleCallback />} />
         </Routes>
       </BrowserRouter>
     </div>

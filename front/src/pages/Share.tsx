@@ -1,7 +1,7 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Search from "./list/Search";
-import View from "../pages/view/View";
+import View from "./postView/PostView";
 import * as Api from "../api/api";
 import { useNavigate } from "react-router-dom";
 
@@ -12,8 +12,8 @@ function Share() {
   };
   return (
     <>
-    <Search/>
-    <View/>
+      <Search />
+      <View />
       <button onClick={navigateToWrite}>글쓰기</button>
     </>
   );

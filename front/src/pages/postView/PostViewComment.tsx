@@ -106,18 +106,20 @@ const CommentsInfo = styled.div`
   }
 `;
 
-function ViewComment() {
+interface postProps {
+  post: any;
+}
+function PostViewComment({ post }: postProps) {
   interface Comment {
     CommentId?: number;
     User_id: string;
-    PostId_id: number;
     Comment: string;
     CreationTime?: string;
+    PostId: number;
   }
-
   const [comment, setComment] = useState<Comment>({
-    User_id: "test2@test.com",
-    PostId_id: 5,
+    User_id: post.User,
+    PostId: post.ID,
     Comment: "",
   });
 
@@ -125,7 +127,7 @@ function ViewComment() {
 
   async function getComments() {
     try {
-      const res = await Api.get(`board/${comment.PostId_id}/comments`);
+      const res = await Api.get(`board/${post.ID}/comments`);
       // const res = await Api.get(`board/5/comments`);
       setComments([...res.data]);
       console.log(res);
@@ -158,16 +160,16 @@ function ViewComment() {
     const commentsList = [...comments, comment];
     setComments(commentsList);
 
-    // setComment({
-    //   ...comment,
-    //   created: new Date().toDateString(),
-    //   CommentId: comments.length + 1,
-    // });
+    setComment({
+      User_id: post.User,
+      PostId: post.ID,
+      Comment: "",
+    });
 
     try {
       console.log(comment);
       const res = await Api.post(
-        `board/${comment.PostId_id}/comments/`,
+        `board/${post.ID}/comments/`,
         // `board/5/comments/`,
         comment
         // withCredentials: true,
@@ -176,12 +178,6 @@ function ViewComment() {
     } catch (err) {
       console.log("댓글 작성에 실패했습니다.\n", err);
     }
-
-    setComment({
-      User_id: "test2@test.com",
-      PostId_id: 5,
-      Comment: "",
-    });
   }
 
   return (
@@ -218,7 +214,7 @@ function ViewComment() {
   );
 }
 
-export default ViewComment;
+export default PostViewComment;
 
 // {addComment.map((element,index) => {
 //   return <Comment
