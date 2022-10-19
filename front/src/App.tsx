@@ -20,7 +20,11 @@ import GoogleCallback from "./pages/login/GoogleCallback";
 
 =======
 import AddPost from "./pages/addPost/Addpost";
+<<<<<<< HEAD
 >>>>>>> 06c8994341f76dd561177b9ff2379e7cf9cc0ef6
+=======
+
+>>>>>>> 6817cd0f2877dc22e7c8734bbed96f748d851767
 function App() {
   return (
     <div>
