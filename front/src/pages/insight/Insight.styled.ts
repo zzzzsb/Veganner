@@ -8,6 +8,8 @@ export interface InsightStyledProps {
   color?: string;
   backgroundColor?: string;
   flexDirection?: string;
+  fontWeight?: number;
+  lineHeight?: string;
 }
 
 export const PageLayout = styled.div<InsightStyledProps>`
@@ -16,6 +18,7 @@ export const PageLayout = styled.div<InsightStyledProps>`
   font-family: "Noto Sans KR";
   display: flex;
   flex-direction: ${(props) => props.flexDirection};
+  background-color: ${(props) => props.backgroundColor};
 `;
 
 export const BackgroundImgLayout = styled.div<InsightStyledProps>`
@@ -66,7 +69,7 @@ export const ChartBox = styled.div`
   height: 370px;
   text-align: center;
   background-color: #ffffff;
-  /* border-radius: 15px; */
+  border-radius: 15px;
   margin: 20px 10px;
 `;
 
@@ -81,14 +84,6 @@ export const ImageBox = styled.div<InsightStyledProps>`
   background-repeat: no-repeat;
 `;
 
-export const ChartText = styled.div`
-  font-size: 16px;
-  font-weight: 300;
-  text-align: center;
-  margin: 0 auto 10px auto;
-  color: #212121;
-`;
-
 export const HalfBox = styled.div<InsightStyledProps>`
   width: 50vw;
   height: ${(props) => props.height};
@@ -96,4 +91,52 @@ export const HalfBox = styled.div<InsightStyledProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const TitleEngText = styled.div<InsightStyledProps>`
+  font-family: "PP Neue Montreal";
+  font-size: ${(props) => `${props.fontSize}px`};
+  font-weight: 500;
+  text-align: ${(props) => props.textAlign};
+  color: ${(props) => props.color};
+  margin: 0 auto;
+  font-weight: ${(props) => props.fontWeight};
+  line-height: ${(props) => props.lineHeight};
+`;
+
+export const AnimalInputLayout = styled.div`
+  display: flex;
+  margin: 0 auto;
+  /* justify-content: center;
+  align-items: center; */
+  margin: 50px auto;
+`;
+export const AnimalInputBox = styled.input<InsightStyledProps>`
+  border: none;
+  width: 100px;
+  height: 100px;
+  background-image: url(${(props) => props.backgroundImg});
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 70px;
+  background-color: transparent;
+`;
+
+export const AnimalChartBox = styled.div`
+  width: 600px;
+  height: 450px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 15px;
+`;
+
+export const AnimalChartImg = styled.div<InsightStyledProps>`
+  width: 380px;
+  height: 380px;
+  text-align: center;
+  margin: 20px auto 10px auto;
+  background-image: url(${(props) => props.backgroundImg});
+  display: flex;
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
