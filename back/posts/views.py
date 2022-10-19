@@ -28,9 +28,9 @@ class PostAllGetAPI(APIView):
         if "ID" in keys:
             set_Data = request.GET["ID"]
             items = items.filter(ID=set_Data)
-        elif "Group" in keys:
-            set_Data = request.GET["Group"]
-            items = items.filter(Group__contains=set_Data)
+        elif "Groups" in keys:
+            set_Data = request.GET["Groups"]
+            items = items.filter(Groups__contains=set_Data)
         elif "Content" in keys:
             set_Data = request.GET["Content"]
             items = items.filter(Content__contains=set_Data)
