@@ -1,4 +1,5 @@
 import * as S from "../../pages/map/Map.styled";
+import * as P from "../../pages/map/Map.styled";
 import DetailMap from "./DetailMap";
 import { useParams, Link } from "react-router-dom";
 
@@ -32,6 +33,10 @@ function ResitemDetail({ detail }: ItemProps) {
                 <S.h2>{`${matched.name}`}</S.h2>
                 <S.p>주소 : {`${matched.location}`}</S.p>
                 <S.p>전화번호 : {`${matched.number}`}</S.p>
+                <P.boxdiv>
+                  <P.box>{matched.industry}</P.box>
+                  <P.box>{matched.food}</P.box>
+                </P.boxdiv>
               </S.restaurant>
             </S.resContainer>
           </S.searchContainer>

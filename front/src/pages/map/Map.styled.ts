@@ -86,7 +86,7 @@ export const optionList = styled.ul`
   border-radius: 5px;
   border: 2px lightgray solid;
   margin: 5px 3px 5px 2px;
-  background: #ffffff;
+  background-color: #ffffff;
   // overflow: hidden;
   transition: 0.3s ease-in;
 `;
@@ -94,10 +94,10 @@ export const optionitem = styled.li`
   border-bottom: 2px solid lightgray;
   padding: 5px 15px 5px;
   transition: 0.1s;
-
+  height: 15px;
   text-align: center;
   font-size: 10px;
-  background: #ffffff;
+  background-color: #ffffff;
 
   :hover {
     background: #cdea67;

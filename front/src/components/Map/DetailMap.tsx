@@ -45,6 +45,7 @@ function DetailMap({ item }: itemProps) {
               <S.info>
                 <S.title>{item.name}</S.title>
                 <S.close
+                  src="../assets/img/closeimg/png"
                   onClick={() => setIsOpen(false)}
                   title="닫기"
                 ></S.close>

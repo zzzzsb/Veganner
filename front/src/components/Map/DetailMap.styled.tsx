@@ -8,7 +8,7 @@ export const DetailMap = styled.div`
 `;
 
 export const wrap = styled.div`
-  display: flex;
+  display: block;
   height: 200px;
   width: 300px;
   border-radius: 10px;
@@ -17,18 +17,21 @@ export const wrap = styled.div`
 
 export const info = styled.div`
   display: flex;
-  height: 30px;
+  height: 50px;
   background-color: gray;
+  border-radius: 10px;
 `;
 export const title = styled.div`
-  width: 90%;
+  width: 250px;
+  font-size: 20px;
   flex-direction: row;
-  margin: 20px;
-  background-color: blue;
+  margin: 15px;
+  text-align: center;
 `;
 
-export const close = styled.button`
+export const close = styled.img`
   flex-direction: row;
+  width: 50px;
 `;
 
 export const body = styled.div`
@@ -41,4 +44,5 @@ export const desc = styled.div`
 
 export const ell = styled.div`
   display: flex;
+  margin: 15px;
 `;
