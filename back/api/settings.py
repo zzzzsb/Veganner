@@ -64,6 +64,8 @@ REST_FRAMEWORK = {
     ),
 }
 
+
+
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/user/'
 
@@ -131,6 +133,18 @@ DATABASES = {
     }
 }
 
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'HOST': '127.0.0.1',
+#         'PORT': ssh_tunnel.local_bind_port,
+#         'NAME': "veganner",
+#         'USER': "Team1",
+#         'PASSWORD': os.environ.get("PASSWORD"),
+#     }
+# }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

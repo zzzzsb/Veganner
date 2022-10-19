@@ -14,6 +14,8 @@ import { IEditor } from "./pages/write/Write";
 import data from "./datas/seoul.json";
 import ResitemDetail from "./components/Map/ResitemDetail";
 import List from "./pages/list/List";
+import Kakao from "./pages/login/Kakao";
+import GoogleCallback from "./pages/login/GoogleCallback";
 
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
             path="/explore/detail/:id"
             element={<ResitemDetail detail={data.data} />}
           />
+          <Route path="/auth/kakao/callback" element={<Kakao />} />
+          <Route path="/auth/google/callback" element={<GoogleCallback />} />
         </Routes>
       </BrowserRouter>
     </div>
