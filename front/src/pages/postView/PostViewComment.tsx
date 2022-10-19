@@ -142,7 +142,7 @@ function PostViewComment({ post }: postProps) {
     //   return;
     // }
     getComments();
-  }, []);
+  });
 
   function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const text = e.target.value;
