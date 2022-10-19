@@ -7,7 +7,7 @@ from rest_framework.permissions import AllowAny
 from allauth.account.models import EmailConfirmation, EmailConfirmationHMAC
 from .models import User
 from django.http import JsonResponse
-from .models1 import SocialaccountSocialaccount
+
 
 class ConfirmEmailView(APIView):
     permission_classes = [AllowAny]
