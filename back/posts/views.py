@@ -108,12 +108,13 @@ class PostGetAPI(APIView):
 
         return (Response(responseData.data))
 
-
     def put(self, request, ID):
         item = Posts.objects.get(ID=ID)
-        if item.User != request.user:
+        user = request.user
+        if item.User != user:
             return Response("본인 게시글이 아닙니다", status=status.HTTP_400_BAD_REQUEST)
         data = request.data.copy()
+        data["User"] = user
         serializer = PostSerializer(item, data=data)
 
         if serializer.is_valid():
