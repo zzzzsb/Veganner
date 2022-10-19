@@ -77,7 +77,7 @@ class PostAllGetAPI(APIView):
         return Response(responseData)
 
     def post(self, request):
-        img_re = re.compile(r'(img\/)(.+?)\\')
+        img_re = re.compile(r'(img\/)(.+?)"')
         user = request.user
         data = request.data.copy()
         data["User"] = user
@@ -88,7 +88,6 @@ class PostAllGetAPI(APIView):
             img_list = []
             for i in range(len(img_list_set)):
                 img_list.append(parse.unquote(img_list_set[i][1]))
-
             if img_list:
                 # items = Image.objects.filter(Image=img_list)
                 # print(items)
@@ -107,7 +106,6 @@ class PostGetAPI(APIView):
         responseData = PostSerializer(item)
 
         return (Response(responseData.data))
-
 
     def put(self, request, ID):
         item = Posts.objects.get(ID=ID)
@@ -155,6 +153,9 @@ class PostCommentsAPI(APIView):
 
 
 class PostLikeAPI(APIView):
+    def get(self, request, ID):
+        return Response(Like.objects.filter(PostId=ID).count())
+
     def post(self, request, ID):
         try:
             item = Like.objects.get(PostId=ID, User=request.user)
