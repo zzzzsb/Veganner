@@ -1,5 +1,5 @@
 from django.urls import path, include, re_path
-from .views import KakaoLogin, GoogleLogin, Checkemail
+from .views import KakaoLogin, Checkemail
 
 urlpatterns = [
     # 로그인, 정보 조회 등
