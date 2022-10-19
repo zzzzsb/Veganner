@@ -109,7 +109,11 @@ const CommentsInfo = styled.div`
 interface postProps {
   post: any;
 }
+
 function PostViewComment({ post }: postProps) {
+  // console.log(post);
+  // console.log(post.ID); //1
+  // console.log(typeof post.ID); //number
   interface Comment {
     CommentId?: number;
     User_id: string;
@@ -126,23 +130,26 @@ function PostViewComment({ post }: postProps) {
 
   const [comments, setComments] = useState<Array<Comment>>([]);
 
-  async function getComments() {
-    try {
-      const res = await Api.get(`board/${post.ID}/comments`);
-      // const res = await Api.get(`board/5/comments`);
-      setComments([...res.data]);
-      console.log(res);
-    } catch (err) {
-      console.log("댓글 불러오기에 실패했습니다.\n", err);
-    }
-  }
-
   useEffect(() => {
     // if (!comment.PostId_id) {
     //   return;
     // }
+
+    async function getComments() {
+      try {
+        const res = await Api.get(`board/${post.ID}/comments`);
+        setComments([...res.data]);
+        console.log(res);
+      } catch (err) {
+        console.log("댓글 불러오기에 실패했습니다.\n", err);
+        // console.log(post.ID); //undefined
+        // console.log(typeof post.ID); //undefined
+      }
+    }
+
+    console.log(post); // 안넘어옴
     getComments();
-  });
+  }, [post]);
 
   function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const text = e.target.value;
@@ -171,7 +178,6 @@ function PostViewComment({ post }: postProps) {
       console.log(comment);
       const res = await Api.post(
         `board/${post.ID}/comments/`,
-        // `board/5/comments/`,
         comment
         // withCredentials: true,
       );

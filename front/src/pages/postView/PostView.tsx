@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Search from "../list/Search";
-import List from "../list/List";
+// import Search from "../list/Search";
+// import List from "../list/List";
 import { createGlobalStyle } from "styled-components";
 import PostViewHead from "./PostViewHead";
 import PostViewContent from "./PostViewContent";
@@ -33,46 +33,48 @@ const PostViewLayout = styled.div`
 `;
 
 function PostView() {
+  const { postId } = useParams();
+  // console.log(postId); // 1
+  // console.log(typeof postId); // string
   interface Post {
-    Type: string;
-    Title: string;
-    Thumbnail?: string;
-    CreationTime?: string;
+    // ID: string;
     User: string;
-    Likes: number;
+    Title: string;
+    Content: string;
+    Thumbnail?: string;
+    Type?: string;
     Hashtag?: string;
+    CreationTime?: string;
+    Groups: number;
+    RestaurantId?: number;
+    Address?: string;
+    // Likes: number;
   }
 
   const [post, setPost] = useState<Post>({
-    Type: "",
-    Title: "",
-    Thumbnail: "",
+    // ID: postId,
     User: "",
-    Likes: 0,
+    Title: "",
+    Content: "",
+    Type: "",
     Hashtag: "#",
+    Groups: 0,
+    // Likes: 0
   });
 
-  const { postId } = useParams();
-  console.log(postId);
-  //const item = getPost(postId);
+  async function getPost() {
+    try {
+      const res = await Api.get(`board/${postId}`);
+      // console.log(res.data);
+      setPost(res.data);
+    } catch (err) {
+      console.log("글 불러오기를 실패했습니다.\n", err);
+    }
+  }
 
   useEffect(() => {
-    async function getPost() {
-      try {
-        const res = await Api.get(`board/${postId}`);
-        console.log(res.data);
-        setPost(res.data);
-      } catch (err) {
-        console.log("글 불러오기를 실패했습니다.\n", err);
-      }
-    }
     getPost();
-  }, [postId]);
-
-  // useEffect(() => {
-  //   console.log(match);
-  //   getPost(match.params.id);
-  // }, []);
+  }, []);
 
   return (
     <>
