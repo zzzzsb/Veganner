@@ -27,8 +27,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/share" element={<List />} />
+          <Route path="/share/:postId" element={<View />} />
           <Route path="/insights" element={<Insight />} />
-          <Route path="/view" element={<View />} />
           <Route path="/write" element={<AddPost />} />
           {/* <Route path="/edit" element={<EditPost />} /> */}
           <Route path="/explore" element={<Map />} />
