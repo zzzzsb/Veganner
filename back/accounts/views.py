@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from allauth.account.models import EmailConfirmation, EmailConfirmationHMAC
+from .models import User
+from django.http import JsonResponse
 
 class ConfirmEmailView(APIView):
     permission_classes = [AllowAny]
@@ -44,6 +46,13 @@ class KakaoLogin(SocialLoginView):
     adapter_class = KakaoOAuth2Adapter
     client_class = OAuth2Client
 
-class GoogleLogin(SocialLoginView):
-    adapter_class = GoogleOAuth2Adapter
-    client_class = OAuth2Client
+
+
+# 이메일 중복 확인
+class Checkemail(APIView):
+    def get(self, request, email):
+        email = User.objects.filter(email=email).values()
+        if email:
+            return JsonResponse({'message':'email: already exists'}, status=400)
+        else:
+            return JsonResponse({'message':'email: available'}, status=200)

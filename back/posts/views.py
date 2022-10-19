@@ -1,43 +1,27 @@
-from email.headerregistry import Address, Group
 import re
 import jwt
 from rest_framework import status
 from django.conf import settings
 from django.db.models import Count, Subquery, OuterRef
-from .serializers import PostSerializer, CommentsItemSerializer, LikeSerializer
+from .serializers import PostSerializer, CommentsItemSerializer, LikeSerializer, ImageSerializer, ImageSetSerializer
 from accounts.models import User
-from .models import Posts, Like, Comments
+from .models import Image, Posts, Like, Comments
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.core.paginator import Paginator
+
 import sys
 import os
+import re
+from urllib import parse
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-
-
-# @api_view(['GET'])
-# def PostAllGetAPI(request):
-#     item = Posts.objects.all().values('Title')
-#     # serializer = PostListSerializer(item)
-#     return Response(item)
 
 
 class PostAllGetAPI(APIView):
     model = Posts
 
     def get(self, request):
-        # Sort = (request.GET["Sort"])
-        # if Sort == None:
-        #     Sort = "CreationTime"
-        print(request.GET.keys())
-        # filter_set = {
-        #     User: User, Title: Title, Content: Content, Type: Type,
-        #     Hashtag: Hashtag, Groups: Groups, Sort: Sort, Address: Address
-        # }
         items = Posts.objects
-        # test_data_set = Like.objects.values(
-        #     "PostId_id").annotate(Count('Like')).values("PostId_id", "Like__count")
-        # print(queryset.query)
         Page = 1
         Sort = "CreationTime"
         keys = request.GET.keys()
@@ -64,41 +48,55 @@ class PostAllGetAPI(APIView):
             items = items.filter(Title__contains=set_Data)
         elif "User" in keys:
             set_Data = request.GET["User"]
-            items = items.filter(User__contains=set_Data)
+            items = items.filter(User=set_Data)
         elif "Sort" in keys:
             Sort = request.GET["Sort"]
         elif "Page" in keys:
             Page = request.GET["Page"]
 
-        # test_data = items.annotate(PostId_id=Subquery(
-        #     test_data_set)).values()
-
-        items = items.values("ID", "Type", "Title", "Thumbnail",
+        items = items.values("ID", "Groups", "Type", "Title", "Thumbnail",
                              "CreationTime", "User").order_by(Sort)
-        # print(type(items))
-        # print(type(test_data_set))
+        paginator = Paginator(items, 12)
 
-        # print(test_data)
-        paginator = Paginator(items, 10)
-        responseData = paginator.get_page(Page)
+        responseData = list(paginator.get_page(Page).object_list)
 
-        # print(items)
-        # items = Posts.objects.filter().values("ID", "Type", "Title", "Thumbnail",
-        #                                       "CreationTime", "User").order_by("CreationTime")
-        # print(items.query)
-        # test_data = Posts.objects.select_related(queryset)
-        # print(test_data)
-        return Response(responseData.object_list)
-        # return Response(test_data)
+        test_data_p = [responseData[i]["ID"] for i in range(len(responseData))]
+        test_data_set = Like.objects.values(
+            "PostId_id").annotate(Count('Like')).values("PostId_id", "Like__count").filter(PostId_id__in=test_data_p)
+
+        test_data_l = [test_data_set[i]["PostId_id"]
+                       for i in range(len(test_data_set))]
+
+        for i in range(len(test_data_p)):
+            if test_data_p[i] in test_data_l:
+                index_l = test_data_l.index(test_data_p[i])
+                responseData[i]["Likes"] = test_data_set[index_l]["Like__count"]
+            else:
+                responseData[i]["Likes"] = 0
+
+        return Response(responseData)
 
     def post(self, request):
-        # user = User.objects.get(email=request.user).id
+        img_re = re.compile(r'(img\/)(.+?)\\')
         user = request.user
         data = request.data.copy()
         data["User"] = user
         serializer = PostSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
+            img_list_set = img_re.findall(data["Content"])
+            img_list = []
+            for i in range(len(img_list_set)):
+                img_list.append(parse.unquote(img_list_set[i][1]))
+
+            if img_list:
+                # items = Image.objects.filter(Image=img_list)
+                # print(items)
+                items = Image.objects.filter(
+                    Image__in=img_list)
+                items.update(is_editing=False,
+                             PostId_id=serializer.data["ID"], EditId=None)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -106,26 +104,27 @@ class PostAllGetAPI(APIView):
 class PostGetAPI(APIView):
     def get(self, request, ID):
         item = Posts.objects.get(ID=ID)
-        serializer = PostSerializer(item)
-        return Response(serializer.data)
+        responseData = PostSerializer(item)
+
+        return (Response(responseData.data))
+
 
     def put(self, request, ID):
         item = Posts.objects.get(ID=ID)
+        if item.User != request.user:
+            return Response("본인 게시글이 아닙니다", status=status.HTTP_400_BAD_REQUEST)
         data = request.data.copy()
-        data["User"] = request.user
         serializer = PostSerializer(item, data=data)
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def post(self, request, ID):
-        item = Like.objects.get(PostId=ID, User=request.user)
-
     def delete(self, request, ID):
         item = Posts.objects.get(ID=ID)
         if item.User != request.user:
-            return Response("본인 게시글이 아닙니다")
+            return Response("본인 게시글이 아닙니다", status=status.HTTP_400_BAD_REQUEST)
         item.delete()
         return Response("deleted:"+str(ID))
 
@@ -167,4 +166,16 @@ class PostLikeAPI(APIView):
             if serializer.is_valid():
                 serializer.save()
                 return Response(Like.objects.filter(PostId=ID).count())
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ImageApi(APIView):
+    def post(self, request):
+        data = request.data.copy()
+        data["User"] = request.user
+        data["EditId"] = request.COOKIES.get("sessionid")
+        serializer = ImageSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

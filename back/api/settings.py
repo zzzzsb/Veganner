@@ -46,25 +46,28 @@ INSTALLED_APPS = [
 
     'dj_rest_auth',
     'dj_rest_auth.registration',
-
+   
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.kakao',
-    'allauth.socialaccount.providers.google',
 
     'corsheaders', # CORS 관련 추가
 ]
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
 
-SITE_ID = 3
+
+
+SITE_ID = 1
 LOGIN_REDIRECT_URL = '/user/'
 
 ACCOUNT_UNIQUE_EMAIL = True
@@ -115,7 +118,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'api.wsgi.application'
 
 # CORS 권한 설정
-CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://kdt-ai5-team01.elicecoding.com:3000']
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000',
+                         'http://localhost:3000', 'http://kdt-ai5-team01.elicecoding.com:3000']
 CORS_ALLOW_CREDENTIALS = True
 
 # Database
@@ -124,12 +128,24 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '127.0.0.1',
         'PORT': ssh_tunnel.local_bind_port,
-        'NAME': "veganner",
+        'NAME': "django_test2",
         'USER': "Team1",
         'PASSWORD': os.environ.get("PASSWORD"),
     }
 }
 
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'HOST': '127.0.0.1',
+#         'PORT': ssh_tunnel.local_bind_port,
+#         'NAME': "veganner",
+#         'USER': "Team1",
+#         'PASSWORD': os.environ.get("PASSWORD"),
+#     }
+# }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

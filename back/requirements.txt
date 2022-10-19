@@ -17,6 +17,7 @@ idna==3.3
 isort==5.10.1
 lazy-object-proxy==1.7.1
 mccabe==0.7.0
+mysqlclient==2.1.1
 oauthlib==3.2.0
 paramiko==2.11.0
 pep8==1.7.1
