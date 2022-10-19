@@ -77,7 +77,7 @@ class PostAllGetAPI(APIView):
         return Response(responseData)
 
     def post(self, request):
-        img_re = re.compile(r'(img\/)(.+?)\\')
+        img_re = re.compile(r'(img\/)(.+?)"')
         user = request.user
         data = request.data.copy()
         data["User"] = user
