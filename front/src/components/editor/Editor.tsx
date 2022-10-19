@@ -24,8 +24,8 @@ function TuiEditor(props: EditorProps) {
       }
     );
     console.log(url["Image"]);
-    const imgSrc = `http://localhost:8000/board+${url["Image"]}`;
-    callback(url["Image"], "이미지");
+    const imgSrc = "http://localhost:8000/board" + url["Image"];
+    callback(imgSrc, "image");
   };
 
   return (

@@ -27,13 +27,13 @@ function AddPost({ tuiEditor }: AddPostProps) {
 
   // editor DOM 선택용
   const editorRef = useRef<Editor>(null);
-  useEffect(() => {
-    if (editorRef.current) {
-      //console.log(editorRef.current?.getInstance().getHTML());
-      // console.log(editorRef.current?.getInstance().getMarkdown());
-      setContent(editorRef.current.getInstance().getHTML());
-    }
-  }, [editorRef]);
+  // useEffect(() => {
+  //   if (editorRef.current) {
+  //     //console.log(editorRef.current?.getInstance().getHTML());
+  //     // console.log(editorRef.current?.getInstance().getMarkdown());
+  //     setContent(editorRef.current.getInstance().getHTML());
+  //   }
+  // }, [editorRef]);
 
   const handleThumbnail = async (e: any) => {
     setThumbnail(e.target.files[0]);
@@ -59,12 +59,12 @@ function AddPost({ tuiEditor }: AddPostProps) {
     if (thumbnail) formData.append("Thumbnail", thumbnail);
 
     try {
-      const res = await axios.post("http://localhost:8000/board/", formData, {
+      await axios.post("http://localhost:8000/board/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(JSON.stringify(res.data));
+      //console.log(JSON.stringify(res.data));
       // navigate('/board/${res.data.ID}')
     } catch (err) {
       console.log(err);

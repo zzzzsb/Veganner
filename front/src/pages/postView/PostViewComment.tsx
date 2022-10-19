@@ -136,13 +136,12 @@ function PostViewComment({ post }: postProps) {
       console.log("댓글 불러오기에 실패했습니다.\n", err);
     }
   }
-
   useEffect(() => {
     // if (!comment.PostId_id) {
     //   return;
     // }
     getComments();
-  });
+  }, []);
 
   function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const text = e.target.value;
