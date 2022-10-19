@@ -69,6 +69,8 @@ interface postProps {
   post: any;
 }
 function PostViewHead({ post }: postProps) {
+  // const created: string = post.CreationTime.toLocaleDateString();
+
   return (
     <>
       <ViewTitleBlock>
@@ -80,6 +82,7 @@ function PostViewHead({ post }: postProps) {
           <span className="pic"></span>
           <span>{post.User}</span>
           <span className="infoline"></span>
+          {/* <span>{created}</span> */}
           <span>{post.CreationTime}</span>
           <span className="infoline"></span>
           <span>양식</span>

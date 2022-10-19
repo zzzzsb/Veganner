@@ -111,9 +111,6 @@ interface postProps {
 }
 
 function PostViewComment({ post }: postProps) {
-  // console.log(post);
-  // console.log(post.ID); //1
-  // console.log(typeof post.ID); //number
   interface Comment {
     CommentId?: number;
     User_id: string;
@@ -130,21 +127,7 @@ function PostViewComment({ post }: postProps) {
 
   const [comments, setComments] = useState<Array<Comment>>([]);
 
-  async function getComments() {
-    try {
-      const res = await Api.get(`board/${post.ID}/comments`);
-      // const res = await Api.get(`board/5/comments`);
-      setComments([...res.data]);
-      console.log(res);
-    } catch (err) {
-      console.log("댓글 불러오기에 실패했습니다.\n", err);
-    }
-  }
   useEffect(() => {
-    // if (!comment.PostId_id) {
-    //   return;
-    // }
-
     async function getComments() {
       try {
         const res = await Api.get(`board/${post.ID}/comments`);
@@ -152,12 +135,8 @@ function PostViewComment({ post }: postProps) {
         console.log(res);
       } catch (err) {
         console.log("댓글 불러오기에 실패했습니다.\n", err);
-        // console.log(post.ID); //undefined
-        // console.log(typeof post.ID); //undefined
       }
     }
-
-    console.log(post); // 안넘어옴
     getComments();
   }, [post]);
 
@@ -167,7 +146,6 @@ function PostViewComment({ post }: postProps) {
       CommentId: comments.length + 1,
       ...comment,
       Comment: text,
-      CreationTime: new Date().toDateString(),
     });
   }
 
@@ -175,26 +153,23 @@ function PostViewComment({ post }: postProps) {
     e.preventDefault();
     e.stopPropagation();
 
-    const commentsList = [...comments, comment];
-    setComments(commentsList);
+    try {
+      let res = await Api.post(`board/${post.ID}/comments/`, comment);
+      console.log("댓글 작성에 성공했습니다.\n", res);
+      res = await Api.get(`board/${post.ID}/comments/`);
+      setComments([...res.data]);
+    } catch (err) {
+      console.log("댓글 작성에 실패했습니다.\n", err);
+    }
+
+    // const commentsList = [...comments, comment];
+    // setComments(commentsList);
 
     setComment({
       User_id: post.User,
       PostId: post.ID,
       Comment: "",
     });
-
-    try {
-      console.log(comment);
-      const res = await Api.post(
-        `board/${post.ID}/comments/`,
-        comment
-        // withCredentials: true,
-      );
-      console.log("댓글 작성에 성공했습니다.\n", res);
-    } catch (err) {
-      console.log("댓글 작성에 실패했습니다.\n", err);
-    }
   }
 
   return (
@@ -214,15 +189,15 @@ function PostViewComment({ post }: postProps) {
           작성
         </button>
       </InputBox>
-      {comments.map((element): any => {
+      {comments.map((comment: Comment): any => {
         return (
           <CommentsWrapper>
             <CommentsInfo>
               <span className="pic"></span>
-              <p>{element.User_id}</p>
-              <span className="date">{element.CreationTime}</span>
+              <p>{comment.User_id}</p>
+              <span className="date">{comment.CreationTime}</span>
             </CommentsInfo>
-            <div className="comment">{element.Comment}</div>
+            <div className="comment">{comment.Comment}</div>
             <button>답글</button>
           </CommentsWrapper>
         );

@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import Search from "../list/Search";
-// import List from "../list/List";
 import { createGlobalStyle } from "styled-components";
 import PostViewHead from "./PostViewHead";
 import PostViewContent from "./PostViewContent";
@@ -34,10 +32,7 @@ const PostViewLayout = styled.div`
 
 function PostView() {
   const { postId } = useParams();
-  // console.log(postId); // 1
-  // console.log(typeof postId); // string
   interface Post {
-    // ID: string;
     User: string;
     Title: string;
     Content: string;
@@ -52,7 +47,6 @@ function PostView() {
   }
 
   const [post, setPost] = useState<Post>({
-    // ID: postId,
     User: "",
     Title: "",
     Content: "",
