@@ -62,19 +62,19 @@ function PostView() {
     // Likes: 0
   });
 
-  async function getPost() {
-    try {
-      const res = await Api.get(`board/${postId}`);
-      // console.log(res.data);
-      setPost(res.data);
-    } catch (err) {
-      console.log("글 불러오기를 실패했습니다.\n", err);
-    }
-  }
-
   useEffect(() => {
+    async function getPost() {
+      try {
+        const res = await Api.get(`board/${postId}`);
+        // console.log(res.data);
+        setPost(res.data);
+      } catch (err) {
+        console.log("글 불러오기를 실패했습니다.\n", err);
+      }
+    }
+
     getPost();
-  }, []);
+  }, [postId]);
 
   return (
     <>
