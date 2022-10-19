@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const backendPortNumber = "5000";
+const backendPortNumber = "8000";
 // 로컬서버
 const localBaseUrl = "localhost";
 // 개발서버
 const realBaseUrl = "kdt-ai5-team01.elicecoding.com";
 
-const serverUrl = `http://${realBaseUrl}:${backendPortNumber}/`;
-axios.defaults.withCredentials = true; 
+const serverUrl = `http://${localBaseUrl}:${backendPortNumber}/`;
+axios.defaults.withCredentials = true;
 async function get(endpoint: string, params = "") {
   console.log(
     `%cGET 요청 ${serverUrl + endpoint + "/" + params}`,

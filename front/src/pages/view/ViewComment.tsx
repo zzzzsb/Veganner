@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-// import { useRecoilState } from 'recoil';
+import * as Api from "../../api/api";
 
 const ViewCommentBlock = styled.div`
   width: 100%;
@@ -68,7 +68,12 @@ const InputBox = styled.div`
   }
 `;
 
-const Comments = styled.div`
+const Line = styled.div`
+  width: 100%;
+  border: 0.5px solid #21212180;
+`;
+
+const CommentsWrapper = styled.div`
   .comment {
     margin: 15px 0 15px 5px;
   }
@@ -101,53 +106,125 @@ const CommentsInfo = styled.div`
   }
 `;
 
-const Line = styled.div`
-  width: 100%;
-  border: 0.5px solid #21212180;
-`;
-
 function ViewComment() {
-  // const isLogin
-  // const [input, setInput] = useState('');
-  // const [comments, setComments] = useState([]);
+  interface Comment {
+    CommentId?: number;
+    User_id: string;
+    PostId_id: number;
+    Comment: string;
+    CreationTime?: string;
+  }
+
+  const [comment, setComment] = useState<Comment>({
+    User_id: "test2@test.com",
+    PostId_id: 5,
+    Comment: "",
+  });
+
+  const [comments, setComments] = useState<Array<Comment>>([]);
+
+  async function getComments() {
+    try {
+      const res = await Api.get(`board/${comment.PostId_id}/comments`);
+      // const res = await Api.get(`board/5/comments`);
+      setComments([...res.data]);
+      console.log(res);
+    } catch (err) {
+      console.log("댓글 불러오기에 실패했습니다.\n", err);
+    }
+  }
+
+  useEffect(() => {
+    // if (!comment.PostId_id) {
+    //   return;
+    // }
+    getComments();
+  }, []);
+
+  function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    const text = e.target.value;
+    setComment({
+      CommentId: comments.length + 1,
+      ...comment,
+      Comment: text,
+      CreationTime: new Date().toDateString(),
+    });
+  }
+
+  async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const commentsList = [...comments, comment];
+    setComments(commentsList);
+
+    // setComment({
+    //   ...comment,
+    //   created: new Date().toDateString(),
+    //   CommentId: comments.length + 1,
+    // });
+
+    try {
+      console.log(comment);
+      const res = await Api.post(
+        `board/${comment.PostId_id}/comments/`,
+        // `board/5/comments/`,
+        comment
+        // withCredentials: true,
+      );
+      console.log("댓글 작성에 성공했습니다.\n", res);
+    } catch (err) {
+      console.log("댓글 작성에 실패했습니다.\n", err);
+    }
+
+    setComment({
+      User_id: "test2@test.com",
+      PostId_id: 5,
+      Comment: "",
+    });
+  }
 
   return (
     <ViewCommentBlock>
       <CommentLabel>
         <span className="label">댓글</span>
-        <span className="count">2</span>
+        <span className="count">{comments.length}</span>
       </CommentLabel>
       <Line></Line>
       <InputBox>
         <textarea
           placeholder="로그인하고 댓글을 입력해보세요."
-          // value={textvalue}
+          onChange={handleInput}
+          value={comment.Comment}
         />
-        <button type="submit">작성</button>
+        <button type="button" onClick={handleSubmit}>
+          작성
+        </button>
       </InputBox>
-      <Comments>
-        <CommentsInfo>
-          <span className="pic"></span>
-          <p>지수빈</p>
-          <span className="date">2022-10-10</span>
-          <span className="date">12:26</span>
-        </CommentsInfo>
-        <div className="comment">와!!!! 이렇게 많은 메뉴가 있었다니!!!</div>
-        <button>답글</button>
-      </Comments>
-      <Line></Line>
-      <Comments>
-        <CommentsInfo>
-          <span className="pic"></span>
-          <p>지수빈</p>
-          <span className="date">2022-10-10</span>
-          <span className="date">12:26</span>
-        </CommentsInfo>
-        <div className="comment">와!!!! 이렇게 많은 메뉴가 있었다니!!!</div>
-        <button>답글</button>
-      </Comments>
+      {comments.map((element): any => {
+        return (
+          <CommentsWrapper>
+            <CommentsInfo>
+              <span className="pic"></span>
+              <p>{element.User_id}</p>
+              <span className="date">{element.CreationTime}</span>
+            </CommentsInfo>
+            <div className="comment">{element.Comment}</div>
+            <button>답글</button>
+          </CommentsWrapper>
+        );
+      })}
     </ViewCommentBlock>
   );
 }
 
 export default ViewComment;
+
+// {addComment.map((element,index) => {
+//   return <Comment
+//     value={element}
+//     isLogined={isLogined}
+//     key={element.date+JSON.stringify(index)}
+//     onDelete={onClickDeleteHandler}
+//     />
+// })}

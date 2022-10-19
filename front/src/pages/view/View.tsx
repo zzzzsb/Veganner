@@ -4,7 +4,6 @@ import ViewTemplate from "./ViewTemplate";
 import ViewHead from "./ViewHead";
 import ViewContent from "./ViewContent";
 import ViewComment from "./ViewComment";
-// import * as S from "../view/View.styled";
 
 const GlobalStyle = createGlobalStyle`
   body {
