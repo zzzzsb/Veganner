@@ -61,29 +61,32 @@ const LikeBlock = styled.div`
 `;
 
 const Line = styled.div`
-  width: 100%;
+  width: 1070px;
   border: 0.5px solid #21212180;
 `;
 
-function ViewHead() {
+interface postProps {
+  post: any;
+}
+function PostViewHead({ post }: postProps) {
   return (
     <>
       <ViewTitleBlock>
         <div className="label">레시피</div>
-        <h1>토마토 파프리카 그린 샐러드</h1>
+        <h1>{post.Title}</h1>
       </ViewTitleBlock>
       <ViewInfoBlock>
         <PostInfoBlock>
           <span className="pic"></span>
-          <span>김현정</span>
+          <span>{post.User}</span>
           <span className="infoline"></span>
-          <span>2022-10-10</span>
+          <span>{post.CreationTime}</span>
           <span className="infoline"></span>
           <span>양식</span>
         </PostInfoBlock>
         <LikeBlock>
           <span className="like">좋아요</span>
-          <span className="count">24</span>
+          <span className="count">{post.Likes}</span>
         </LikeBlock>
       </ViewInfoBlock>
       <Line></Line>
@@ -91,4 +94,4 @@ function ViewHead() {
   );
 }
 
-export default ViewHead;
+export default PostViewHead;

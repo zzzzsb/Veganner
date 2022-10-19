@@ -7,6 +7,7 @@ import Filter from "../../components/filter/Filter";
 import TuiEditor from "../../components/editor/Editor";
 import { EditorProps } from "../../components/editor/Editor";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface AddPostProps {
   tuiEditor?: EditorProps;
@@ -15,6 +16,7 @@ interface AddPostProps {
 function AddPost({ tuiEditor }: AddPostProps) {
   // 에디터 initialValue
   const defaultContent = "당신의 채식 경험을 공유해 주세요!";
+  const navigate = useNavigate();
   // 포스트 제목
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>(defaultContent);
@@ -56,14 +58,17 @@ function AddPost({ tuiEditor }: AddPostProps) {
     formData.append("Type", type);
     if (thumbnail) formData.append("Thumbnail", thumbnail);
 
-    await axios
-      .post("http://localhost:8000/board/", formData, {
+    try {
+      const res = await axios.post("http://localhost:8000/board/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      });
+      console.log(JSON.stringify(res.data));
+      // navigate('/board/${res.data.ID}')
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
