@@ -3,17 +3,17 @@ import "./styles/styles.css";
 import { Reset } from "styled-reset";
 import Header from "./components/header/Header";
 import Main from "./pages/main/Main";
-import Insights from "./pages/Insights";
+import Insight from "./pages/insight/Insight";
+
 // import Share from "./pages/Share";
-import Write from "./pages/write/Write";
-import LoginForm from "./pages/login/Login";
-import RegisterForm from "./pages/register/Register";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 import View from "./pages/view/View";
 import Map from "./pages/map/Map";
-import { IEditor } from "./pages/write/Write";
 import data from "./datas/seoul.json";
 import ResitemDetail from "./components/Map/ResitemDetail";
-
+import List from "./pages/list/List";
+import AddPost from "./pages/addPost/Addpost";
 function App() {
   return (
     <div>
@@ -22,14 +22,14 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<RegisterForm />} />
-          <Route path="/insights" element={<Insights />} />
-          {/* <Route path="/board" element={} /> */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/share" element={<List />} />
+          <Route path="/insights" element={<Insight />} />
           <Route path="/view" element={<View />} />
-          <Route path="/write" element={<Write />} />
+          <Route path="/write" element={<AddPost />} />
+          {/* <Route path="/edit" element={<EditPost />} /> */}
           <Route path="/explore" element={<Map />} />
-          <Route path="/write" element={<Write />} />
           <Route
             path="/explore/detail/:id"
             element={<ResitemDetail detail={data.data} />}
