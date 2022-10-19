@@ -13,8 +13,18 @@ import Map from "./pages/map/Map";
 import data from "./datas/seoul.json";
 import ResitemDetail from "./components/Map/ResitemDetail";
 import List from "./pages/list/List";
-import AddPost from "./pages/addPost/Addpost";
+<<<<<<< HEAD
+import Kakao from "./pages/login/Kakao";
+import GoogleCallback from "./pages/login/GoogleCallback";
 
+
+=======
+import AddPost from "./pages/addPost/Addpost";
+<<<<<<< HEAD
+>>>>>>> 06c8994341f76dd561177b9ff2379e7cf9cc0ef6
+=======
+
+>>>>>>> 6817cd0f2877dc22e7c8734bbed96f748d851767
 function App() {
   return (
     <div>
@@ -35,6 +45,8 @@ function App() {
             path="/explore/detail/:id"
             element={<ResitemDetail detail={data.data} />}
           />
+          <Route path="/auth/kakao/callback" element={<Kakao />} />
+          <Route path="/auth/google/callback" element={<GoogleCallback />} />
         </Routes>
       </BrowserRouter>
     </div>
