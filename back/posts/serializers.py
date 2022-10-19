@@ -5,14 +5,15 @@ from .models import Posts, Comments, Like, Image
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Posts
-        fields = ('User', 'Title', 'Content', 'Thumbnail', 'Type',
+        fields = ('ID', 'User', 'Title', 'Content', 'Thumbnail', 'Type',
                   'Hashtag', 'Groups', 'RestaurantsId', 'Address')
 
 
 class CommentsItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
-        fields = ('CommentId', 'User', 'PostId', 'Comment')
+        fields = ('CommentId', 'User', 'PostId', 'Comment', "CreationTime")
+
 
 
 class LikeSerializer(serializers.ModelSerializer):
@@ -24,4 +25,10 @@ class LikeSerializer(serializers.ModelSerializer):
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = ('User', 'Image')
+        fields = ('User', 'Image', 'EditId')
+
+
+class ImageSetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ('User', 'Image', 'EditId', 'is_editing', 'PostId')
