@@ -33,7 +33,6 @@ function Marker({ location }: Markerprops) {
               </div>
             </div>
           </div>
-          ;
         </CustomOverlayMap>
       )}
     </>
