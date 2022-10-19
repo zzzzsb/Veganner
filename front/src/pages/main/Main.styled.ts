@@ -8,6 +8,7 @@ export interface MainStyledProps {
   textAlign?: string;
   fontSize?: number;
   color?: string;
+  backgroundColor?: string;
 }
 
 export const Main = styled.div`
@@ -60,6 +61,7 @@ export const PageLayout = styled.div<MainStyledProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${(props) => props.backgroundColor};
 `;
 
 export const RowTextBox = styled.div`
