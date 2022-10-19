@@ -4,6 +4,7 @@ import styled from "styled-components";
 import * as Api from "../../api/api";
 import listsState from "../../atoms/search";
 import { useRecoilValue, useResetRecoilState, useRecoilState,useSetRecoilState} from "recoil";
+import * as L from "./List.styled";
 
 function ListSearch() {
   const [lists, setLists] = useRecoilState(listsState);
@@ -64,7 +65,7 @@ function ListSearch() {
 
   return (
     <>
-    <form onSubmit={handleSubmit}>
+    <L.SearchForm onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="검색"
@@ -73,7 +74,7 @@ function ListSearch() {
         onChange={onChangeSearch}
       />
       <button type='submit'>검색</button>
-    </form>
+    </L.SearchForm>
     </>
   );
 }

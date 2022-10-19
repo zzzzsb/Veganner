@@ -7,10 +7,10 @@ User Model의 username 대신 email을 사용하도록 변경하였습니다.
 
 ```bash
 cd back
-python3 -m venv venv
+python -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
-python3 manage.py runserver
+python manage.py runserver
 ```
 
 위와 같이 입력하고 http://localhost:8000/ 으로 접속하면 됩니다.

@@ -1,6 +1,12 @@
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
+import userState from "../../atoms/user";
 import * as Api from "../../api/api";
+import { KAKAO_AUTH_URL } from './OAuth';
+import oauthSignIn from './Google';
+
 
 interface LoginData {
   email: string;
@@ -9,6 +15,7 @@ interface LoginData {
 }
 
 function LoginForm() {
+  const setUser = useSetRecoilState(userState);
   const navigate = useNavigate();
   const [formData, setFormData] = useState<LoginData>({
     email: "",
@@ -39,6 +46,7 @@ function LoginForm() {
       const res = await Api.post("login/", formData);
       // 유저 정보는 response의 data임.
       const user = res.data;
+      setUser({email:user.email,password:user.password});
       sessionStorage.clear()
       sessionStorage.setItem('sessionId', user.sessionid)
 
@@ -47,6 +55,7 @@ function LoginForm() {
       navigate("/", { replace: true });
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
+      alert("로그인에 실패하였습니다. 아이디와 비밀번호를 다시 확인해주세요")
     }
   };
 
@@ -62,6 +71,10 @@ function LoginForm() {
       return newData;
     });
   };
+  // 카카오 로그인
+  const kakaoLogin = () => {
+    window.location.href = KAKAO_AUTH_URL;
+  }
 
   return (
     <div>
@@ -90,6 +103,8 @@ function LoginForm() {
           로그인
         </button>
         <button onClick={() => navigate("/register")}>회원가입하기</button>
+        <button type='button' onClick={kakaoLogin}>카카오로 로그인하기</button>
+        
       </form>
     </div>
   );
