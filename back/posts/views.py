@@ -1,17 +1,19 @@
-from email.headerregistry import Address, Group
 import re
 import jwt
 from rest_framework import status
 from django.conf import settings
 from django.db.models import Count, Subquery, OuterRef
-from .serializers import PostSerializer, CommentsItemSerializer, LikeSerializer, ImageSerializer
+from .serializers import PostSerializer, CommentsItemSerializer, LikeSerializer, ImageSerializer, ImageSetSerializer
 from accounts.models import User
 from .models import Image, Posts, Like, Comments
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.core.paginator import Paginator
+
 import sys
 import os
+import re
+from urllib import parse
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 
@@ -51,9 +53,11 @@ class PostAllGetAPI(APIView):
             Sort = request.GET["Sort"]
         elif "Page" in keys:
             Page = request.GET["Page"]
-        items = items.values("ID", "Type", "Title", "Thumbnail",
+
+        items = items.values("ID", "Groups", "Type", "Title", "Thumbnail",
                              "CreationTime", "User").order_by(Sort)
-        paginator = Paginator(items, 10)
+        paginator = Paginator(items, 12)
+
         responseData = list(paginator.get_page(Page).object_list)
 
         test_data_p = [responseData[i]["ID"] for i in range(len(responseData))]
@@ -73,12 +77,25 @@ class PostAllGetAPI(APIView):
         return Response(responseData)
 
     def post(self, request):
+        img_re = re.compile(r'(img\/)(.+?)\\')
         user = request.user
         data = request.data.copy()
         data["User"] = user
         serializer = PostSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
+            img_list_set = img_re.findall(data["Content"])
+            img_list = []
+            for i in range(len(img_list_set)):
+                img_list.append(parse.unquote(img_list_set[i][1]))
+
+            if img_list:
+                # items = Image.objects.filter(Image=img_list)
+                # print(items)
+                items = Image.objects.filter(
+                    Image__in=img_list)
+                items.update(is_editing=False,
+                             PostId_id=serializer.data["ID"], EditId=None)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -88,13 +105,17 @@ class PostGetAPI(APIView):
     def get(self, request, ID):
         item = Posts.objects.get(ID=ID)
         responseData = PostSerializer(item)
-        return Response(responseData.data)
+
+        return (Response(responseData.data))
+
 
     def put(self, request, ID):
         item = Posts.objects.get(ID=ID)
+        if item.User != request.user:
+            return Response("본인 게시글이 아닙니다", status=status.HTTP_400_BAD_REQUEST)
         data = request.data.copy()
-        data["User"] = request.user
         serializer = PostSerializer(item, data=data)
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -103,7 +124,7 @@ class PostGetAPI(APIView):
     def delete(self, request, ID):
         item = Posts.objects.get(ID=ID)
         if item.User != request.user:
-            return Response("본인 게시글이 아닙니다")
+            return Response("본인 게시글이 아닙니다", status=status.HTTP_400_BAD_REQUEST)
         item.delete()
         return Response("deleted:"+str(ID))
 
@@ -152,6 +173,7 @@ class ImageApi(APIView):
     def post(self, request):
         data = request.data.copy()
         data["User"] = request.user
+        data["EditId"] = request.COOKIES.get("sessionid")
         serializer = ImageSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
