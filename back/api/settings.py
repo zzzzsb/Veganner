@@ -51,9 +51,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.kakao',
-    'allauth.socialaccount.providers.google',
 
-    'corsheaders',  # CORS 관련 추가
+    'corsheaders', # CORS 관련 추가
 ]
 
 REST_FRAMEWORK = {
@@ -77,7 +76,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # CORS 추가
+    'corsheaders.middleware.CorsMiddleware', # CORS 추가
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -93,7 +92,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'api.urls'
-SESSION_COOKIE_AGE = 1800  # for 30 minutes timestamp
+SESSION_COOKIE_AGE = 1800 # for 30 minutes timestamp
 SESSION_SAVE_EVERY_REQUEST = True
 
 TEMPLATES = [

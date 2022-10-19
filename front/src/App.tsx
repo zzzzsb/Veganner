@@ -14,6 +14,7 @@ import data from "./datas/seoul.json";
 import ResitemDetail from "./components/Map/ResitemDetail";
 import List from "./pages/list/List";
 import AddPost from "./pages/addPost/Addpost";
+
 function App() {
   return (
     <div>
