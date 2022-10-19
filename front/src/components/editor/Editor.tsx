@@ -3,7 +3,6 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import styled from "styled-components";
 import React from "react";
 import axios from "axios";
-import * as Api from "../../api/api";
 export interface EditorProps {
   editorRef: React.ForwardedRef<Editor>;
   initialValue: string;
