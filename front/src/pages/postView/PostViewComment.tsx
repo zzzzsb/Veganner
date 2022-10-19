@@ -117,6 +117,7 @@ function PostViewComment({ post }: postProps) {
     CreationTime?: string;
     PostId: number;
   }
+
   const [comment, setComment] = useState<Comment>({
     User_id: post.User,
     PostId: post.ID,
