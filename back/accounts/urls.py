@@ -8,8 +8,6 @@ urlpatterns = [
     path('email/<str:email>', Checkemail.as_view()),
     # 회원가입
     path('registration/', include('dj_rest_auth.registration.urls')),
-
-    # 소셜(임시)
+    # 소셜 로그인
     re_path(r'^kakao/login/$', KakaoLogin.as_view(), name='kakao_login'),
-    re_path(r'^google/login/$', GoogleLogin.as_view(), name='google_login'),
 ]
