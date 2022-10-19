@@ -9,6 +9,13 @@ class PostSerializer(serializers.ModelSerializer):
                   'Hashtag', "CreationTime", 'Groups', 'RestaurantsId', 'Address')
 
 
+class PostUpdataNoThumbnailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Posts
+        fields = ('ID', 'User', 'Title', 'Content',  'Type',
+                  'Hashtag', "CreationTime", 'Groups', 'RestaurantsId', 'Address')
+
+
 class CommentsItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
