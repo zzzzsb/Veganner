@@ -18,10 +18,10 @@ export const wrap = styled.div`
 export const info = styled.div`
   display: flex;
   height: 30px;
-  width: 100%;
   background-color: gray;
 `;
 export const title = styled.div`
+  width: 90%;
   flex-direction: row;
   margin: 20px;
   background-color: blue;

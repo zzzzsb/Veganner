@@ -8,7 +8,6 @@ import Paging from "../../components/Map/Paging";
 import Page from "../../components/Map/Page";
 import * as S from "./Map.styled";
 import { DefaultValue } from "recoil";
-import * as P from "../../components/Map/Paging.styled";
 // import { setServers } from "dns";;
 
 const list = Location.data;
