@@ -4,8 +4,6 @@ import { Reset } from "styled-reset";
 import Header from "./components/header/Header";
 import Main from "./pages/main/Main";
 import Insight from "./pages/insight/Insight";
-
-// import Share from "./pages/Share";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import View from "./pages/postView/PostView";
@@ -15,7 +13,6 @@ import ResitemDetail from "./components/Map/ResitemDetail";
 import List from "./pages/list/List";
 import Kakao from "./pages/login/Kakao";
 import AddPost from "./pages/addPost/Addpost";
-
 function App() {
   return (
     <div>
