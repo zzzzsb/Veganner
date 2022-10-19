@@ -6,6 +6,7 @@ export const Title = styled.section`
   margin: auto;
   font-size: 25px;
   text-align: center;
+  font-family: Noto Sans KR;
 `;
 export const Layout = styled.section`
   display: flex;
@@ -13,6 +14,7 @@ export const Layout = styled.section`
   width: 1400px;
   height: 100vh;
   border-radius: 5px;
+  font-family: Noto Sans KR;
 `;
 
 //
@@ -77,21 +79,15 @@ export const select_button = styled.button`
 `;
 export const optionList = styled.ul`
   position: stickey;
-
+  // display: block;
   top: 28px;
-  left: 0;
-  margin: 5px;
+
   width: 70px;
   border-radius: 5px;
   border: 2px lightgray solid;
-  margin: 5px 3px 5px 3px;
+  margin: 5px 3px 5px 2px;
   background: #ffffff;
-  // color: #fff;
-  // list-style-type: none;
-  // padding: 0;
-  // border-radius: 6px;
-  overflow: hidden;
-  // max-height: 0;
+  // overflow: hidden;
   transition: 0.3s ease-in;
 `;
 export const optionitem = styled.li`
@@ -121,7 +117,7 @@ export const resContainer = styled.div`
 export const restaurant = styled.div`
   display: block;
   border-bottom: 2px solid #f1f1f1;
-  padding: 28px 48px 28px 48px;
+  padding: 28px 45px;
 `;
 
 export const stylelink = styled(Link)`
@@ -135,7 +131,7 @@ export const h2 = styled.h2`
   position: relative;
   text-decoration-line: none;
   color: rgb(58, 58, 58);
-  font-family: Noto Sans KR;
+  font-size: 20px;
 `;
 
 export const p = styled.p`
@@ -145,11 +141,12 @@ export const p = styled.p`
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   color: rgb(58, 58, 58);
+  line-height: 1.5;
 `;
 
 export const boxdiv = styled.div`
   display: block;
-  margin: 10px 0 0 0;
+  margin: 8px 0 0 0;
   height: 25px;
 `;
 
@@ -163,9 +160,9 @@ export const box = styled.div`
   border: 2px solid #cdea67;
   background: #cdea67;
   background-size: 10px;
-  padding: 5px;
+  padding: 5px 7px;
   margin: 5px 10px 5px 0;
-
+  color: light gray;
   font-size: 15px;
   // box-sizing: border-box;
 `;

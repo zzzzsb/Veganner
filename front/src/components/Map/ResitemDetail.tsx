@@ -1,5 +1,5 @@
 import * as S from "../../pages/map/Map.styled";
-import MiniMap from "./MiniMap";
+import DetailMap from "./DetailMap";
 import { useParams, Link } from "react-router-dom";
 
 interface ItemProps {
@@ -36,7 +36,7 @@ function ResitemDetail({ detail }: ItemProps) {
             </S.resContainer>
           </S.searchContainer>
         </S.resMenu>
-        <MiniMap item={matched} />
+        <DetailMap item={matched} />
       </S.Layout>
     </>
   );
