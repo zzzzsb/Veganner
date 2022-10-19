@@ -109,7 +109,7 @@ export const AnimalInputLayout = styled.div`
   margin: 0 auto;
   /* justify-content: center;
   align-items: center; */
-  margin: 50px auto;
+  margin: 45px auto;
 `;
 export const AnimalInputBox = styled.input<InsightStyledProps>`
   border: none;
