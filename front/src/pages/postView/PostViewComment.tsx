@@ -130,6 +130,16 @@ function PostViewComment({ post }: postProps) {
 
   const [comments, setComments] = useState<Array<Comment>>([]);
 
+  async function getComments() {
+    try {
+      const res = await Api.get(`board/${post.ID}/comments`);
+      // const res = await Api.get(`board/5/comments`);
+      setComments([...res.data]);
+      console.log(res);
+    } catch (err) {
+      console.log("댓글 불러오기에 실패했습니다.\n", err);
+    }
+  }
   useEffect(() => {
     // if (!comment.PostId_id) {
     //   return;
