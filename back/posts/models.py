@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.sessions.models import Session
 
 
 class Posts(models.Model):
@@ -25,6 +26,7 @@ class Comments(models.Model):
         "accounts.user", to_field="email", on_delete=models.CASCADE)
     PostId = models.ForeignKey(Posts, on_delete=models.CASCADE)
     Comment = models.TextField(null=False)
+    CreationTime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.CommentId
@@ -44,3 +46,5 @@ class Image(models.Model):
     is_editing = models.BooleanField(default=True, null=False)
     PostId = models.ForeignKey(Posts, on_delete=models.CASCADE, null=True)
     CreationTime = models.DateTimeField(auto_now_add=True)
+    EditId = models.ForeignKey(
+        Session, on_delete=models.CASCADE, null=True)
