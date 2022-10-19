@@ -42,6 +42,7 @@ function AddPost({ tuiEditor }: AddPostProps) {
     e.preventDefault();
     if (editorRef.current) {
       setContent(editorRef.current.getInstance().getHTML());
+      console.log(editorRef.current.getInstance().getHTML());
     }
     // 예외처리(레시피는 주소 항목 없음.)
     if (group === 1) {
