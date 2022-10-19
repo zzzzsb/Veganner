@@ -84,6 +84,18 @@ function Map() {
   const [selectedVegan, setSelectedVegan] = useState<string | null>(null);
   const [isOpenVeganList, setIsOpenVeganList] = useState<boolean>(false);
 
+  // useEffect(() => {
+  //   parks &&
+  //     setParklist(
+  //       parks.map((item, idx) => {
+  //         let park_id = item.id;
+  //         return (
+  //           <ParkList key={park_id} item={item} idx={idx} park_id={park_id} />
+  //         );
+  //       })
+  //     );
+  // }, [parks]);
+
   useEffect(() => {
     // console.log("useEffect");
     // console.log("selectedRegion", selectedRegion);
@@ -129,19 +141,22 @@ function Map() {
   }
 
   // 검색
-  // search 후 setResult로 보내는것까지는 ok / 근데 왜 ECONNREFUSED???
-  function handleSearch() {
+  // 필터링까지는 됨 근데 왜 오류??? 다시 리셋됨 why???????
+
+  function handleSearch(e: any) {
+    e.preventDefault();
     const searchedStores = list.filter((item) =>
       searchValue
-        ? item.location.indexOf(searchValue) !== -1 ||
-          item.industry.indexOf(searchValue) !== -1 ||
-          item.food.indexOf(searchValue) !== -1 ||
-          item.name.indexOf(searchValue) ||
+        ? item.location.includes(searchValue) ||
+          // item.industry.includes(searchValue) ||
+          // item.food.includes(searchValue) ||
+          item.name.includes(searchValue) ||
           item.number === searchValue
         : item
     );
     console.log(searchedStores);
     setResult(searchedStores);
+    navigate("/explore");
   }
 
   //페이지네이션
@@ -149,7 +164,7 @@ function Map() {
     setIndexOfLastPost(currentpage * 10);
     setIndexOfFirstPost(indexOfLastPost - 10);
     setCurrentPosts(result.slice(indexOfFirstPost, indexOfLastPost));
-  }, [currentpage, indexOfFirstPost, indexOfLastPost, result, 10]);
+  }, [currentpage, indexOfFirstPost, indexOfLastPost, result, 5]);
 
   return (
     <>
