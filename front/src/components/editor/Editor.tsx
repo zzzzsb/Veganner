@@ -4,8 +4,8 @@ import styled from "styled-components";
 import React from "react";
 import axios from "axios";
 export interface EditorProps {
-  editorRef: React.ForwardedRef<Editor>;
-  initialValue: string;
+  editorRef?: React.ForwardedRef<Editor>;
+  initialValue?: string;
 }
 
 function TuiEditor(props: EditorProps) {

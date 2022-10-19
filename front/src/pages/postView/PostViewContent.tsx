@@ -30,13 +30,23 @@ interface postProps {
   post: any;
 }
 function PostViewContent({ post }: postProps) {
+  const navigate = useNavigate();
+  const handleEditButton = () => {
+    navigate("edit", {
+      state: {
+        ...post,
+      },
+    });
+  };
   return (
     <>
       <ViewContentBlock>
         {<div dangerouslySetInnerHTML={{ __html: post.Content }}></div>}
       </ViewContentBlock>
       <ButtonBlock>
-        <button type="button">수정</button>
+        <button type="button" onClick={handleEditButton}>
+          수정
+        </button>
         <button>삭제</button>
       </ButtonBlock>
     </>
