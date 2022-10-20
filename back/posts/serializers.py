@@ -6,14 +6,20 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Posts
         fields = ('ID', 'User', 'Title', 'Content', 'Thumbnail', 'Type',
-                  'Hashtag', 'Groups', 'RestaurantsId', 'Address')
+                  'Hashtag', "CreationTime", 'Groups', 'RestaurantsId', 'Address')
+
+
+class PostUpdataNoThumbnailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Posts
+        fields = ('ID', 'User', 'Title', 'Content',  'Type',
+                  'Hashtag', "CreationTime", 'Groups', 'RestaurantsId', 'Address')
 
 
 class CommentsItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
         fields = ('CommentId', 'User', 'PostId', 'Comment', "CreationTime")
-
 
 
 class LikeSerializer(serializers.ModelSerializer):

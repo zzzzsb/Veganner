@@ -34,8 +34,8 @@ function Header() {
       <S.HeaderWrapper>
         <S.HeaderLogo to="/" />
         <S.Navbar>
-          <S.StyledLink to="/insights">Insights.</S.StyledLink>
-          <S.StyledLink to="/share">Share.</S.StyledLink>
+          <S.StyledLink to="/insight">Insights.</S.StyledLink>
+          <S.StyledLink to="/board">Share.</S.StyledLink>
           <S.StyledLink to="/explore">Explore.</S.StyledLink>
 
           {email === null ? (

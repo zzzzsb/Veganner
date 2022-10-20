@@ -117,6 +117,7 @@ function PostViewComment({ post }: postProps) {
     CreationTime?: string;
     PostId: number;
   }
+
   const [comment, setComment] = useState<Comment>({
     User_id: post.User,
     PostId: post.ID,
@@ -135,7 +136,6 @@ function PostViewComment({ post }: postProps) {
       console.log("댓글 불러오기에 실패했습니다.\n", err);
     }
   }
-
   useEffect(() => {
     // if (!comment.PostId_id) {
     //   return;
