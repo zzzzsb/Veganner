@@ -4,7 +4,7 @@ import PostViewHead from "./PostViewHead";
 import PostViewContent from "./PostViewContent";
 import PostViewComment from "./PostViewComment";
 import * as Api from "../../api/api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -33,6 +33,7 @@ const PostViewLayout = styled.div`
 function PostView() {
   const { postId } = useParams();
   interface Post {
+    ID?: number;
     User: string;
     Title: string;
     Content: string;
@@ -56,6 +57,8 @@ function PostView() {
 
   const [like, setLike] = useState();
 
+  const [isValid, setIsValid] = useState(true);
+
   useEffect(() => {
     async function getPost() {
       try {
@@ -64,26 +67,39 @@ function PostView() {
         setPost(res.data);
 
         res = await Api.get(`board/${postId}/like`);
-        console.log(res.data);
+        console.log("좋아요 개수:", res.data);
         setLike(res.data);
+
+        setIsValid(true);
       } catch (err) {
         console.log("글 불러오기를 실패했습니다.\n", err);
+        setIsValid(false);
       }
     }
 
     getPost();
   }, [postId]);
 
-  return (
-    <>
-      <GlobalStyle />
-      <PostViewLayout>
-        <PostViewHead post={post} like={like}></PostViewHead>
-        <PostViewContent post={post}></PostViewContent>
-        <PostViewComment post={post}></PostViewComment>
-      </PostViewLayout>
-    </>
-  );
+  const navigate = useNavigate();
+
+  if (!isValid) {
+    navigate("/share");
+  }
+
+  if (isValid) {
+    return (
+      <>
+        <GlobalStyle />
+        <PostViewLayout>
+          <PostViewHead post={post} like={like}></PostViewHead>
+          <PostViewContent post={post} setPost={setPost}></PostViewContent>
+          <PostViewComment post={post}></PostViewComment>
+        </PostViewLayout>
+      </>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default PostView;
