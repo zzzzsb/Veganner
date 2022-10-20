@@ -48,7 +48,7 @@ const initialTypeValues = [
   "한식",
 ];
 
-const initialVeganValues = ["채식음식점", "채식가능음식점"];
+const initialVeganValues = ["채식 전문", "채식 가능"];
 
 function Map() {
   const navigate = useNavigate();

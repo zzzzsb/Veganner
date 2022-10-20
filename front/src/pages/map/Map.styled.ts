@@ -68,7 +68,7 @@ export const selectContainer = styled.div`
   padding: 0 10px 10px 0;
 `;
 export const selectBox = styled.div`
-  width: 95px;
+  width: 80px;
   height: 30px;
   border-radius: 9999px;
   border: 2px solid #004d43;
@@ -94,10 +94,10 @@ export const optionList = styled.ul`
   // display: block;
   top: 28px;
 
-  width: 95px;
+  width: 80px;
   border-radius: 5px;
   border: 2px lightgray solid;
-  margin: -20px 4px 5px -1px;
+  margin: -20px 4px 5px -2px;
   background-color: #ffffff;
   // overflow: hidden;
   transition: 0.3s ease-in;
