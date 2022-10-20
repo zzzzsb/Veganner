@@ -75,7 +75,8 @@ function PostView() {
         <PostViewComment post={post}></PostViewComment>
       </PostViewLayout>
     );
-  } else return <ErrorPage> 존재하지 않는 글입니다! </ErrorPage>;
+    // } else return <ErrorPage> 존재하지 않는 글입니다! </ErrorPage>;
+  } else return <ErrorPage></ErrorPage>;
 }
 
 export default PostView;

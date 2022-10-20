@@ -3,6 +3,7 @@ import styled from "styled-components";
 import * as Api from "../../api/api";
 import userState from "../../atoms/user";
 import { useRecoilValue } from "recoil";
+import { useNavigate } from "react-router-dom";
 
 const ViewCommentBlock = styled.div`
   width: 100%;
@@ -118,6 +119,7 @@ interface UserData {
 }
 
 function PostViewComment({ post }: postProps) {
+  const navigate = useNavigate();
   const user = useRecoilValue(userState);
 
   const [userData, setUserData] = useState<UserData>();
@@ -205,6 +207,16 @@ function PostViewComment({ post }: postProps) {
     }
   }
 
+  function handleNoSubmit() {
+    if (window.confirm("로그인하고 댓글을 남겨주세요.")) {
+      try {
+        navigate("/login");
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+
   return (
     <ViewCommentBlock>
       <CommentLabel>
@@ -225,7 +237,8 @@ function PostViewComment({ post }: postProps) {
         ) : (
           <button
             type="button"
-            onClick={() => alert("로그인하고 댓글을 남겨주세요.")}
+            // onClick={() => alert("로그인하고 댓글을 남겨주세요.")}
+            onClick={handleNoSubmit}
           >
             작성
           </button>
