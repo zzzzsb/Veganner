@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { useRecoilState } from "recoil";
 import userState from "../../atoms/user";
@@ -16,6 +16,7 @@ interface LoginData {
 function LoginForm() {
   const setUser = useSetRecoilState(userState);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [formData, setFormData] = useState<LoginData>({
     email: "",
     password: "",
@@ -46,10 +47,11 @@ function LoginForm() {
       // 유저 정보는 response의 data임.
       const user = res.data;
       setUser({ email: user.email, password: user.password });
-     
+      window.sessionStorage.setItem('email', user.email);
 
       // 기본 페이지로 이동함.
-      navigate("/", { replace: true });
+      navigate("/", { state: pathname });
+      // navigate("/", { replace: true });
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
       alert("로그인에 실패하였습니다. 아이디와 비밀번호를 다시 확인해주세요");

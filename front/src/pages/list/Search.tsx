@@ -4,6 +4,8 @@ import styled from "styled-components";
 import * as Api from "../../api/api";
 import listsState from "../../atoms/search";
 import pagingState from "../../atoms/paging";
+import addressState from "../../atoms/address";
+import typeState from "../../atoms/type";
 import { useRecoilValue, useResetRecoilState, useRecoilState,useSetRecoilState} from "recoil";
 import * as L from "./List.styled";
 import axios from "axios";
@@ -25,9 +27,15 @@ function ListSearch() {
     right:'0'
     
   }
+  const address=useRecoilState(addressState);
+  const type=useRecoilState(typeState);
 
   useEffect(() => {
     const userData = async () => {
+     
+      if(address==="전체" && type==="전체"){
+
+      }
         await axios
         .get(`board?Page=${paging}`, {
           // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
@@ -42,7 +50,7 @@ function ListSearch() {
     };
     userData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paging]);
+  }, [paging,address,type]);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
