@@ -31,7 +31,7 @@ class PostAllGetAPI(APIView):
             q &= Q(ID=request.GET["ID"])
 
         if "Groups" in keys:
-            q &= Q(Groups_in=request.GET["Groups"])
+            q &= Q(Groups__in=request.GET["Groups"])
 
         if "Content" in keys:
             q &= Q(Content__contains=request.GET["Content"])
