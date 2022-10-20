@@ -4,17 +4,37 @@ import foodEmission from "../../assets/data-analysis/foodEmission.png";
 import foodEmissionToCar from "../../assets/data-analysis/foodEmissionToCar.png";
 import left_img from "../../assets/img/left_img.png";
 import right_img from "../../assets/img/right_img.png";
+import veganism_background from "../../assets/img/veganism_background.jpeg";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
+  const navigate = useNavigate();
   return (
     <S.Main>
-      <S.Main1Layout>
-        <S.Main1Box>
-          <S.Text1>나와 지구를 위한 채식 문화,</S.Text1>
-          <S.Text1>비거너와 함께 시작해요!</S.Text1>
-          <S.Button1 />
-        </S.Main1Box>
-      </S.Main1Layout>
+      <S.BackgroundImgLayout
+        backgroundImg={veganism_background}
+        height={"100vh"}
+      >
+        <S.TitleText fontSize={60} textAlign={"right"} color={"#f1f1f1"}>
+          나와 지구를 위한 채식 문화,
+        </S.TitleText>
+        <S.TitleText fontSize={60} textAlign={"right"} color={"#f1f1f1"}>
+          비거너와 함께 시작해요
+        </S.TitleText>
+        <S.WithButton
+          onClick={(e) => {
+            navigate("/board");
+          }}
+        >
+          동참하기
+        </S.WithButton>
+      </S.BackgroundImgLayout>
+
+      {/* <S.MainBackgroundImgLayout>
+          <S.TitleText>나와 지구를 위한 채식 문화,</S.TitleText>
+          <S.TitleText>비거너와 함께 시작해요</S.TitleText>
+          <S.WithButton />
+        </S.MainBackgroundImgLayout> */}
 
       <S.PageLayout height={"100vh"}>
         <S.RowTextBox>
