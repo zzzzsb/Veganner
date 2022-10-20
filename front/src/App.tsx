@@ -8,7 +8,7 @@ import Insight from "./pages/insight/Insight";
 // import Share from "./pages/Share";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import View from "./pages/view/View";
+import View from "./pages/postView/PostView";
 import Map from "./pages/map/Map";
 import data from "./datas/seoul.json";
 import ResitemDetail from "./components/Map/ResitemDetail";
@@ -27,9 +27,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/share" element={<List />} />
+          <Route path="/board/:postId" element={<View />} />
           <Route path="/insights" element={<Insight />} />
-          <Route path="/view" element={<View />} />
-          <Route path="/write" element={<AddPost />} />
+          <Route path="/addPost" element={<AddPost />} />
           {/* <Route path="/edit" element={<EditPost />} /> */}
           <Route path="/explore" element={<Map />} />
           <Route
