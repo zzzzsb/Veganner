@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { useRecoilState } from "recoil";
 import userState from "../../atoms/user";
@@ -47,7 +47,7 @@ function LoginForm() {
       // 유저 정보는 response의 data임.
       const user = res.data;
       setUser({ email: user.email, password: user.password });
-      window.sessionStorage.setItem('email', user.email);
+      window.sessionStorage.setItem("email", user.email);
 
       // 기본 페이지로 이동함.
       navigate("/", { state: pathname });
@@ -77,9 +77,7 @@ function LoginForm() {
 
   return (
     <L.WholeLayout>
-      <L.LoginTitle>
-        로그인
-      </L.LoginTitle>
+      <L.LoginTitle>로그인</L.LoginTitle>
       <L.LoginForm onSubmit={handleSubmit}>
         <L.LoginBox
           type="email"
@@ -98,13 +96,15 @@ function LoginForm() {
           value={formData.password}
           onChange={handleonChange}
         />
-        {!isPasswordValid &&formData.password && (
+        {!isPasswordValid && formData.password && (
           <div className="text-success">비밀번호는 8글자 이상입니다.</div>
         )}
         <L.LoginButton type="submit" disabled={!isFormValid}>
           로그인
         </L.LoginButton>
-        <L.RegisterButton onClick={() => navigate("/register")}>회원가입하기</L.RegisterButton>
+        <L.RegisterButton onClick={() => navigate("/register")}>
+          회원가입하기
+        </L.RegisterButton>
         <L.KaKaoButton type="button" onClick={kakaoLogin}>
           카카오로 로그인하기
         </L.KaKaoButton>
