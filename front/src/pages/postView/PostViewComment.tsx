@@ -25,7 +25,7 @@ const CommentLabel = styled.div`
 const InputBox = styled.div`
   border: 0.5px solid;
   width: 100%;
-  height: 135px;
+  height: 120px;
   margin-top: 15px;
   margin-bottom: 20px;
   // padding: 20px 0 20px 0;
@@ -38,7 +38,7 @@ const InputBox = styled.div`
 
   textarea {
     width: 100%;
-    height: 125px;
+    height: 110px;
     // display: block;
     padding: 5px;
     border: none;
@@ -53,6 +53,7 @@ const InputBox = styled.div`
   textarea::placeholder {
     margin: 15px 0 0 15px;
     color: #21212180;
+    font-size: 14px;
   }
 
   button {
