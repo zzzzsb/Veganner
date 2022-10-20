@@ -7,11 +7,13 @@ import {
 } from "recoil";
 import groupState from "../../atoms/group";
 import { useState } from "react";
+import addressState from "../../atoms/address";
+import typeState from "../../atoms/type";
 
 function SearchFilter() {
   const group = useRecoilValue(groupState);
-  const [address, setAddress] = useState("");
-  const [type, setType] = useState("");
+  const [address, setAddress] = useRecoilState(addressState);
+  const [type, setType] = useRecoilState(typeState);
 
 //   function clickEvent(e:React.MouseEvent<HTMLButtonElement>){
 //     e.preventDefault();
@@ -19,6 +21,7 @@ function SearchFilter() {
 
 //   }
   const locations = [
+    "전체",
     "서울",
     "경기",
     "강원",
@@ -37,6 +40,7 @@ function SearchFilter() {
     "제주도",
   ];
   const types = [
+    "전체",
     "한식",
     "양식",
     "카페",
@@ -52,7 +56,7 @@ function SearchFilter() {
       return (
         <S.FilterButton
           width={42}
-          onClick={() => setAddress(v)}
+          onClick={(e:React.MouseEvent<HTMLButtonElement>) => {e.preventDefault();setAddress(v)}}
           active={address === v}
         >
           {v}
@@ -62,7 +66,7 @@ function SearchFilter() {
       return (
         <S.FilterButton
           width={50}
-          onClick={() => setAddress(v)}
+          onClick={(e) => {e.preventDefault();setAddress(v)}}
           active={address === v}
         >
           {v}
@@ -75,7 +79,7 @@ function SearchFilter() {
       return (
         <S.FilterButton
           width={42}
-          onClick={(e) => setType(v)}
+          onClick={(e) => {e.preventDefault();setType(v)}}
           active={type === v}
         >
           {v}
@@ -85,7 +89,7 @@ function SearchFilter() {
       return (
         <S.FilterButton
           width={50}
-          onClick={(e) => setType(v)}
+          onClick={(e) => {e.preventDefault();setType(v)}}
           active={type === v}
         >
           {v}
@@ -95,7 +99,7 @@ function SearchFilter() {
       return (
         <S.FilterButton
           width={64}
-          onClick={(e) => setType(v)}
+          onClick={(e) => {e.preventDefault();setType(v)}}
           active={type === v}
         >
           {v}
