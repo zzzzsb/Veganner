@@ -156,7 +156,9 @@ function PostViewComment({ post }: postProps) {
     try {
       let res = await Api.post(`board/${post.ID}/comments/`, comment);
       console.log("댓글 작성에 성공했습니다.\n", res);
+
       res = await Api.get(`board/${post.ID}/comments/`);
+      console.log(res.data);
       setComments([...res.data]);
     } catch (err) {
       console.log("댓글 작성에 실패했습니다.\n", err);
@@ -195,7 +197,16 @@ function PostViewComment({ post }: postProps) {
             <CommentsInfo>
               <span className="pic"></span>
               <p>{comment.User_id}</p>
-              <span className="date">{comment.CreationTime}</span>
+              <span className="date">
+                {typeof comment.CreationTime === "string"
+                  ? comment.CreationTime.split("T")[0]
+                  : comment.CreationTime}
+              </span>
+              <span className="date">
+                {typeof comment.CreationTime === "string"
+                  ? comment.CreationTime.split("T")[1].substring(0, 5)
+                  : comment.CreationTime}
+              </span>
             </CommentsInfo>
             <div className="comment">{comment.Comment}</div>
             <button>답글</button>

@@ -43,7 +43,6 @@ function PostView() {
     Groups: number;
     RestaurantId?: number;
     Address?: string;
-    // Likes: number;
   }
 
   const [post, setPost] = useState<Post>({
@@ -53,15 +52,20 @@ function PostView() {
     Type: "",
     Hashtag: "#",
     Groups: 0,
-    // Likes: 0
   });
+
+  const [like, setLike] = useState();
 
   useEffect(() => {
     async function getPost() {
       try {
-        const res = await Api.get(`board/${postId}`);
-        // console.log(res.data);
+        let res = await Api.get(`board/${postId}`);
+        console.log(res.data);
         setPost(res.data);
+
+        res = await Api.get(`board/${postId}/like`);
+        console.log(res.data);
+        setLike(res.data);
       } catch (err) {
         console.log("글 불러오기를 실패했습니다.\n", err);
       }
@@ -74,7 +78,7 @@ function PostView() {
     <>
       <GlobalStyle />
       <PostViewLayout>
-        <PostViewHead post={post}></PostViewHead>
+        <PostViewHead post={post} like={like}></PostViewHead>
         <PostViewContent post={post}></PostViewContent>
         <PostViewComment post={post}></PostViewComment>
       </PostViewLayout>

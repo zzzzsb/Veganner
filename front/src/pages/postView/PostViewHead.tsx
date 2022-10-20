@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 const ViewTitleBlock = styled.div`
@@ -67,14 +66,13 @@ const Line = styled.div`
 
 interface postProps {
   post: any;
+  like: any;
 }
-function PostViewHead({ post }: postProps) {
-  // const created: string = post.CreationTime.toLocaleDateString();
-
+function PostViewHead({ post, like }: postProps) {
   return (
     <>
       <ViewTitleBlock>
-        <div className="label">레시피</div>
+        <div className="label">{post.Groups === 1 ? "식당" : "레시피"}</div>
         <h1>{post.Title}</h1>
       </ViewTitleBlock>
       <ViewInfoBlock>
@@ -82,14 +80,17 @@ function PostViewHead({ post }: postProps) {
           <span className="pic"></span>
           <span>{post.User}</span>
           <span className="infoline"></span>
-          {/* <span>{created}</span> */}
-          <span>{post.CreationTime}</span>
+          <span>
+            {typeof post.CreationTime === "string"
+              ? post.CreationTime.split("T")[0]
+              : post.CreationTime}
+          </span>
           <span className="infoline"></span>
-          <span>양식</span>
+          <span>{post.Type}</span>
         </PostInfoBlock>
         <LikeBlock>
           <span className="like">좋아요</span>
-          <span className="count">{post.Likes}</span>
+          <span className="count">{like}</span>
         </LikeBlock>
       </ViewInfoBlock>
       <Line></Line>
