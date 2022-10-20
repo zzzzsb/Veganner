@@ -46,26 +46,29 @@ INSTALLED_APPS = [
 
     'dj_rest_auth',
     'dj_rest_auth.registration',
-
+   
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.kakao',
-    'allauth.socialaccount.providers.google',
 
-    'corsheaders',  # CORS 관련 추가
+    'corsheaders', # CORS 관련 추가
 ]
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
 
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/user/'
+
+
+SITE_ID = 2
+LOGIN_REDIRECT_URL = '/'
 
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
@@ -75,7 +78,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # CORS 추가
+    'corsheaders.middleware.CorsMiddleware', # CORS 추가
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -91,7 +94,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'api.urls'
-SESSION_COOKIE_AGE = 1800  # for 30 minutes timestamp
+SESSION_COOKIE_AGE = 1800 # for 30 minutes timestamp
 SESSION_SAVE_EVERY_REQUEST = True
 
 TEMPLATES = [
@@ -186,10 +189,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
-# 사이트와 관련한 자동응답을 받을 이메일 주소,'webmaster@localhost'
 EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 
-# 이메일에 자동으로 표시되는 사이트 정보
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[veganner]"

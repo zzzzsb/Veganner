@@ -1,12 +1,14 @@
 import MainMap from "../../components/Map/MainMap";
 import Resitem from "../../components/Map/Resitem";
-import ResitemDetail from "../../components/Map/ResitemDetail";
 import React, { useState, useEffect } from "react";
 import Location from "../../datas/seoul.json";
 import { Restaurant } from "../../types/restaurant";
-import { useNavigate, Route, Routes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Paging from "../../components/Map/Paging";
+import Page from "../../components/Map/Page";
 import * as S from "./Map.styled";
+import { DefaultValue } from "recoil";
+// import { setServers } from "dns";;
 
 const list = Location.data;
 const initialRegionValues = [
@@ -60,6 +62,12 @@ function Map() {
   const [indexOfFirstPost, setIndexOfFirstPost] = useState(0);
   const [currentPosts, setCurrentPosts] = useState(result);
 
+  // const [lists, setLists] = useState(result); // 백엔드와 통신하여 모든 데이터를 setLists 에 저장해서 사용
+  // const [limit, setLimit] = useState(5); // 한 페이지에 보여줄 데이터의 개수
+  // const [page, setPage] = useState(1); // 페이지 초기 값은 1페이지
+  // const [counts, setCounts] = useState(1); // 데이터의 총 개수를 setCounts 에 저장해서 사용
+  // const [blockNum, setBlockNum] = useState(0); // 한 페이지에 보여 줄 페이지네이션의 개수를 block으로 지정하는 state. 초기 값은 0
+
   //카테고리 지역관련
   const [regions, setRegions] = useState<string[]>(initialRegionValues);
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
@@ -75,11 +83,23 @@ function Map() {
   const [selectedVegan, setSelectedVegan] = useState<string | null>(null);
   const [isOpenVeganList, setIsOpenVeganList] = useState<boolean>(false);
 
+  // useEffect(() => {
+  //   parks &&
+  //     setParklist(
+  //       parks.map((item, idx) => {
+  //         let park_id = item.id;
+  //         return (
+  //           <ParkList key={park_id} item={item} idx={idx} park_id={park_id} />
+  //         );
+  //       })
+  //     );
+  // }, [parks]);
+
   useEffect(() => {
-    console.log("useEffect");
-    console.log("selectedRegion", selectedRegion);
-    console.log("selectedType", selectedType);
-    console.log("selectedVegan", selectedVegan);
+    // console.log("useEffect");
+    // console.log("selectedRegion", selectedRegion);
+    // console.log("selectedType", selectedType);
+    // console.log("selectedVegan", selectedVegan);
 
     const filteredStores = list
       .filter((item) =>
@@ -119,12 +139,31 @@ function Map() {
     // setResult(filteredStores);
   }
 
+  // 검색
+  // 필터링까지는 됨 근데 왜 오류??? 다시 리셋됨 why???????
+
+  function handleSearch(e: any) {
+    e.preventDefault();
+    const searchedStores = list.filter((item) =>
+      searchValue
+        ? item.location.includes(searchValue) ||
+          // item.industry.includes(searchValue) ||
+          // item.food.includes(searchValue) ||
+          item.name.includes(searchValue) ||
+          item.number === searchValue
+        : item
+    );
+    console.log(searchedStores);
+    setResult(searchedStores);
+    navigate("/explore");
+  }
+
   //페이지네이션
   useEffect(() => {
     setIndexOfLastPost(currentpage * 10);
     setIndexOfFirstPost(indexOfLastPost - 10);
     setCurrentPosts(result.slice(indexOfFirstPost, indexOfLastPost));
-  }, [currentpage, indexOfFirstPost, indexOfLastPost, result, 10]);
+  }, [currentpage, indexOfFirstPost, indexOfLastPost, result, 5]);
 
   return (
     <>
@@ -135,9 +174,10 @@ function Map() {
       <S.Layout>
         <S.resMenu>
           <S.searchContainer>
-            <S.searchForm>
+            <S.searchForm onSubmit={handleSearch}>
               <S.search
                 type="text"
+                placeholder="Search"
                 value={searchValue}
                 onChange={(e) => {
                   setSearchValue(e.target.value);
@@ -210,7 +250,6 @@ function Map() {
               {currentPosts.map((item) => (
                 <Resitem key={item.index} item={item as Restaurant} />
               ))}
-              ;
               <S.pagination>
                 <Paging
                   item={result}

@@ -8,6 +8,7 @@ import { useSetRecoilState } from "recoil";
 interface LoginData {
     email: string;
     password: string;
+ 
     [key: string]: string;
   }
   
@@ -20,6 +21,7 @@ function KakaoLogin(){
     const [formData, setFormData] = useState<LoginData>({
         email: "",
         password: "",
+       
       });
     
     const getKakaoToken = () => {
@@ -42,7 +44,7 @@ function KakaoLogin(){
                 }).then(res => {
                     localStorage.clear();
                     console.log(res)
-                    // setUser({email:res.email,password:user.password});
+                    setUser({email:"kakao",password:""});
                     navigate('/');
                     
                 });

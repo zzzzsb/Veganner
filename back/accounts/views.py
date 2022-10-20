@@ -8,13 +8,13 @@ from allauth.account.models import EmailConfirmation, EmailConfirmationHMAC
 from .models import User
 from django.http import JsonResponse
 
+
 class ConfirmEmailView(APIView):
     permission_classes = [AllowAny]
     
     def get(self, *args, **kwargs):
         self.object = confirmation = self.get_object()
         confirmation.confirm(self.request)
-        # A React Router Route will handle the failure scenario
         return HttpResponse('인증되었습니다. 이 창에서 나가셔도 됩니다.') # 인증성공
 
     def get_object(self, queryset=None):
@@ -26,7 +26,6 @@ class ConfirmEmailView(APIView):
             try:
                 email_confirmation = queryset.get(key=key.lower())
             except EmailConfirmation.DoesNotExist:
-                # A React Router Route will handle the failure scenario
                 return HttpResponseRedirect('/') # 인증실패
         return email_confirmation
 
@@ -44,10 +43,6 @@ from dj_rest_auth.registration.views import SocialLoginView
 
 class KakaoLogin(SocialLoginView):
     adapter_class = KakaoOAuth2Adapter
-    client_class = OAuth2Client
-
-class GoogleLogin(SocialLoginView):
-    adapter_class = GoogleOAuth2Adapter
     client_class = OAuth2Client
 
 
