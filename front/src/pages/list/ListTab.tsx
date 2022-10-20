@@ -15,7 +15,8 @@ export default function Tab() {
     const userData = async () => {
       if (group == 0) {
         await Api.get("board").then((res) => {
-          setLists(res.data);
+          setLists(res.data.list);
+          console.log("list",lists)
           // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
         });
       }
@@ -27,7 +28,8 @@ export default function Tab() {
           },
         })
         .then((res) => {
-          setLists(res.data);
+          setLists(res.data.list);
+          console.log("list",lists)
           // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
         });
     };

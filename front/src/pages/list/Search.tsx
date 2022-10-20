@@ -32,6 +32,13 @@ function ListSearch() {
 
   useEffect(() => {
     const userData = async () => {
+      console.log("address",address)
+      // if (address === "전체" || search === "") {
+      //   //검색어가 없을 경우 전체 리스트 반환
+      //   await Api.get("board").then((res) => {
+      //     setLists(res.data);
+      //   });
+      // } 
      
         await axios
         .get(`board?Page=${paging}`, {
@@ -41,13 +48,15 @@ function ListSearch() {
           },
         })
         .then((res) => {
-          setLists(res.data);
+          console.log(res.data.list)
+          setLists(res.data.list);
+          
           // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
         });
     };
     userData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paging,address,type]);
+  }, [paging]);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -57,14 +66,30 @@ function ListSearch() {
       if (search === null || search === "") {
         //검색어가 없을 경우 전체 리스트 반환
         await Api.get("board").then((res) => {
-          setLists(res.data);
+          setLists(res.data.list);
+          console.log("list",lists)
         });
       } else {
+
+        await axios
+        .get(`board?Title=${search}`, {
+          // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          console.log("검색",res.data.list)
+          setLists(res.data.list);
+          
+          // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
+        });
+
         //검색 구현
-        const filterData = lists.filter((row) => row['Title'].includes(search));
-        console.log(filterData)
-        setLists(filterData);
-        console.log("fil",filterData)
+        // const filterData = lists?.filter((row) => row['Title'].includes(search));
+       
+        // setLists(filterData);
+        // console.log("fil",filterData)
       }
 
       // setPosting(res.data);
@@ -72,11 +97,12 @@ function ListSearch() {
     } catch (err) {
       console.log("목록조회에 실패하였습니다.", err);
     }
-    setSearch("");
+    // setSearch("");
   };
 
   const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    console.log("검색데이터",search)
     setSearch(e.target.value);
   };
 

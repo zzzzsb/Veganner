@@ -38,13 +38,16 @@ export const SearchForm = styled.form`
   position:relative;
   width: 550px;
   margin:0 auto;
+  margin-bottom:8%
+ 
 `;
 
 export const SearchInput = styled.input`
 width: 550px;
 height: 50px;
 border: 1px solid #000000;
-border-radius:30px
+border-radius:30px;
+
 `;
 
 
@@ -72,6 +75,7 @@ export const Card = styled.div`
   border: 0.5px solid rgba(33, 33, 33, 0.3);
   display: inline-block;
   margin-right: 2%;
+  margin-top:2%
 `;
 
 export const CardHeader = styled.div`
@@ -115,7 +119,9 @@ export const TabSection = styled.section`
   
 width: 30%;
 margin: 0 auto;
-
+margin-top: 4%;
+    margin-bottom: 3%;
+}
 `;
 
 
