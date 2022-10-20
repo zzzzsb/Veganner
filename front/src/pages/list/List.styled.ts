@@ -115,7 +115,8 @@ export const TabSection = styled.section`
   
 width: 30%;
 margin: 0 auto;
-
+margin-top: 3%;
+    margin-bottom: 4%;
 `;
 
 
