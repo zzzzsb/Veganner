@@ -74,7 +74,10 @@ class PostAllGetAPI(APIView):
             else:
                 responseData[i]["Likes"] = 0
 
-        return Response(responseData)
+        responseData_Page = {"list": responseData,
+                             "page": {"num_pages": paginator.num_pages, "now": Page}}
+
+        return Response(responseData_Page)
 
     def post(self, request):
         img_re = re.compile(r'(img\/)(.+?)"')

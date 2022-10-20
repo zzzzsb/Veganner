@@ -3,24 +3,51 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import * as Api from "../../api/api";
 import listsState from "../../atoms/search";
+import pagingState from "../../atoms/paging";
+import addressState from "../../atoms/address";
+import typeState from "../../atoms/type";
 import { useRecoilValue, useResetRecoilState, useRecoilState,useSetRecoilState} from "recoil";
 import * as L from "./List.styled";
+import axios from "axios";
+import { FaSearch} from "react-icons/fa";
+import { BsFilterCircle} from "react-icons/bs";
+import {BsFillFilterCircleFill} from "react-icons/bs";
+import SearchFilter from "../../components/filter/SearchFilter";
+
 
 function ListSearch() {
   const [lists, setLists] = useRecoilState(listsState);
   const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState(false);
   const [currentPosts, setCurrentPosts] = useState([]);
+  const paging=useRecoilValue(pagingState)
+  const filterStyle:React.CSSProperties = {
+    position: 'absolute',
+    top:'0',
+    right:'0'
+    
+  }
+  const address=useRecoilState(addressState);
+  const type=useRecoilState(typeState);
 
   useEffect(() => {
     const userData = async () => {
-      await Api.get("board").then((res) => {
-        setLists(res.data);
-        // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
-      });
+     
+        await axios
+        .get(`board?Page=${paging}`, {
+          // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setLists(res.data);
+          // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
+        });
     };
     userData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [paging,address,type]);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -64,19 +91,29 @@ function ListSearch() {
   //   };
 
   return (
-    <>
+    <L.SearchWrapper>
     <L.SearchForm onSubmit={handleSubmit}>
-      <input
+      <L.SearchInput
         type="text"
         placeholder="검색"
         autoFocus={true}
         value={search}
         onChange={onChangeSearch}
       />
-      <button type='submit'>검색</button>
+      <L.SearchButton type='submit'><FaSearch color="white"/></L.SearchButton>
+      
     </L.SearchForm>
-    </>
+    {!filter ? <BsFilterCircle size="50" style={filterStyle} onClick={()=>setFilter(!filter)}/>
+    :<BsFillFilterCircleFill size="50" style={filterStyle} onClick={()=>setFilter(!filter)}/>
+
+    }
+    {filter &&    <SearchFilter/>
+
+    }
+
+    </L.SearchWrapper>
   );
 }
+
 
 export default ListSearch;
