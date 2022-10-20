@@ -6,20 +6,76 @@ import {
   useSetRecoilState,
 } from "recoil";
 import groupState from "../../atoms/group";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import addressState from "../../atoms/address";
 import typeState from "../../atoms/type";
+import axios from "axios";
+import pagingState from "../../atoms/paging";
+import listsState from "../../atoms/search";
+import * as Api from "../../api/api";
 
 function SearchFilter() {
   const group = useRecoilValue(groupState);
   const [address, setAddress] = useRecoilState(addressState);
   const [type, setType] = useRecoilState(typeState);
+  const paging = useRecoilValue(pagingState);
+  const [lists, setLists] = useRecoilState(listsState);
+  //   function clickEvent(e:React.MouseEvent<HTMLButtonElement>){
+  //     e.preventDefault();
+  //     setAddress
 
-//   function clickEvent(e:React.MouseEvent<HTMLButtonElement>){
-//     e.preventDefault();
-//     setAddress
+  //   }
 
-//   }
+  useEffect(() => {
+    const userData = async () => {
+      console.log("address", address);
+      if (address === "전체" && type === "전체") {
+        //검색어가 없을 경우 전체 리스트 반환
+        await Api.get("board").then((res) => {
+          setLists(res.data);
+        });
+      } else if (address === "전체") {
+        await axios
+          .get(`board?Page=${paging}&Type=${type}`, {
+            // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            setLists(res.data);
+            // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
+          });
+      } else if (type === "전체") {
+        await axios
+          .get(`board?Page=${paging}&Address=${address}`, {
+            // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            setLists(res.data);
+            // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
+          });
+      } else {
+        await axios
+          .get(`board?Page=${paging}&Address=${address}&Type=${type}`, {
+            // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            setLists(res.data);
+            // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
+          });
+      }
+    };
+    userData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [address, type]);
+
   const locations = [
     "전체",
     "서울",
@@ -56,7 +112,10 @@ function SearchFilter() {
       return (
         <S.FilterButton
           width={42}
-          onClick={(e:React.MouseEvent<HTMLButtonElement>) => {e.preventDefault();setAddress(v)}}
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            e.preventDefault();
+            setAddress(v);
+          }}
           active={address === v}
         >
           {v}
@@ -66,7 +125,10 @@ function SearchFilter() {
       return (
         <S.FilterButton
           width={50}
-          onClick={(e) => {e.preventDefault();setAddress(v)}}
+          onClick={(e) => {
+            e.preventDefault();
+            setAddress(v);
+          }}
           active={address === v}
         >
           {v}
@@ -79,7 +141,10 @@ function SearchFilter() {
       return (
         <S.FilterButton
           width={42}
-          onClick={(e) => {e.preventDefault();setType(v)}}
+          onClick={(e) => {
+            e.preventDefault();
+            setType(v);
+          }}
           active={type === v}
         >
           {v}
@@ -89,7 +154,10 @@ function SearchFilter() {
       return (
         <S.FilterButton
           width={50}
-          onClick={(e) => {e.preventDefault();setType(v)}}
+          onClick={(e) => {
+            e.preventDefault();
+            setType(v);
+          }}
           active={type === v}
         >
           {v}
@@ -99,7 +167,10 @@ function SearchFilter() {
       return (
         <S.FilterButton
           width={64}
-          onClick={(e) => {e.preventDefault();setType(v)}}
+          onClick={(e) => {
+            e.preventDefault();
+            setType(v);
+          }}
           active={type === v}
         >
           {v}
