@@ -6,7 +6,7 @@ const localBaseUrl = "localhost";
 // 개발서버
 const realBaseUrl = "veganner-back.herokuapp.com";
 
-const serverUrl = `http://${realBaseUrl}/`;
+const serverUrl = `https://veganner-back.herokuapp.com/`;
 axios.defaults.withCredentials = true;
 async function get(endpoint: string, params = "") {
   console.log(

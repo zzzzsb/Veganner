@@ -57,5 +57,5 @@
   "devDependencies": {
     "@types/styled-components": "^5.1.26"
   },
-  "proxy": "http://localhost:8000/"
+  "proxy": "https://veganner-back.herokuapp.com/"
 }
