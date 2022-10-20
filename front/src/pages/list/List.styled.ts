@@ -17,7 +17,6 @@ export const ListTitle = styled.div`
   margin-top: 5%;
 `;
 
-
 export const ListText = styled.div`
   text-align: center;
   font-weight: 400;
@@ -25,19 +24,17 @@ export const ListText = styled.div`
   line-height: 22px;
   letter-spacing: -1.2px;
   color: #212121;
-
 `;
 
-export const SearchWrapper = styled.form`
-position:relative;
-width:700px;
-margin:0 auto;
+export const SearchWrapper = styled.div`
+  position: relative;
+  width: 700px;
+  margin: 0 auto;
 `;
 
-
-export const SearchForm = styled.form`
+export const SearchBox = styled.div`
   text-align: center;
-  position:relative;
+  position: relative;
   width: 550px;
   margin:0 auto;
   margin-bottom:8%
@@ -51,7 +48,6 @@ border: 1px solid #000000;
 border-radius:30px;
 
 `;
-
 
 export const SearchButton = styled.button`
 position: absolute;
@@ -126,11 +122,9 @@ margin-top: 4%;
 }
 `;
 
-
-
 export const TabListGroup = styled.ul`
   display: flex;
-  
+
   justify-content: space-evenly;
 `;
 
@@ -138,7 +132,7 @@ export const TabList = styled.li<{ active?: boolean }>`
   font-size: 16px;
   color: #000000;
   font-weight: 500;
-  cursor:pointer;
+  cursor: pointer;
   ${({ active }) =>
     active &&
     css`
@@ -163,5 +157,3 @@ margin-top: 2%;
 color: #F1F1F1;
 
 `;
-
-
