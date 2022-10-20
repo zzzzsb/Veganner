@@ -113,8 +113,27 @@ interface postProps {
   post: any;
 }
 
+interface UserData {
+  email: string;
+}
+
 function PostViewComment({ post }: postProps) {
   const user = useRecoilValue(userState);
+
+  const [userData, setUserData] = useState<UserData>();
+
+  useEffect(() => {
+    async function getUserData() {
+      try {
+        const res = await Api.get(`user`);
+        setUserData(res.data);
+        console.log("유저 정보 가져오기에 성공했습니다.\n", res);
+      } catch (err) {
+        console.log("유저 정보 가져오기에 실패했습니다.\n", err);
+      }
+    }
+    getUserData();
+  }, [user]);
   interface Comment {
     CommentId?: number;
     User_id: string;
@@ -175,6 +194,23 @@ function PostViewComment({ post }: postProps) {
     });
   }
 
+  async function handleDelete(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+
+    console.log(e.target);
+
+    try {
+      let res = await Api.delete(`board/${post.ID}/comments/${e.target}`);
+      console.log("댓글 삭제에 성공했습니다.\n", res);
+
+      setComments(
+        comments.filter((obj: any) => obj.CommentId !== comment.CommentId)
+      );
+    } catch (err) {
+      console.log("댓글 삭제에 실패했습니다.\n", err);
+    }
+  }
+
   return (
     <ViewCommentBlock>
       <CommentLabel>
@@ -220,6 +256,11 @@ function PostViewComment({ post }: postProps) {
             </CommentsInfo>
             <div className="comment">{comment.Comment}</div>
             <button>답글</button>
+            {userData && userData.email === comment.User_id ? (
+              <button type="button" onClick={handleDelete}>
+                삭제
+              </button>
+            ) : null}
           </CommentsWrapper>
         );
       })}

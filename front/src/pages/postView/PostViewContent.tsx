@@ -3,7 +3,8 @@ import styled from "styled-components";
 import * as Api from "../../api/api";
 import userState from "../../atoms/user";
 import { useRecoilValue } from "recoil";
-// import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ViewContentBlock = styled.pre`
   line-height: 27px;
@@ -59,6 +60,7 @@ interface UserData {
 }
 
 function PostViewContent({ post, setPost }: postProps) {
+  const navigate = useNavigate();
   const user = useRecoilValue(userState);
   const [userData, setUserData] = useState<UserData>();
 
@@ -91,14 +93,7 @@ function PostViewContent({ post, setPost }: postProps) {
         console.log("글 삭제에 성공했습니다.\n", res);
         console.log(res.data);
 
-        setPost(post.filter((obj: any) => obj.ID !== post.ID));
-
-        // try {
-        //   navigate("/share");
-        //   console.log("share 페이지로 이동했습니다.");
-        // } catch (err) {
-        //   console.log("share 페이지로 이동하기 실패했습니다.");
-        // }
+        navigate("/share", { replace: true });
       } catch (err) {
         console.log("글 삭제에 실패했습니다.\n", err);
       }

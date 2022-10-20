@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { createGlobalStyle } from "styled-components";
 import PostViewHead from "./PostViewHead";
 import PostViewContent from "./PostViewContent";
 import PostViewComment from "./PostViewComment";
 import * as Api from "../../api/api";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: #f1f1f1;
-  }
-`;
 
 const PostViewLayout = styled.div`
   width: 70%;
@@ -30,7 +23,14 @@ const PostViewLayout = styled.div`
   color: #212121;
 `;
 
+const ErrorPage = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+`;
+
 function PostView() {
+  const navigate = useNavigate();
   const { postId } = useParams();
   interface Post {
     ID?: number;
@@ -46,18 +46,8 @@ function PostView() {
     Address?: string;
   }
 
-  const [post, setPost] = useState<Post>({
-    User: "",
-    Title: "",
-    Content: "",
-    Type: "",
-    Hashtag: "#",
-    Groups: 0,
-  });
-
+  const [post, setPost] = useState<Post | null>(null);
   const [like, setLike] = useState();
-
-  const [isValid, setIsValid] = useState(true);
 
   useEffect(() => {
     async function getPost() {
@@ -69,37 +59,23 @@ function PostView() {
         res = await Api.get(`board/${postId}/like`);
         console.log("좋아요 개수:", res.data);
         setLike(res.data);
-
-        setIsValid(true);
       } catch (err) {
         console.log("글 불러오기를 실패했습니다.\n", err);
-        setIsValid(false);
+        // navigate("/share", { replace: true });
       }
     }
-
     getPost();
-  }, [postId]);
+  }, [postId, navigate]);
 
-  const navigate = useNavigate();
-
-  if (!isValid) {
-    navigate("/share");
-  }
-
-  if (isValid) {
+  if (post) {
     return (
-      <>
-        <GlobalStyle />
-        <PostViewLayout>
-          <PostViewHead post={post} like={like}></PostViewHead>
-          <PostViewContent post={post} setPost={setPost}></PostViewContent>
-          <PostViewComment post={post}></PostViewComment>
-        </PostViewLayout>
-      </>
+      <PostViewLayout>
+        <PostViewHead post={post} like={like}></PostViewHead>
+        <PostViewContent post={post} setPost={setPost}></PostViewContent>
+        <PostViewComment post={post}></PostViewComment>
+      </PostViewLayout>
     );
-  } else {
-    return null;
-  }
+  } else return <ErrorPage> 존재하지 않는 글입니다! </ErrorPage>;
 }
 
 export default PostView;
