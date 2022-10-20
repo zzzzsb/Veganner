@@ -26,30 +26,30 @@ class PostAllGetAPI(APIView):
         Sort = "CreationTime"
         keys = request.GET.keys()
         if "ID" in keys:
-            set_Data = request.GET["ID"]
-            items = items.filter(ID=set_Data)
-        elif "Groups" in keys:
-            set_Data = request.GET["Groups"]
-            items = items.filter(Groups__contains=set_Data)
-        elif "Content" in keys:
-            set_Data = request.GET["Content"]
-            items = items.filter(Content__contains=set_Data)
-        elif "Address" in keys:
-            set_Data = request.GET["Address"]
-            items = items.filter(Address__contains=set_Data)
-        elif "Type" in keys:
-            set_Data = request.GET["Type"]
-            items = items.filter(Type__contains=set_Data)
-        elif "Hashtag" in keys:
-            set_Data = request.GET["Hashtag"]
-            items = items.filter(Hashtag__contains=set_Data)
-        elif "Title" in keys:
-            set_Data = request.GET["Title"]
-            items = items.filter(Title__contains=set_Data)
-        elif "User" in keys:
-            set_Data = request.GET["User"]
-            items = items.filter(User=set_Data)
-        elif "Sort" in keys:
+            q &= Q(ID=request.GET["ID"])
+
+        if "Groups" in keys:
+            q &= Q(Groups__in=request.GET["Groups"])
+
+        if "Content" in keys:
+            q &= Q(Content__contains=request.GET["Content"])
+
+        if "Address" in keys:
+            q &= Q(Address__contains=request.GET["Address"])
+
+        if "Type" in keys:
+            q &= Q(Type__contains=request.GET["Type"])
+
+        if "Hashtag" in keys:
+            q &= Q(Hashtag__contains=request.GET["Hashtag"])
+
+        if "Title" in keys:
+            q &= Q(Title__contains=request.GET["Title"])
+
+        if "User" in keys:
+            q &= Q(User=request.GET["User"])
+
+        if "Sort" in keys:
             Sort = request.GET["Sort"]
         elif "Page" in keys:
             Page = request.GET["Page"]
