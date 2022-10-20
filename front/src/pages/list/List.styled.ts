@@ -1,8 +1,9 @@
 import styled, { css } from "styled-components";
 
 export const WholeLayout = styled.div`
-  width: 80%;
+width: 1815px;
   margin: 0 auto;
+  position:relative
 `;
 
 export const ListTitle = styled.div`
@@ -13,6 +14,7 @@ export const ListTitle = styled.div`
   text-align: center;
   letter-spacing: -1.2px;
   color: #004d43;
+  margin-top: 5%;
 `;
 
 
@@ -57,14 +59,14 @@ width: 50px;
 height: 50px;
 background: #212121;
 border-radius:50%;
-top: 4%;
+top: 3%;
 right: -5px;
 cursor:pointer
 
 `;
 
 export const CardLayout = styled.div`
-  width: 80%;
+  width:1920px;
   margin: 0 auto;
 `;
 
@@ -145,7 +147,21 @@ export const TabList = styled.li<{ active?: boolean }>`
 `;
 
 export const WriteButton = styled.button`
-  float: right;
+position: absolute;
+right: 0;
+  width: 100px;
+height: 50px;
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 50px;
+background: #004D43;
+border-radius: 30px;
+
+margin-top: 2%;
+
+color: #F1F1F1;
+
 `;
 
 

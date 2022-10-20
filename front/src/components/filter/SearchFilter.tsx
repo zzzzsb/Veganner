@@ -1,4 +1,4 @@
-import * as S from "././Filter.styled";
+import * as S from "././SearchFilter.styled";
 import {
   useRecoilValue,
   useResetRecoilState,

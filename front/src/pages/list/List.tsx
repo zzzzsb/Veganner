@@ -62,7 +62,7 @@ function ViewList() {
       <div>
       <Pagination
         activePage={page}
-        itemsCountPerPage={10}
+        itemsCountPerPage={12}
         totalItemsCount={50}
         pageRangeDisplayed={5}
         prevPageText="‹"
