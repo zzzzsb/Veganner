@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import * as L from "./List.styled";
 import Pagination from "react-js-pagination";
 import "./Pagination.css";
+import axios from "axios";
+import * as Api from "../../api/api";
 
 function ViewList() {
   const navigate = useNavigate();
@@ -16,18 +18,53 @@ function ViewList() {
   const [group, setGroup] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [keyword, setKeyword] = useState<string>("");
-  const [region, setRegion] = useState<string>("");
-  const [type, setType] = useState<string>("");
+  const [region, setRegion] = useState<string>("전체");
+  const [type, setType] = useState<string>("전체");
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
   const [postList, setPostList] = useState([]);
+  const [totalPage, setTotalPage] = useState(50);
 
   useEffect(() => {
-    // axios get
-    console.log("init");
+    const makeParam = () => {
+      let params: any = {
+        Page: currentPage,
+      };
+      if (type !== "전체") {
+        params.Type = type;
+      }
+      if (region !== "전체") {
+        params.Address = region;
+      }
+      if (group !== 0) {
+        params.Groups = group;
+      }
+      if (keyword !== "") {
+        params.Title = keyword;
+      }
+      return params;
+    };
+    const getList = async () => {
+      // await Api.get("board/", makeParam()).then((res) => {
+      //       setPostList(res.data.list);
+      //     });
+
+      await axios
+        .get("board", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          params: makeParam(),
+        })
+        .then((res) => {
+          setPostList(res.data.list);
+          setTotalPage(res.data.page["num_pages"])
+        });
+    };
+    getList();
   }, [currentPage, group, keyword, region, type]);
 
   return (
@@ -51,8 +88,8 @@ function ViewList() {
       <div>
         <Pagination
           activePage={currentPage}
-          itemsCountPerPage={10}
-          totalItemsCount={50}
+          itemsCountPerPage={12}
+          totalItemsCount={totalPage*12}
           pageRangeDisplayed={5}
           prevPageText="‹"
           nextPageText="›"

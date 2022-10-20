@@ -81,6 +81,7 @@ export const CardHeader = styled.div`
   height: 30px;
   line-height: 30px;
   border-bottom: 0.5px solid rgba(33, 33, 33, 0.3);
+  position:relative;
 `;
 
 export const CardHeaderProfile = styled.span`
@@ -156,4 +157,11 @@ margin-top: 2%;
 
 color: #F1F1F1;
 
+`;
+
+
+export const likeWrap = styled.div`
+position:absolute;
+right:1%;
+top:0
 `;

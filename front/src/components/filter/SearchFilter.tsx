@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import * as S from "././Filter.styled";
+import * as S from "././SearchFilter.styled";
 
 const locations = [
   "전체",
@@ -46,7 +46,7 @@ function SearchFilter({ setRegion, setType, region, type, group }: Props) {
     if (v.length === 2) {
       return (
         <S.FilterButton
-          width={42}
+          width={50}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             e.preventDefault();
             setRegion(v);
@@ -59,7 +59,7 @@ function SearchFilter({ setRegion, setType, region, type, group }: Props) {
     } else if (v.length === 3) {
       return (
         <S.FilterButton
-          width={50}
+          width={70}
           onClick={(e) => {
             e.preventDefault();
             setRegion(v);
@@ -75,7 +75,7 @@ function SearchFilter({ setRegion, setType, region, type, group }: Props) {
     if (v.length === 2) {
       return (
         <S.FilterButton
-          width={42}
+          width={50}
           onClick={(e) => {
             e.preventDefault();
             setType(v);
@@ -88,7 +88,7 @@ function SearchFilter({ setRegion, setType, region, type, group }: Props) {
     } else if (v.length === 3) {
       return (
         <S.FilterButton
-          width={50}
+          width={70}
           onClick={(e) => {
             e.preventDefault();
             setType(v);

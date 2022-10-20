@@ -91,7 +91,7 @@ margin:0 auto;
 cursor:pointer;
 font-size: 18px;
 border:none;
-margin-top:3%
+margin-top:2%
 `;
 
 export const RegisterButton = styled.button`
@@ -106,8 +106,8 @@ margin:0 auto;
 cursor:pointer;
 border:none;
 font-size: 18px;
-margin-bottom:3%;
-margin-top:4%;
+margin-bottom:2%;
+margin-top:3%;
 `;
 
 export const KaKaoButton = styled.button`
