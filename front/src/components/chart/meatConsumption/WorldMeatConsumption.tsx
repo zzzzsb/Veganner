@@ -10,7 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import worldData from "../../../assets/data-analysis/json/1990-2019_World.json";
+import worldData from "../../../assets/data-analysis/json/meatConsumptionWorldTotal.json";
 
 ChartJS.register(
   CategoryScale,
@@ -35,7 +35,7 @@ const options = {
     },
     title: {
       display: true,
-      text: "1990-2019년 전 세계 대륙별 온실가스 배출량",
+      text: "전 세계 연간 육류 소비량(전체)",
       font: {
         size: 18,
       },
@@ -56,17 +56,15 @@ const options = {
       },
       title: {
         display: true,
-        text: "단위: 100만톤(Mt)",
+        text: "단위: 1000톤",
       },
     },
   },
 };
 
-const yearArr = Object.keys(Object.values(worldData)[0]).map(
-  (item) => Number(item) + 1990
-);
-const continentArr = Object.keys(worldData);
-const getEmissionArr = (i: number) => {
+const yearArr = Object.keys(Object.values(worldData)[0]);
+const meatArr = Object.keys(worldData);
+const getConsumptionArr = (i: number) => {
   return Object.values(Object.values(worldData)[i]);
 };
 const data = {
@@ -74,60 +72,39 @@ const data = {
   labels: yearArr,
   datasets: [
     {
-      label: continentArr[0],
+      label: meatArr[0],
       backgroundColor: "#e60049",
-      data: getEmissionArr(0),
+      data: getConsumptionArr(0),
       borderColor: "#e60049",
       //borderWidth: 1,
     },
     {
-      label: continentArr[1],
+      label: meatArr[1],
       backgroundColor: "#0bb4ff",
-      data: getEmissionArr(1),
+      data: getConsumptionArr(1),
       borderColor: "#0bb4ff",
       //borderWidth: 1,
     },
     {
-      label: continentArr[2],
+      label: meatArr[2],
       backgroundColor: "#50e991",
-      data: getEmissionArr(2),
+      data: getConsumptionArr(2),
       borderColor: "#50e991",
       //borderWidth: 1,
     },
     {
-      label: continentArr[3],
-      backgroundColor: "#ffa300",
-      data: getEmissionArr(3),
-      borderColor: "#ffa300",
-      //borderWidth: 1,
-    },
-    {
-      label: continentArr[4],
+      label: meatArr[3],
       backgroundColor: "#9b19f5",
-      data: getEmissionArr(4),
+      data: getConsumptionArr(3),
       borderColor: "#9b19f5",
-      //borderWidth: 1,
-    },
-    {
-      label: continentArr[5],
-      backgroundColor: "#dc0ab4",
-      data: getEmissionArr(5),
-      borderColor: "#dc0ab4",
-      //borderWidth: 1,
-    },
-    {
-      label: continentArr[6],
-      backgroundColor: "#04BF8A",
-      data: getEmissionArr(6),
-      borderColor: "#04BF8A",
       //borderWidth: 1,
     },
   ],
 };
 
-function CO2eEmissionWorld() {
-  // console.log(Object.keys(worldData));
-  // console.log(Object.values(Object.values(worldData)[0]));
+function WorldMeatConsumption() {
+  //console.log(Object.keys(worldData));
+  //console.log(Object.values(Object.values(worldData)[0]));
   return (
     <Container>
       <Line options={options} data={data} />
@@ -135,7 +112,7 @@ function CO2eEmissionWorld() {
   );
 }
 
-export default CO2eEmissionWorld;
+export default WorldMeatConsumption;
 
 const Container = styled.div`
   width: 800px;

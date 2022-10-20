@@ -23,7 +23,7 @@ ChartJS.register(
 );
 
 const options = {
-  responsive: false,
+  responsive: true,
   interaction: {
     mode: "index" as const,
     intersect: false,
@@ -31,11 +31,14 @@ const options = {
   plugins: {
     legend: {
       position: "top" as const,
-      //display: false,
+      display: false,
     },
     title: {
       display: true,
-      text: "대륙 별 온실가스 배출량",
+      text: "1990-2020년도 우리나라 온실가스 배출량",
+      font: {
+        size: 18,
+      },
     },
   },
   scales: {
@@ -50,6 +53,10 @@ const options = {
         //display: false,
         color: "#E3E3E3",
       },
+      title: {
+        display: true,
+        text: "단위: 100만톤(Mt)",
+      },
     },
   },
 };
@@ -62,9 +69,9 @@ const data = {
   datasets: [
     {
       label: "Korea",
-      backgroundColor: "#ff6700",
+      backgroundColor: "#0067a3",
       data: Object.values(koreaData),
-      borderColor: "#ff6700",
+      borderColor: "#0067a3",
       //borderWidth: 1,
     },
   ],
@@ -84,5 +91,5 @@ function CO2eEmissionKorea() {
 export default CO2eEmissionKorea;
 
 const Container = styled.div`
-  width: 900px;
+  width: 800px;
 `;

@@ -33,7 +33,10 @@ const options = {
     },
     title: {
       display: true,
-      text: "생산 과정에서 CO2e를 가장 많이 배출하는 음식 TOP10",
+      text: "육류별 자동차 주행거리",
+      font: {
+        size: 14,
+      },
     },
   },
   // 옵션 (3)
@@ -43,46 +46,41 @@ const options = {
         //display: false,
         color: "#E3E3E3",
       },
+      title: {
+        display: true,
+        text: "주행 거리(km)",
+      },
     },
     y: {
       grid: {
         //display: false,
         color: "#E3E3E3",
       },
+      title: {
+        display: true,
+        text: "음식 생산량(1kg)",
+      },
     },
   },
 };
 
 const data = {
-  labels: [
-    "Beef(beef herd)",
-    "Dark Chocolate",
-    "Lamb & Mutton",
-    "Beef(dairy herd)",
-    "coffee",
-    "Shrimps(farmed)",
-    "Cheese",
-    "Fish(farmed)",
-    "Pig Meat",
-    "Poultry Meat",
-  ],
+  labels: ["Poultry Meat", "Pig Meat", "Lamb & Mutton", "Beef(beef herd)"],
   datasets: [
     {
       // type: "bar",
       //label: "Dataset 1",
       //backgroundColor: "rgb(255, 99, 132)",
       //backgroundColor: "#004d43",
-      backgroundColor: "#04BF8A",
-      data: [
-        99.48, 46.65, 39.72, 33.3, 28.53, 26.87, 23.88, 13.63, 12.31, 9.87,
-      ],
-      borderColor: "#03A64A",
+      backgroundColor: ["#9FD287", "#4BA48D", "#047289", "#1D405F"],
+      data: [101.75, 126.91, 409.48, 1025.57],
+      borderColor: ["#9FD287", "#4BA48D", "#047289", "#1D405F"],
       borderWidth: 1,
     },
   ],
 };
 
-function FoodEmissionBar() {
+function FoodEmissionToCarBar() {
   return (
     <Container>
       <Bar options={options} data={data} />
@@ -90,7 +88,7 @@ function FoodEmissionBar() {
   );
 }
 
-export default FoodEmissionBar;
+export default FoodEmissionToCarBar;
 
 const Container = styled.div`
   width: 500px;
