@@ -135,18 +135,14 @@ function PostViewComment({ post }: postProps) {
     getUserData();
   }, [user]);
   interface Comment {
-    CommentId?: number;
+    CommentId: number;
     User_id: string;
     Comment: string;
     CreationTime?: string;
     PostId: number;
   }
 
-  const [comment, setComment] = useState<Comment>({
-    User_id: post.User,
-    PostId: post.ID,
-    Comment: "",
-  });
+  const [comment, setComment] = useState<string>("");
 
   const [comments, setComments] = useState<Array<Comment>>([]);
 
@@ -164,12 +160,7 @@ function PostViewComment({ post }: postProps) {
   }, [post]);
 
   function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    const text = e.target.value;
-    setComment({
-      CommentId: comments.length + 1,
-      ...comment,
-      Comment: text,
-    });
+    setComment(e.target.value);
   }
 
   async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
@@ -177,7 +168,10 @@ function PostViewComment({ post }: postProps) {
     e.stopPropagation();
 
     try {
-      let res = await Api.post(`board/${post.ID}/comments/`, comment);
+      console.log(comment);
+      let res = await Api.post(`board/${post.ID}/comments/`, {
+        Comment: comment,
+      });
       console.log("댓글 작성에 성공했습니다.\n", res);
 
       res = await Api.get(`board/${post.ID}/comments`);
@@ -185,27 +179,27 @@ function PostViewComment({ post }: postProps) {
       setComments([...res.data]);
     } catch (err) {
       console.log("댓글 작성에 실패했습니다.\n", err);
+    } finally {
+      setComment("");
     }
-
-    setComment({
-      User_id: post.User,
-      PostId: post.ID,
-      Comment: "",
-    });
   }
 
-  async function handleDelete(e: React.MouseEvent<HTMLButtonElement>) {
+  async function handleDelete(
+    e: React.MouseEvent<HTMLButtonElement>,
+    id: number
+  ) {
     e.preventDefault();
 
-    console.log(e.target);
-
     try {
-      let res = await Api.delete(`board/${post.ID}/comments/${e.target}`);
+      let res = await Api.delete(
+        `board/${post.ID}/comments`,
+        `?CommentId=${id}`
+      );
       console.log("댓글 삭제에 성공했습니다.\n", res);
 
-      setComments(
-        comments.filter((obj: any) => obj.CommentId !== comment.CommentId)
-      );
+      res = await Api.get(`board/${post.ID}/comments`);
+      console.log(res.data);
+      setComments([...res.data]);
     } catch (err) {
       console.log("댓글 삭제에 실패했습니다.\n", err);
     }
@@ -222,9 +216,9 @@ function PostViewComment({ post }: postProps) {
         <textarea
           placeholder="로그인하고 댓글을 입력해보세요."
           onChange={handleInput}
-          value={comment.Comment}
+          value={comment}
         />
-        {user ? (
+        {userData ? (
           <button type="button" onClick={handleSubmit}>
             작성
           </button>
@@ -237,7 +231,7 @@ function PostViewComment({ post }: postProps) {
           </button>
         )}
       </InputBox>
-      {comments.map((comment: Comment, index): any => {
+      {comments.map((comment: Comment): any => {
         return (
           <CommentsWrapper>
             <CommentsInfo>
@@ -257,7 +251,10 @@ function PostViewComment({ post }: postProps) {
             <div className="comment">{comment.Comment}</div>
             <button>답글</button>
             {userData && userData.email === comment.User_id ? (
-              <button type="button" onClick={handleDelete}>
+              <button
+                type="button"
+                onClick={(e) => handleDelete(e, comment.CommentId)}
+              >
                 삭제
               </button>
             ) : null}
@@ -269,12 +266,3 @@ function PostViewComment({ post }: postProps) {
 }
 
 export default PostViewComment;
-
-// {addComment.map((element,index) => {
-//   return <Comment
-//     value={element}
-//     isLogined={isLogined}
-//     key={element.date+JSON.stringify(index)}
-//     onDelete={onClickDeleteHandler}
-//     />
-// })}
