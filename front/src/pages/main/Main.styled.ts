@@ -50,6 +50,7 @@ export const WithButton = styled.button`
   margin-top: 15px;
   font-size: 20px;
   color: #f1f1f1;
+  cursor:pointer;
 `;
 
 export const PageLayout = styled.div<MainStyledProps>`
@@ -156,4 +157,5 @@ export const CardButton = styled.button<MainStyledProps>`
   float: right;
   margin-top: 30px;
   background-color: transparent;
+  cursor:pointer
 `;
