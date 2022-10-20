@@ -47,6 +47,7 @@ function ViewList() {
       }
       return params;
     };
+    
     const getList = async () => {
       // await Api.get("board/", makeParam()).then((res) => {
       //       setPostList(res.data.list);
