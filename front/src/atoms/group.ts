@@ -3,7 +3,7 @@ import {atom} from "recoil";
 
 const groupState = atom<number>({
     key: "groupState ",
-    default: 1,
+    default: 0,
 });
 
 export default groupState;

@@ -8,15 +8,15 @@ interface Props {
 
 const tabs = [
   {
-    groupIndex: 0,
+    groupIndex: 2,
     groupName: "전체",
   },
   {
-    groupIndex: 1,
+    groupIndex: 0,
     groupName: "식당",
   },
   {
-    groupIndex: 2,
+    groupIndex: 1,
     groupName: "레시피",
   },
 ];

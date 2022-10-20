@@ -56,7 +56,7 @@ function ListSearch({ setKeyword, ...props }: Props) {
         </L.SearchButton>
       </L.SearchBox>
 
-      {props.group !== 0 && (
+      {props.group !== 2 && (
         <>
           {!isOpen ? (
             <BsFilterCircle

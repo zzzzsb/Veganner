@@ -15,7 +15,7 @@ function ViewList() {
     navigate("/addPost");
   };
 
-  const [group, setGroup] = useState<number>(0);
+  const [group, setGroup] = useState<number>(2);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [keyword, setKeyword] = useState<string>("");
   const [region, setRegion] = useState<string>("전체");
@@ -39,7 +39,7 @@ function ViewList() {
       if (region !== "전체") {
         params.Address = region;
       }
-      if (group !== 0) {
+      if (group !== 2) {
         params.Groups = group;
       }
       if (keyword !== "") {
