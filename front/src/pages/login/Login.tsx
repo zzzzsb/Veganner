@@ -1,10 +1,11 @@
 import { ChangeEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { useRecoilState } from "recoil";
 import userState from "../../atoms/user";
 import * as Api from "../../api/api";
 import { KAKAO_AUTH_URL } from "./OAuth";
+import * as L from "./Login.styled";
 
 interface LoginData {
   email: string;
@@ -15,6 +16,7 @@ interface LoginData {
 function LoginForm() {
   const setUser = useSetRecoilState(userState);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [formData, setFormData] = useState<LoginData>({
     email: "",
     password: "",
@@ -31,7 +33,7 @@ function LoginForm() {
   //위 validateEmail 함수를 통해 이메일 형태 적합 여부를 확인함.
   const isEmailValid = validateEmail(formData);
   // 비밀번호가 4글자 이상인지 여부를 확인함.
-  const isPasswordValid = formData.password.length >= 4;
+  const isPasswordValid = formData.password.length >= 8;
   //
   // 이메일과 비밀번호 조건이 동시에 만족되는지 확인함.
   const isFormValid = isEmailValid && isPasswordValid;
@@ -45,11 +47,11 @@ function LoginForm() {
       // 유저 정보는 response의 data임.
       const user = res.data;
       setUser({ email: user.email, password: user.password });
-      sessionStorage.clear();
-      sessionStorage.setItem("sessionId", user.sessionid);
+      window.sessionStorage.setItem("email", user.email);
 
       // 기본 페이지로 이동함.
-      navigate("/", { replace: true });
+      navigate("/", { state: pathname });
+      // navigate("/", { replace: true });
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
       alert("로그인에 실패하였습니다. 아이디와 비밀번호를 다시 확인해주세요");
@@ -74,37 +76,40 @@ function LoginForm() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
+    <L.WholeLayout>
+      <L.LoginTitle>로그인</L.LoginTitle>
+      <L.LoginForm onSubmit={handleSubmit}>
+        <L.LoginBox
           type="email"
           placeholder="이메일을 입력하세요."
           name="email"
           value={formData.email}
           onChange={handleonChange}
         />
-        {!isEmailValid && (
+        {!isEmailValid && formData.email && (
           <div className="text-success">이메일 형식이 올바르지 않습니다.</div>
         )}
-        <input
+        <L.LoginBox
           type="password"
           placeholder="비밀번호를 입력하세요."
           name="password"
           value={formData.password}
           onChange={handleonChange}
         />
-        {!isPasswordValid && (
-          <div className="text-success">비밀번호는 4글자 이상입니다.</div>
+        {!isPasswordValid && formData.password && (
+          <div className="text-success">비밀번호는 8글자 이상입니다.</div>
         )}
-        <button type="submit" disabled={!isFormValid}>
+        <L.LoginButton type="submit" disabled={!isFormValid}>
           로그인
-        </button>
-        <button onClick={() => navigate("/register")}>회원가입하기</button>
-        <button type="button" onClick={kakaoLogin}>
+        </L.LoginButton>
+        <L.RegisterButton onClick={() => navigate("/register")}>
+          회원가입하기
+        </L.RegisterButton>
+        <L.KaKaoButton type="button" onClick={kakaoLogin}>
           카카오로 로그인하기
-        </button>
-      </form>
-    </div>
+        </L.KaKaoButton>
+      </L.LoginForm>
+    </L.WholeLayout>
   );
 }
 

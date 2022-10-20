@@ -28,9 +28,9 @@ class PostAllGetAPI(APIView):
         if "ID" in keys:
             set_Data = request.GET["ID"]
             items = items.filter(ID=set_Data)
-        elif "Group" in keys:
-            set_Data = request.GET["Group"]
-            items = items.filter(Group__contains=set_Data)
+        elif "Groups" in keys:
+            set_Data = request.GET["Groups"]
+            items = items.filter(Groups__contains=set_Data)
         elif "Content" in keys:
             set_Data = request.GET["Content"]
             items = items.filter(Content__contains=set_Data)
@@ -74,10 +74,13 @@ class PostAllGetAPI(APIView):
             else:
                 responseData[i]["Likes"] = 0
 
-        return Response(responseData)
+        responseData_Page = {"list": responseData,
+                             "page": {"num_pages": paginator.num_pages, "now": Page}}
+
+        return Response(responseData_Page)
 
     def post(self, request):
-        img_re = re.compile(r'(img\/)(.+?)\\')
+        img_re = re.compile(r'(img\/)(.+?)"')
         user = request.user
         data = request.data.copy()
         data["User"] = user
@@ -88,7 +91,6 @@ class PostAllGetAPI(APIView):
             img_list = []
             for i in range(len(img_list_set)):
                 img_list.append(parse.unquote(img_list_set[i][1]))
-
             if img_list:
                 # items = Image.objects.filter(Image=img_list)
                 # print(items)
@@ -107,7 +109,6 @@ class PostGetAPI(APIView):
         responseData = PostSerializer(item)
 
         return (Response(responseData.data))
-
 
     def put(self, request, ID):
         item = Posts.objects.get(ID=ID)
@@ -155,6 +156,9 @@ class PostCommentsAPI(APIView):
 
 
 class PostLikeAPI(APIView):
+    def get(self, request, ID):
+        return Response(Like.objects.filter(PostId=ID).count())
+
     def post(self, request, ID):
         try:
             item = Like.objects.get(PostId=ID, User=request.user)
