@@ -33,9 +33,6 @@ function ListSearch() {
   useEffect(() => {
     const userData = async () => {
      
-      if(address==="전체" && type==="전체"){
-
-      }
         await axios
         .get(`board?Page=${paging}`, {
           // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
