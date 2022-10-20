@@ -103,7 +103,7 @@ function AddPost({ tuiEditor }: AddPostProps) {
       <TuiEditor editorRef={editorRef} initialValue={defaultContent} />
       <S.ButtonBox>
         <S.Button onClick={handleRegister}>등록</S.Button>
-        <S.Button>취소</S.Button>
+        <S.Button onClick={() => navigate(-1)}>취소</S.Button>
       </S.ButtonBox>
     </S.PostLayout>
   );
