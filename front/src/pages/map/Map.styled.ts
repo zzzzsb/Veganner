@@ -69,7 +69,7 @@ export const selectContainer = styled.div`
   padding: 0 10px 10px 0;
 `;
 export const selectBox = styled.div`
-  width: 80px;
+  width: 95px;
   height: 30px;
   border-radius: 9999px;
   border: 2px solid #004d43;
@@ -95,10 +95,10 @@ export const optionList = styled.ul`
   // display: block;
   top: 28px;
 
-  width: 70px;
+  width: 95px;
   border-radius: 5px;
   border: 2px lightgray solid;
-  margin: -20px 3px 5px 2px;
+  margin: -20px 4px 5px -1px;
   background-color: #ffffff;
   // overflow: hidden;
   transition: 0.3s ease-in;
@@ -106,6 +106,7 @@ export const optionList = styled.ul`
 export const optionitem = styled.li`
   border-bottom: 2px solid lightgray;
   padding: 5px 15px 5px;
+  margin: auto;
   transition: 0.1s;
   height: 15px;
   text-align: center;
@@ -120,8 +121,7 @@ export const optionitem = styled.li`
 export const resContainer = styled.div`
   position: block;
   width: 500px;
-  height: 70vh;
-
+  height: 78vh;
   background: #ffffff;
   border-radius: 20px;
   overflow: auto;
@@ -143,7 +143,7 @@ export const h2 = styled.h2`
   display: block;
   font-weight: 700;
   margin-bottom: 8px;
-  position: relative;
+  // position: relative;
   text-decoration-line: none;
   color: rgb(58, 58, 58);
   font-size: 15px;
@@ -183,7 +183,10 @@ export const box = styled.div`
 `;
 
 export const pagination = styled.div`
-  display: block;
+  display: flex;
+  width: 20vh;
+  align-items: center;
+  justify-content: center;
 `;
 
 // MainMap
@@ -196,11 +199,11 @@ export const MainMap = styled.div`
 
 // Paging
 export const paging = styled.div`
-  display: flex;
-`;
-
-export const page = styled(Pagination)`
-  float: right;
+  height: 5vh;
+  justify-content: center;
+  text-align: center;
+  padding: 7px;
+  margin-left: 300px;
 `;
 
 //

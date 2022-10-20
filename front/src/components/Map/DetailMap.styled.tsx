@@ -47,6 +47,7 @@ export const ell = styled.div`
   margin: 15px;
   word-break: keep-all;
   white-space: normal;
+  line-height: 1.5;
 `;
 
 export const road = styled.img`
