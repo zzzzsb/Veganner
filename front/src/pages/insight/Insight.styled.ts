@@ -124,6 +124,7 @@ export const AnimalButton = styled.button<InsightStyledProps>`
   background-repeat: no-repeat;
   margin: 0 70px;
   background-color: transparent;
+  cursor:pointer;
   :focus {
     border: none;
     outline: none;

@@ -33,7 +33,7 @@ function ListCard({ postList }: Props) {
                 <L.CardHeaderProfile></L.CardHeaderProfile>
                 <L.CardHeaderText>{post.User}</L.CardHeaderText>
                 <L.likeWrap>
-                <FaRegThumbsUp />
+                <FaRegThumbsUp size="20" style={{marginTop:"4px"}}/>
                 {post.Likes}
                 </L.likeWrap>
               </L.CardHeader>
