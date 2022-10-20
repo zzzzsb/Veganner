@@ -1,34 +1,19 @@
 /*검색창*/
-import {
-  useState,
-  useEffect,
-  SetStateAction,
-  Dispatch,
-  ChangeEvent,
-} from "react";
+import { useState, ChangeEvent, MouseEvent } from "react";
 
-import * as Api from "../../api/api";
-import pagingState from "../../atoms/paging";
-import addressState from "../../atoms/address";
-import typeState from "../../atoms/type";
 import * as L from "./List.styled";
-import axios from "axios";
+
 import { FaSearch } from "react-icons/fa";
 import { BsFilterCircle } from "react-icons/bs";
 import { BsFillFilterCircleFill } from "react-icons/bs";
 import SearchFilter from "../../components/filter/SearchFilter";
+import searchType from "../../atoms/search";
+import { useRecoilState } from "recoil";
 
-interface Props {
-  setKeyword: Dispatch<SetStateAction<string>>;
-  region: string;
-  type: string;
-  setRegion: Dispatch<SetStateAction<string>>;
-  setType: Dispatch<SetStateAction<string>>;
-  group: number;
-}
-function ListSearch({ setKeyword, ...props }: Props) {
+function ListSearch() {
   const [inputState, setInputState] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [searchTypeState, setSearchTypeState] = useRecoilState(searchType);
 
   const filterStyle: React.CSSProperties = {
     position: "absolute",
@@ -41,6 +26,10 @@ function ListSearch({ setKeyword, ...props }: Props) {
     setInputState(value);
   };
 
+  const handleClickSearchButton = (e: MouseEvent<HTMLButtonElement>) => {
+    setSearchTypeState((prev) => ({ ...prev, keyword: inputState }));
+  };
+
   return (
     <L.SearchWrapper>
       <L.SearchBox>
@@ -51,12 +40,12 @@ function ListSearch({ setKeyword, ...props }: Props) {
           value={inputState}
           onChange={handleChangeKeyword}
         />
-        <L.SearchButton type="button" onClick={() => setKeyword(inputState)}>
+        <L.SearchButton type="button" onClick={handleClickSearchButton}>
           <FaSearch color="white" />
         </L.SearchButton>
       </L.SearchBox>
 
-      {props.group !== 0 && (
+      {searchTypeState.group !== 0 && (
         <>
           {!isOpen ? (
             <BsFilterCircle
@@ -71,7 +60,7 @@ function ListSearch({ setKeyword, ...props }: Props) {
               onClick={() => setIsOpen(!isOpen)}
             />
           )}
-          {isOpen && <SearchFilter {...props} />}
+          {isOpen && <SearchFilter />}
         </>
       )}
     </L.SearchWrapper>

@@ -6,21 +6,18 @@ import { useNavigate } from "react-router-dom";
 import * as L from "./List.styled";
 import Pagination from "react-js-pagination";
 import "./Pagination.css";
+import searchType from "../../atoms/search";
+import { useRecoilState } from "recoil";
 
 function ViewList() {
   const navigate = useNavigate();
   const navigateToAddPost = () => {
     navigate("/addPost");
   };
-
-  const [group, setGroup] = useState<number>(0);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [keyword, setKeyword] = useState<string>("");
-  const [region, setRegion] = useState<string>("");
-  const [type, setType] = useState<string>("");
+  const [searchTypeState, setSearchTypeState] = useRecoilState(searchType);
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    setSearchTypeState((prev) => ({ ...prev, currentPage: page }));
   };
 
   const [postList, setPostList] = useState([]);
@@ -28,29 +25,22 @@ function ViewList() {
   useEffect(() => {
     // axios get
     console.log("init");
-  }, [currentPage, group, keyword, region, type]);
+  }, [searchTypeState]);
 
   return (
     <>
       <L.WholeLayout>
         <L.ListTitle>Share Your Experience</L.ListTitle>
         <L.ListText>여러분의 채식 경험을 자유롭게 공유해 보세요</L.ListText>
-        <ListTab group={group} setGroup={setGroup} />
-        <Search
-          setKeyword={setKeyword}
-          setRegion={setRegion}
-          setType={setType}
-          region={region}
-          type={type}
-          group={group}
-        />
+        <ListTab />
+        <Search />
         {postList.length !== 0 && <ListCard postList={postList} />}
 
         <L.WriteButton onClick={navigateToAddPost}>글쓰기</L.WriteButton>
       </L.WholeLayout>
       <div>
         <Pagination
-          activePage={currentPage}
+          activePage={searchTypeState.currentPage}
           itemsCountPerPage={10}
           totalItemsCount={50}
           pageRangeDisplayed={5}

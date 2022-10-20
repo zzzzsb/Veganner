@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
 import * as S from "././Filter.styled";
+import searchType from "../../atoms/search";
+import { useRecoilState } from "recoil";
 
 const locations = [
   "전체",
@@ -33,25 +34,17 @@ const types = [
   "중국식",
 ];
 
-interface Props {
-  setRegion: Dispatch<SetStateAction<string>>;
-  setType: Dispatch<SetStateAction<string>>;
-  region: string;
-  type: string;
-  group: number;
-}
+function SearchFilter() {
+  const [searchTypeState, setSearchTypeState] = useRecoilState(searchType);
 
-function SearchFilter({ setRegion, setType, region, type, group }: Props) {
   const locationButtons = locations.map((v: string) => {
     if (v.length === 2) {
       return (
         <S.FilterButton
+          key={v}
           width={42}
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-            e.preventDefault();
-            setRegion(v);
-          }}
-          active={region === v}
+          onClick={() => setSearchTypeState((prev) => ({ ...prev, region: v }))}
+          active={searchTypeState.region === v}
         >
           {v}
         </S.FilterButton>
@@ -59,12 +52,10 @@ function SearchFilter({ setRegion, setType, region, type, group }: Props) {
     } else if (v.length === 3) {
       return (
         <S.FilterButton
+          key={v}
           width={50}
-          onClick={(e) => {
-            e.preventDefault();
-            setRegion(v);
-          }}
-          active={region === v}
+          onClick={() => setSearchTypeState((prev) => ({ ...prev, region: v }))}
+          active={searchTypeState.region === v}
         >
           {v}
         </S.FilterButton>
@@ -75,12 +66,10 @@ function SearchFilter({ setRegion, setType, region, type, group }: Props) {
     if (v.length === 2) {
       return (
         <S.FilterButton
+          key={v}
           width={42}
-          onClick={(e) => {
-            e.preventDefault();
-            setType(v);
-          }}
-          active={type === v}
+          onClick={() => setSearchTypeState((prev) => ({ ...prev, type: v }))}
+          active={searchTypeState.type === v}
         >
           {v}
         </S.FilterButton>
@@ -88,12 +77,10 @@ function SearchFilter({ setRegion, setType, region, type, group }: Props) {
     } else if (v.length === 3) {
       return (
         <S.FilterButton
+          key={v}
           width={50}
-          onClick={(e) => {
-            e.preventDefault();
-            setType(v);
-          }}
-          active={type === v}
+          onClick={() => setSearchTypeState((prev) => ({ ...prev, type: v }))}
+          active={searchTypeState.type === v}
         >
           {v}
         </S.FilterButton>
@@ -101,12 +88,10 @@ function SearchFilter({ setRegion, setType, region, type, group }: Props) {
     } else {
       return (
         <S.FilterButton
+          key={v}
           width={64}
-          onClick={(e) => {
-            e.preventDefault();
-            setType(v);
-          }}
-          active={type === v}
+          onClick={() => setSearchTypeState((prev) => ({ ...prev, type: v }))}
+          active={searchTypeState.type === v}
         >
           {v}
         </S.FilterButton>
@@ -117,8 +102,10 @@ function SearchFilter({ setRegion, setType, region, type, group }: Props) {
   return (
     <>
       <S.FilterLayout>
-        {group === 1 && <S.FilterBox>지역별 | {locationButtons}</S.FilterBox>}
-        {(group === 1 || group === 2) && (
+        {searchTypeState.group === 1 && (
+          <S.FilterBox>지역별 | {locationButtons}</S.FilterBox>
+        )}
+        {(searchTypeState.group === 1 || searchTypeState.group === 2) && (
           <S.FilterBox>종류별 | {typeButtons}</S.FilterBox>
         )}
       </S.FilterLayout>

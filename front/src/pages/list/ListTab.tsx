@@ -1,10 +1,6 @@
 import * as L from "./List.styled";
-import { SetStateAction, Dispatch } from "react";
-
-interface Props {
-  group: number;
-  setGroup: Dispatch<SetStateAction<number>>;
-}
+import searchType from "../../atoms/search";
+import { useRecoilState } from "recoil";
 
 const tabs = [
   {
@@ -21,15 +17,19 @@ const tabs = [
   },
 ];
 
-export default function Tab({ group, setGroup }: Props) {
+export default function Tab() {
+  const [searchTypeState, setSearchTypeState] = useRecoilState(searchType);
+
   return (
     <L.TabSection>
       <L.TabListGroup>
         {tabs.map((tab) => (
           <L.TabList
             key={tab.groupIndex}
-            onClick={() => setGroup(tab.groupIndex)}
-            active={group === tab.groupIndex}
+            onClick={() =>
+              setSearchTypeState((prev) => ({ ...prev, group: tab.groupIndex }))
+            }
+            active={searchTypeState.group === tab.groupIndex}
           >
             {tab.groupName}
           </L.TabList>
