@@ -10,10 +10,9 @@ import { useRecoilValue, useResetRecoilState, useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import * as L from "./List.styled";
 import Pagination from "react-js-pagination";
-import './Pagination.css';
+import "./Pagination.css";
 import pagingState from "../../atoms/paging";
-
-
+import userState from "../../atoms/user";
 
 function ViewList() {
   const navigate = useNavigate();
@@ -21,12 +20,12 @@ function ViewList() {
     navigate("/addPost");
   };
   // const [lists,setLists] = useRecoilState(listsState);
+  const user = useRecoilValue(userState);
   const lists = useRecoilValue(listsState);
   const [page, setPage] = useRecoilState(pagingState);
   const handlePageChange = (page: number) => {
-    console.log("page",page);
+    console.log("page", page);
     setPage(page);
-    
   };
 
   /*pagination*/
@@ -57,18 +56,20 @@ function ViewList() {
         return <div key={index}>{list["Title"]}</div>;
       })}
     </div> */}
-        <L.WriteButton onClick={navigateToAddPost}>글쓰기</L.WriteButton>
+        {user ? (
+          <L.WriteButton onClick={navigateToAddPost}>글쓰기</L.WriteButton>
+        ) : null}
       </L.WholeLayout>
       <div>
-      <Pagination
-        activePage={page}
-        itemsCountPerPage={10}
-        totalItemsCount={50}
-        pageRangeDisplayed={5}
-        prevPageText="‹"
-        nextPageText="›"
-        onChange={handlePageChange}
-      />
+        <Pagination
+          activePage={page}
+          itemsCountPerPage={10}
+          totalItemsCount={50}
+          pageRangeDisplayed={5}
+          prevPageText="‹"
+          nextPageText="›"
+          onChange={handlePageChange}
+        />
       </div>
     </>
   );
