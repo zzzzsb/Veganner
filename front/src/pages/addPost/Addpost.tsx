@@ -89,10 +89,12 @@ function AddPost({ tuiEditor }: AddPostProps) {
         accept="image/*"
         onChange={handleThumbnail}
       />
-      <S.LocationRegisterBar
-        type="text"
-        placeholder="장소를 검색해 등록해주세요."
-      />
+      {group === 0 ? (
+        <S.LocationRegisterBar
+          type="text"
+          placeholder="장소를 검색해 등록해주세요."
+        />
+      ) : null}
       <Filter
         address={address}
         type={type}
