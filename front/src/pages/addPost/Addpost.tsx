@@ -19,7 +19,7 @@ function AddPost({ tuiEditor }: AddPostProps) {
   const navigate = useNavigate();
   // 포스트 제목
   const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>(defaultContent);
+  //const [content, setContent] = useState<string>(defaultContent);
   const [group, setGroup] = useState<number>(0);
   const [address, setAddress] = useState<string>("");
   const [type, setType] = useState<string>("");

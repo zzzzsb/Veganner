@@ -3,7 +3,6 @@ import styled from "styled-components";
 import * as Api from "../../api/api";
 import userState from "../../atoms/user";
 import { useRecoilValue } from "recoil";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const ViewContentBlock = styled.pre`
@@ -52,14 +51,12 @@ export const ButtonBlock = styled.div`
 
 interface postProps {
   post: any;
-  setPost: any;
 }
-
 interface UserData {
   email: string;
 }
 
-function PostViewContent({ post, setPost }: postProps) {
+function PostViewContent({ post }: postProps) {
   const navigate = useNavigate();
   const user = useRecoilValue(userState);
   const [userData, setUserData] = useState<UserData>();
@@ -83,6 +80,14 @@ function PostViewContent({ post, setPost }: postProps) {
   // if (userData && userData.email === post.User) {
   //   console.log("같은 유저입니다.");
   // }
+
+  const handleEditButton = () => {
+    navigate("edit", {
+      state: {
+        ...post,
+      },
+    });
+  };
 
   async function handleDelete(e: React.MouseEvent<HTMLButtonElement>) {
     if (window.confirm("정말로 삭제하시겠습니까?")) {
@@ -111,7 +116,9 @@ function PostViewContent({ post, setPost }: postProps) {
         </HashtagBlock>
         {userData && userData.email === post.User ? (
           <ButtonBlock>
-            <button type="button">수정</button>
+            <button type="button" onClick={handleEditButton}>
+              수정
+            </button>
             <button type="button" onClick={handleDelete}>
               삭제
             </button>

@@ -67,7 +67,7 @@ function PostView() {
     return (
       <PostViewLayout>
         <PostViewHead post={post}></PostViewHead>
-        <PostViewContent post={post} setPost={setPost}></PostViewContent>
+        <PostViewContent post={post}></PostViewContent>
         <PostViewComment post={post}></PostViewComment>
       </PostViewLayout>
     );
