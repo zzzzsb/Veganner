@@ -1,34 +1,39 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useRecoilValue } from "recoil";
 import * as L from "./List.styled";
-import listsState from "../../atoms/search";
 import { FaRegThumbsUp } from "react-icons/fa";
 
-function ListCard() {
-  const navigate = useNavigate();
-  const postList = useRecoilValue(listsState);
-  const [like, setLike] = useState(0);
+interface Props {
+  postList: {
+    ID: number;
+    Groups: number;
+    Type: string;
+    Title: string;
+    Thumbnail: string;
+    CreationTime: string;
+    User: string;
+    Likes: number;
+  }[];
+}
 
-console.log("pst",postList)
+function ListCard({ postList }: Props) {
+  const navigate = useNavigate();
+
   return (
     <L.CardLayout>
-      {postList?.map((post) => {
-        
+      {postList.map((post) => {
         return (
           <>
             <L.Card key={post.ID} onClick={() => navigate(`/board/${post.ID}`)}>
               <L.CardHeader>
                 <L.CardHeaderProfile></L.CardHeaderProfile>
-                <L.CardHeaderText>{post["User"]}</L.CardHeaderText>
-                <FaRegThumbsUp />{like}
+                <L.CardHeaderText>{post.User}</L.CardHeaderText>
+                <FaRegThumbsUp />
+                {post.Likes}
               </L.CardHeader>
-              <L.CardHeaderImage
-                src={`../../../../back/${post["Thumbnail"]}`}
-              />
+              <L.CardHeaderImage src={`../../../../back/${post.Thumbnail}`} />
               <L.CardBottom>
-                <L.CardBottomTitle>{post["Title"]}</L.CardBottomTitle>
-                <L.CardBottomDate>{post["CreationTime"]}</L.CardBottomDate>
+                <L.CardBottomTitle>{post.Title}</L.CardBottomTitle>
+                <L.CardBottomDate>{post.CreationTime}</L.CardBottomDate>
               </L.CardBottom>
             </L.Card>
           </>
