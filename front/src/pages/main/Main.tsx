@@ -23,7 +23,7 @@ function Main() {
         </S.TitleText>
         <S.WithButton
           onClick={(e) => {
-            navigate("/board");
+            navigate("/insight");
           }}
         >
           동참하기
@@ -89,7 +89,11 @@ function Main() {
             <S.Text fontSize={18} color={"#212121"} textAlign={"left"}>
               비건 식당과 레시피를 자유롭게 공유할 수 있어요.
             </S.Text>
-            <S.CardButton></S.CardButton>
+            <S.CardButton
+              onClick={(e) => {
+                navigate("/board");
+              }}
+            ></S.CardButton>
           </S.Card>
           <S.Card>
             <S.CardImgBox backgroundImg={right_img}></S.CardImgBox>
@@ -100,7 +104,11 @@ function Main() {
             <S.Text fontSize={18} color={"#212121"} textAlign={"left"}>
               비거너에서는 지도에서 비건 식당을 쉽게 찾을 수 있어요.
             </S.Text>
-            <S.CardButton></S.CardButton>
+            <S.CardButton
+              onClick={(e) => {
+                navigate("/explore");
+              }}
+            ></S.CardButton>
           </S.Card>
         </S.CardLayout>
       </S.PageLayout>

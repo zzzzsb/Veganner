@@ -12,6 +12,10 @@ export interface InsightStyledProps {
   lineHeight?: string;
 }
 
+export const Insight = styled.div`
+  font-family: "Noto Sans KR";
+`;
+
 export const PageLayout = styled.div<InsightStyledProps>`
   width: auto;
   height: ${(props) => props.height};
