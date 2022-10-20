@@ -18,12 +18,12 @@ export const Title1 = styled.div`
 `;
 
 export const Title2 = styled.div`
-  margin: 10px;
+  margin: 20px 0 0 0;
   font-size: 20px;
 `;
 export const Layout = styled.section`
   display: flex;
-  margin: 50px auto;
+  margin: 30px auto;
   width: 1400px;
   height: 100vh;
   border-radius: 5px;
@@ -91,14 +91,14 @@ export const select_button = styled.button`
   background: transparent;
 `;
 export const optionList = styled.ul`
-  position: stickey;
+  position: relative;
   // display: block;
   top: 28px;
 
   width: 70px;
   border-radius: 5px;
   border: 2px lightgray solid;
-  margin: 5px 3px 5px 2px;
+  margin: -20px 3px 5px 2px;
   background-color: #ffffff;
   // overflow: hidden;
   transition: 0.3s ease-in;
