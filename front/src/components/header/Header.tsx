@@ -20,7 +20,7 @@ function Header() {
       await Api.post("logout/");
       // 유저 정보는 response의 data임.
       userReset();
-      window.sessionStorage.removeItem('email')
+      window.sessionStorage.removeItem("email");
       navigate("/", { replace: true });
       // 기본 페이지로 이동함.
     } catch (err) {

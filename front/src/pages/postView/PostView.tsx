@@ -44,10 +44,10 @@ function PostView() {
     Groups: number;
     RestaurantId?: number;
     Address?: string;
+    Likes?: number;
   }
 
   const [post, setPost] = useState<Post | null>(null);
-  const [like, setLike] = useState();
 
   useEffect(() => {
     async function getPost() {
@@ -55,10 +55,6 @@ function PostView() {
         let res = await Api.get(`board/${postId}`);
         console.log(res.data);
         setPost(res.data);
-
-        res = await Api.get(`board/${postId}/like`);
-        console.log("좋아요 개수:", res.data);
-        setLike(res.data);
       } catch (err) {
         console.log("글 불러오기를 실패했습니다.\n", err);
         // navigate("/share", { replace: true });
@@ -70,7 +66,7 @@ function PostView() {
   if (post) {
     return (
       <PostViewLayout>
-        <PostViewHead post={post} like={like}></PostViewHead>
+        <PostViewHead post={post}></PostViewHead>
         <PostViewContent post={post} setPost={setPost}></PostViewContent>
         <PostViewComment post={post}></PostViewComment>
       </PostViewLayout>
