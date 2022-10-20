@@ -32,6 +32,13 @@ function ListSearch() {
 
   useEffect(() => {
     const userData = async () => {
+      console.log("address",address)
+      // if (address === "전체" || search === "") {
+      //   //검색어가 없을 경우 전체 리스트 반환
+      //   await Api.get("board").then((res) => {
+      //     setLists(res.data);
+      //   });
+      // } 
      
         await axios
         .get(`board?Page=${paging}`, {
@@ -47,7 +54,7 @@ function ListSearch() {
     };
     userData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paging,address,type]);
+  }, [paging]);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
