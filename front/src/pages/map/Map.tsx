@@ -5,7 +5,6 @@ import Location from "../../datas/seoul.json";
 import { Restaurant } from "../../types/restaurant";
 import { useNavigate } from "react-router-dom";
 import Paging from "../../components/Map/Paging";
-import Page from "../../components/Map/Page";
 import * as S from "./Map.styled";
 import { DefaultValue } from "recoil";
 // import { setServers } from "dns";;
@@ -82,6 +81,8 @@ function Map() {
   const [vegans, setVegans] = useState<string[]>(initialVeganValues);
   const [selectedVegan, setSelectedVegan] = useState<string | null>(null);
   const [isOpenVeganList, setIsOpenVeganList] = useState<boolean>(false);
+
+  const [group, setGroup] = useState(0);
 
   // useEffect(() => {
   //   parks &&
@@ -168,8 +169,8 @@ function Map() {
   return (
     <>
       <S.Title>
-        <div>Explore the Vegan World.</div>
-        <div>비거너의 비건 맛집 지도를 자유롭게 이용해 보세요.</div>
+        <S.Title1>Explore the Vegan World.</S.Title1>
+        <S.Title2>비거너의 비건 맛집 지도를 자유롭게 이용해 보세요.</S.Title2>
       </S.Title>
       <S.Layout>
         <S.resMenu>
@@ -250,14 +251,14 @@ function Map() {
               {currentPosts.map((item) => (
                 <Resitem key={item.index} item={item as Restaurant} />
               ))}
-              <S.pagination>
-                <Paging
-                  item={result}
-                  page={currentpage}
-                  setPage={setCurrentpage}
-                />
-              </S.pagination>
             </S.resContainer>
+            <S.pagination>
+              <Paging
+                item={result}
+                page={currentpage}
+                setPage={setCurrentpage}
+              />
+            </S.pagination>
           </S.searchContainer>
         </S.resMenu>
 

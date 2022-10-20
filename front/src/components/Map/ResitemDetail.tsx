@@ -2,6 +2,7 @@ import * as S from "../../pages/map/Map.styled";
 import * as P from "../../pages/map/Map.styled";
 import DetailMap from "./DetailMap";
 import { useParams, Link } from "react-router-dom";
+import back from "../../assets/img/back.png";
 
 interface ItemProps {
   detail: any[];
@@ -22,8 +23,8 @@ function ResitemDetail({ detail }: ItemProps) {
           <S.searchContainer>
             <S.resContainer>
               <Link to="/explore">
-                <img
-                  src="../../../public/assets/image/back.png"
+                <S.backicon
+                  src={back}
                   width="24"
                   height="24"
                   className="backIcon"

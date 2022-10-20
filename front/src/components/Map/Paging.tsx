@@ -11,7 +11,7 @@ interface PagingProps {
 function Paging({ item, page, setPage }: PagingProps) {
   return (
     <S.paging>
-      <Pagination
+      <S.page
         activePage={page}
         itemsCountPerPage={5}
         totalItemsCount={item.length}

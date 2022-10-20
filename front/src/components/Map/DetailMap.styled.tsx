@@ -9,7 +9,7 @@ export const DetailMap = styled.div`
 
 export const wrap = styled.div`
   display: block;
-  height: 200px;
+  height: 150px;
   width: 300px;
   border-radius: 10px;
   background-color: white;
@@ -18,7 +18,7 @@ export const wrap = styled.div`
 export const info = styled.div`
   display: flex;
   height: 50px;
-  background-color: gray;
+  background-color: #e2e2e2;
   border-radius: 10px;
 `;
 export const title = styled.div`
@@ -45,4 +45,10 @@ export const desc = styled.div`
 export const ell = styled.div`
   display: flex;
   margin: 15px;
+  word-break: keep-all;
+`;
+
+export const road = styled.img`
+  width: 50px;
+  height: 50px;
 `;
