@@ -39,7 +39,7 @@ function Header() {
           ) : (
             <>
               <S.StyledLink to="/" onClick={handleLogout}>
-                logout
+                Logout.
               </S.StyledLink>
             </>
           )}

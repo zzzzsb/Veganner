@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import * as Api from "../../api/api";
+import userState from "../../atoms/user";
+import { useRecoilValue } from "recoil";
 
 const ViewCommentBlock = styled.div`
   width: 100%;
@@ -112,6 +114,7 @@ interface postProps {
 }
 
 function PostViewComment({ post }: postProps) {
+  const user = useRecoilValue(userState);
   interface Comment {
     CommentId?: number;
     User_id: string;
@@ -158,15 +161,12 @@ function PostViewComment({ post }: postProps) {
       let res = await Api.post(`board/${post.ID}/comments/`, comment);
       console.log("댓글 작성에 성공했습니다.\n", res);
 
-      res = await Api.get(`board/${post.ID}/comments/`);
+      res = await Api.get(`board/${post.ID}/comments`);
       console.log(res.data);
       setComments([...res.data]);
     } catch (err) {
       console.log("댓글 작성에 실패했습니다.\n", err);
     }
-
-    // const commentsList = [...comments, comment];
-    // setComments(commentsList);
 
     setComment({
       User_id: post.User,
@@ -188,11 +188,20 @@ function PostViewComment({ post }: postProps) {
           onChange={handleInput}
           value={comment.Comment}
         />
-        <button type="button" onClick={handleSubmit}>
-          작성
-        </button>
+        {user ? (
+          <button type="button" onClick={handleSubmit}>
+            작성
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => alert("로그인하고 댓글을 남겨주세요.")}
+          >
+            작성
+          </button>
+        )}
       </InputBox>
-      {comments.map((comment: Comment): any => {
+      {comments.map((comment: Comment, index): any => {
         return (
           <CommentsWrapper>
             <CommentsInfo>
