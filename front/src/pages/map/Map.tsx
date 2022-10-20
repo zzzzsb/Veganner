@@ -170,6 +170,7 @@ function Map() {
                   setSearchValue(e.target.value);
                 }}
               />
+
               <S.selectContainer>
                 <S.selectBox active={isOpenRegionList}>
                   {/* 지역 */}
