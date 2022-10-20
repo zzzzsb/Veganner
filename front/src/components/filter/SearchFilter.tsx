@@ -32,7 +32,7 @@ function SearchFilter() {
       if (address === "전체" && type === "전체") {
         //검색어가 없을 경우 전체 리스트 반환
         await Api.get("board").then((res) => {
-          setLists(res.data);
+          setLists(res.data.list);
         });
       } else if (address === "전체") {
         await axios
@@ -43,7 +43,7 @@ function SearchFilter() {
             },
           })
           .then((res) => {
-            setLists(res.data);
+            setLists(res.data.list);
             // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
           });
       } else if (type === "전체") {
@@ -55,7 +55,7 @@ function SearchFilter() {
             },
           })
           .then((res) => {
-            setLists(res.data);
+            setLists(res.data.list);
             // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
           });
       } else {
@@ -67,7 +67,7 @@ function SearchFilter() {
             },
           })
           .then((res) => {
-            setLists(res.data);
+            setLists(res.data.list);
             // setCurrentPosts(res.data.patientList.slice(indexOfFirstPost, indexOfLastPost))
           });
       }

@@ -10,14 +10,11 @@ function ListCard() {
   const postList = useRecoilValue(listsState);
   const [like, setLike] = useState(0);
 
-  useEffect(() => {
-    console.log("list", postList);
-  }, []);
-
+console.log("pst",postList)
   return (
     <L.CardLayout>
-      {postList.map((post) => {
-        console.log("post",post);
+      {postList?.map((post) => {
+        
         return (
           <>
             <L.Card key={post.ID} onClick={() => navigate(`/board/${post.ID}`)}>
