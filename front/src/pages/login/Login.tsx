@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import userState from "../../atoms/user";
 import * as Api from "../../api/api";
 import { KAKAO_AUTH_URL } from "./OAuth";
+import * as L from "./Login.styled";
 
 interface LoginData {
   email: string;
@@ -74,27 +75,30 @@ function LoginForm() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
+    <L.WholeLayout>
+      <L.LoginTitle>
+        로그인
+      </L.LoginTitle>
+      <L.LoginForm onSubmit={handleSubmit}>
+        <L.LoginBox
           type="email"
           placeholder="이메일을 입력하세요."
           name="email"
           value={formData.email}
           onChange={handleonChange}
         />
-        {!isEmailValid && (
+        {!isEmailValid && formData.email && (
           <div className="text-success">이메일 형식이 올바르지 않습니다.</div>
         )}
-        <input
+        <L.LoginBox
           type="password"
           placeholder="비밀번호를 입력하세요."
           name="password"
           value={formData.password}
           onChange={handleonChange}
         />
-        {!isPasswordValid && (
-          <div className="text-success">비밀번호는 4글자 이상입니다.</div>
+        {!isPasswordValid &&formData.password && (
+          <div className="text-success">비밀번호는 8글자 이상입니다.</div>
         )}
         <button type="submit" disabled={!isFormValid}>
           로그인
@@ -103,8 +107,8 @@ function LoginForm() {
         <button type="button" onClick={kakaoLogin}>
           카카오로 로그인하기
         </button>
-      </form>
-    </div>
+      </L.LoginForm>
+    </L.WholeLayout>
   );
 }
 

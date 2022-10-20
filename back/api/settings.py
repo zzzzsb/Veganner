@@ -67,8 +67,8 @@ REST_FRAMEWORK = {
 
 
 
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/user/'
+SITE_ID = 2
+LOGIN_REDIRECT_URL = '/'
 
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
@@ -135,18 +135,6 @@ DATABASES = {
 }
 
 
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'HOST': '127.0.0.1',
-#         'PORT': ssh_tunnel.local_bind_port,
-#         'NAME': "veganner",
-#         'USER': "Team1",
-#         'PASSWORD': os.environ.get("PASSWORD"),
-#     }
-# }
-
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -201,10 +189,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
-# 사이트와 관련한 자동응답을 받을 이메일 주소,'webmaster@localhost'
 EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 
-# 이메일에 자동으로 표시되는 사이트 정보
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[veganner]"
