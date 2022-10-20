@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Pagination from "react-js-pagination";
 
 // 전체
 export const Title = styled.div`
@@ -182,11 +181,12 @@ export const box = styled.div`
   font-size: 13px;
 `;
 
+// 페이지네이션 박스
 export const pagination = styled.div`
   display: flex;
   width: 20vh;
-  align-items: center;
-  justify-content: center;
+  // align-items: center;
+  // justify-content: center;
 `;
 
 // MainMap
@@ -199,11 +199,14 @@ export const MainMap = styled.div`
 
 // Paging
 export const paging = styled.div`
+  display: flex;
   height: 5vh;
   justify-content: center;
   text-align: center;
   padding: 7px;
-  margin-left: 300px;
+  margin-left: 85px;
+  margin-top: -80px;
+  margin-bottom: 80px;
 `;
 
 //

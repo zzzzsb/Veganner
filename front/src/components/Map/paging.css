@@ -1,8 +1,7 @@
 .pagination {
   display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  /* margin-top: 73px; */
+  /* justify-content: center; */
+  /* margin: 0 auto; */
   text-align: center;
 }
 
@@ -10,7 +9,7 @@ ul {
   list-style: none;
   padding: 0;
   text-align: center;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 ul.pagination li {
