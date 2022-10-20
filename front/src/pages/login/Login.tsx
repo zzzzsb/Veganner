@@ -32,7 +32,7 @@ function LoginForm() {
   //위 validateEmail 함수를 통해 이메일 형태 적합 여부를 확인함.
   const isEmailValid = validateEmail(formData);
   // 비밀번호가 4글자 이상인지 여부를 확인함.
-  const isPasswordValid = formData.password.length >= 4;
+  const isPasswordValid = formData.password.length >= 8;
   //
   // 이메일과 비밀번호 조건이 동시에 만족되는지 확인함.
   const isFormValid = isEmailValid && isPasswordValid;
@@ -46,8 +46,7 @@ function LoginForm() {
       // 유저 정보는 response의 data임.
       const user = res.data;
       setUser({ email: user.email, password: user.password });
-      sessionStorage.clear();
-      sessionStorage.setItem("sessionId", user.sessionid);
+     
 
       // 기본 페이지로 이동함.
       navigate("/", { replace: true });
@@ -100,13 +99,13 @@ function LoginForm() {
         {!isPasswordValid &&formData.password && (
           <div className="text-success">비밀번호는 8글자 이상입니다.</div>
         )}
-        <button type="submit" disabled={!isFormValid}>
+        <L.LoginButton type="submit" disabled={!isFormValid}>
           로그인
-        </button>
-        <button onClick={() => navigate("/register")}>회원가입하기</button>
-        <button type="button" onClick={kakaoLogin}>
+        </L.LoginButton>
+        <L.RegisterButton onClick={() => navigate("/register")}>회원가입하기</L.RegisterButton>
+        <L.KaKaoButton type="button" onClick={kakaoLogin}>
           카카오로 로그인하기
-        </button>
+        </L.KaKaoButton>
       </L.LoginForm>
     </L.WholeLayout>
   );
