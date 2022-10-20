@@ -3,7 +3,7 @@ import jwt
 from rest_framework import status
 from django.conf import settings
 from django.db.models import Count, Subquery, OuterRef
-from .serializers import PostSerializer, CommentsItemSerializer, LikeSerializer, ImageSerializer, ImageSetSerializer
+from .serializers import PostSerializer, CommentsItemSerializer, LikeSerializer, ImageSerializer, ImageSetSerializer, PostUpdataNoThumbnailSerializer
 from accounts.models import User
 from .models import Image, Posts, Like, Comments
 from rest_framework.response import Response
@@ -112,11 +112,16 @@ class PostGetAPI(APIView):
 
     def put(self, request, ID):
         item = Posts.objects.get(ID=ID)
-        if item.User != request.user:
+        user = request.user
+        if item.User != user:
             return Response("본인 게시글이 아닙니다", status=status.HTTP_400_BAD_REQUEST)
         data = request.data.copy()
-        serializer = PostSerializer(item, data=data)
-
+        data["User"] = user
+        if type(data["Thumbnail"]) is str:
+            del data["Thumbnail"]
+            serializer = PostUpdataNoThumbnailSerializer(item, data=data)
+        else:
+            serializer = PostSerializer(item, data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
