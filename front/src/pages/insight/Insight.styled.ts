@@ -104,14 +104,14 @@ export const TitleEngText = styled.div<InsightStyledProps>`
   line-height: ${(props) => props.lineHeight};
 `;
 
-export const AnimalInputLayout = styled.div`
+export const AnimalButtonLayout = styled.div`
   display: flex;
   margin: 0 auto;
   /* justify-content: center;
   align-items: center; */
-  margin: 45px auto;
+  margin: 40px auto;
 `;
-export const AnimalInputBox = styled.input<InsightStyledProps>`
+export const AnimalButton = styled.button<InsightStyledProps>`
   border: none;
   width: 100px;
   height: 100px;
@@ -120,11 +120,19 @@ export const AnimalInputBox = styled.input<InsightStyledProps>`
   background-repeat: no-repeat;
   margin: 0 70px;
   background-color: transparent;
+  :focus {
+    border: none;
+    outline: none;
+  }
+  :hover {
+    width: 105px;
+    height: 105px;
+  }
 `;
 
 export const AnimalChartBox = styled.div`
   width: 600px;
-  height: 450px;
+  height: 420px;
   text-align: center;
   background-color: #ffffff;
   border-radius: 15px;
@@ -139,4 +147,29 @@ export const AnimalChartImg = styled.div<InsightStyledProps>`
   display: flex;
   background-size: contain;
   background-repeat: no-repeat;
+`;
+
+export const ButtonBox = styled.div`
+  width: 200px;
+  height: 30px;
+  display: flex;
+  margin: 0.5vh auto;
+`;
+
+export const Button = styled.button`
+  width: 50px;
+  height: 27px;
+  font-family: "PP Neue Montreal";
+  font-weight: 500;
+  font-size: 16px;
+  color: #212121;
+  border: none;
+  border-bottom: 1px solid #212121;
+  margin: 0 20px 0 0;
+  :hover {
+    width: 53px;
+    height: 30px;
+    font-size: 17px;
+    font-weight: 1000;
+  }
 `;
