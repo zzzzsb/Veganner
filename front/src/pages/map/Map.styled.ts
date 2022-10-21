@@ -205,7 +205,7 @@ export const h2 = styled.h2`
 export const p = styled.p`
   display: block;
   margin-block-start: 1em;
-  // height: 40px;
+  height: 25px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   color: rgb(58, 58, 58);
@@ -229,7 +229,7 @@ export const box = styled.div`
   background-size: 10px;
   padding: 4px 6px;
   margin: 4px 9px 4px 0;
-  font-size: 13px;
+  font-size: 12px;
 `;
 
 // 페이지네이션 박스
