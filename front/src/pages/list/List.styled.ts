@@ -161,6 +161,7 @@ export const TabList = styled.li<{ active?: boolean }>`
     active &&
     css`
       border-bottom: 1px solid;
+      font-weight: 900;
     `}
 `;
 
