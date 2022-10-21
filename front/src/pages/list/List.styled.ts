@@ -1,9 +1,8 @@
 import styled, { css } from "styled-components";
 import profile from "../../assets/img/profile.png";
 
-export interface ListStyledProps {
+export interface listStyledProps {
   backgroundImage?: string;
-  backgroundColor?: string;
 }
 
 export interface ListStyledProps {
@@ -40,9 +39,8 @@ export const ListText = styled.div`
 
 export const SearchWrapper = styled.div`
   position: relative;
-  width: 630px;
+  width: 700px;
   margin: 0 auto;
-  display: flex;
 `;
 
 export const SearchBox = styled.div`
@@ -132,7 +130,7 @@ export const CardHeaderImage = styled.img`
   margin-top: 5%;
 `;
 
-export const imgWrapper = styled.div<ListStyledProps>`
+export const imgWrapper = styled.div<listStyledProps>`
   width: 88%;
   height: 250px;
   margin: 0 auto;
@@ -159,10 +157,12 @@ export const CardBottomDate = styled.div`
   margin-top: 2%;
 `;
 export const TabSection = styled.section`
-  width: 30%;
-  margin: 0 auto;
-  margin-top: 4%;
-  margin-bottom: 3%;
+  
+width: 30%;
+margin: 0 auto;
+margin-top: 4%;
+    margin-bottom: 3%;
+}
 `;
 
 export const TabListGroup = styled.ul`
