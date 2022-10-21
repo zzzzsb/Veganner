@@ -14,14 +14,12 @@ async function get(endpoint: string, params = "") {
     "color: #a25cd1;"
   );
 
-  return axios.get(
-    serverUrl + endpoint + "/" + params,
-    {
-      // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
-      headers: {
-        "Content-Type": "application/json"},
-    }
-  );
+  return axios.get(serverUrl + endpoint + "/" + params, {
+    // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 }
 
 async function post(endpoint: string, data?: any) {
