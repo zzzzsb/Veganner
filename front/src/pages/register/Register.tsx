@@ -88,9 +88,7 @@ function RegisterForm() {
             value={formData.email}
             onChange={handleonChange}
             placeholder="이메일 입력"
-          >
-            
-          </R.RegisterBox>
+          ></R.RegisterBox>
           <R.SameBox onClick={isEmailSame}>중복확인</R.SameBox>
 
           {!isEmailValid && formData.email && (
@@ -99,7 +97,6 @@ function RegisterForm() {
         </R.Position>
 
         <R.Position>
-          
           <R.PasswordBox
             type="password"
             name="password1"
@@ -116,7 +113,6 @@ function RegisterForm() {
         </R.Position>
 
         <R.Position>
-         
           <R.PasswordBox
             type="password"
             name="password2"
@@ -153,7 +149,9 @@ function RegisterForm() {
         </div>
 
         <div>
-          <R.LoginButton onClick={() => navigate("/login")}>로그인하기</R.LoginButton>
+          <R.LoginButton onClick={() => navigate("/login")}>
+            로그인하기
+          </R.LoginButton>
         </div>
       </R.WholeLayout>
     </>

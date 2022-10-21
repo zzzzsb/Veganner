@@ -34,11 +34,11 @@ function ViewList() {
       try {
         navigate("/login");
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     }
   }
-  
+
   useEffect(() => {
     const makeParam = () => {
       let params: any = {

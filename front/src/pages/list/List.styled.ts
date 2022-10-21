@@ -55,8 +55,8 @@ export const SearchButton = styled.button`
   height: 50px;
   background: #212121;
   border-radius: 50%;
-  top: 3%;
-  right: -5px;
+  top: 0%;
+  right: 1px;
   cursor: pointer;
 `;
 
@@ -82,10 +82,15 @@ export const Card = styled.div`
 
 export const CardHeader = styled.div`
   font-size: 12px;
-  height: 30px;
+  height: 54px;
   line-height: 30px;
-  border-bottom: 0.5px solid rgba(33, 33, 33, 0.3);
   position: relative;
+`;
+
+export const CardWrap = styled.div`
+  width: 100%;
+  padding: 4% 4%;
+  box-sizing: border-box;
 `;
 
 export const CardHeaderProfile = styled.span`
@@ -106,17 +111,30 @@ export const CardHeaderText = styled.span`
 export const CardHeaderImage = styled.img`
   width: 100%;
   height: auto;
+  margin-top: 5%;
 `;
 
-export const CardBottom = styled.div``;
+export const imgWrapper = styled.div`
+  width: 88%;
+  margin: 0 auto;
+  border-top: 0.5px solid rgba(33, 33, 33, 0.3);
+`;
+
+export const CardBottom = styled.div`
+  width: 88%;
+  margin: 0 auto;
+  margin-top: 3%;
+`;
 
 export const CardBottomTitle = styled.div`
   font-size: 14px;
+  margin-top: 5%;
 `;
 
 export const CardBottomDate = styled.div`
   font-size: 12px;
   color: #8f8f8f;
+  margin-top: 2%;
 `;
 export const TabSection = styled.section`
   
@@ -164,6 +182,6 @@ export const WriteButton = styled.button`
 
 export const likeWrap = styled.div`
   position: absolute;
-  right: 5%;
-  top: 0;
+  right: 6%;
+  top: 14px;
 `;

@@ -27,14 +27,18 @@ function ListCard({ postList }: Props) {
           <>
             <L.Card key={post.ID} onClick={() => navigate(`/board/${post.ID}`)}>
               <L.CardHeader>
-                <L.CardHeaderProfile></L.CardHeaderProfile>
-                <L.CardHeaderText>{post.User}</L.CardHeaderText>
-                <L.likeWrap>
-                  <FaRegThumbsUp size="20" style={{ marginTop: "4px" }} />
-                  {post.Likes}
-                </L.likeWrap>
+                <L.CardWrap>
+                  <L.CardHeaderProfile></L.CardHeaderProfile>
+                  <L.CardHeaderText>{post.User}</L.CardHeaderText>
+                  <L.likeWrap>
+                    <FaRegThumbsUp size="20" style={{ marginTop: "4px" }} />
+                    {post.Likes}
+                  </L.likeWrap>
+                </L.CardWrap>
               </L.CardHeader>
-              <L.CardHeaderImage src={`../../../../back/${post.Thumbnail}`} />
+              <L.imgWrapper>
+                <L.CardHeaderImage src={`../../../../back/${post.Thumbnail}`} />
+              </L.imgWrapper>
               <L.CardBottom>
                 <L.CardBottomTitle>{post.Title}</L.CardBottomTitle>
                 <L.CardBottomDate>
