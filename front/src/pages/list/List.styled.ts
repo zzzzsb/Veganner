@@ -73,8 +73,11 @@ export const Card = styled.div`
   display: inline-block;
   margin-right: 2%;
   margin-top: 2%;
+  cursor: pointer;
 
-  &:nth-child(4n){margin-right:0}
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
 `;
 
 export const CardHeader = styled.div`
@@ -155,7 +158,7 @@ export const WriteButton = styled.button`
   border-radius: 30px;
   border: none;
   margin-top: 2%;
-
+  cursor: pointer;
   color: #f1f1f1;
 `;
 
