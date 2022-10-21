@@ -1,5 +1,9 @@
 import styled, { css } from "styled-components";
 
+export interface listStyledProps {
+  backgroundImage?: string;
+}
+
 export const WholeLayout = styled.div`
   width: 1204px;
   margin: 0 auto;
@@ -115,10 +119,14 @@ export const CardHeaderImage = styled.img`
   margin-top: 5%;
 `;
 
-export const imgWrapper = styled.div`
+export const imgWrapper = styled.div<listStyledProps>`
   width: 88%;
+  height: 250px;
   margin: 0 auto;
   border-top: 0.5px solid rgba(33, 33, 33, 0.3);
+  background-position: center;
+  background-size: cover;
+  background-image: url(${(props) => props.backgroundImage});
 `;
 
 export const CardBottom = styled.div`

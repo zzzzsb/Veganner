@@ -1,7 +1,7 @@
 import MainMap from "../../components/Map/MainMap";
 import Resitem from "../../components/Map/Resitem";
 import React, { useState, useEffect } from "react";
-import Location from "../../datas/seoul.json";
+import Location from "../../../src/assets/data-analysis/json/seoul.json";
 import { Restaurant } from "../../types/restaurant";
 import { useNavigate } from "react-router-dom";
 import Paging from "../../components/Map/Paging";

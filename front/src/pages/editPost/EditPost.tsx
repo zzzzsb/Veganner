@@ -57,7 +57,7 @@ function EditPost() {
     try {
       await axios
         .put(
-          `https://veganner-back.herokuapp.com/board/${post.ID}/`,
+          `http://kdt-ai5-team01.elicecoding.com:5000/board/${post.ID}/`,
           formData,
           {
             headers: {

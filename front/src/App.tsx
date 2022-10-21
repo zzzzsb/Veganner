@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./styles/styles.css";
 import { Reset } from "styled-reset";
 import Header from "./components/header/Header";
 import Main from "./pages/main/Main";
@@ -8,7 +7,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import View from "./pages/postView/PostView";
 import Map from "./pages/map/Map";
-import data from "./datas/seoul.json";
+import data from "../src/assets/data-analysis/json/seoul.json";
 import ResitemDetail from "./components/Map/ResitemDetail";
 import List from "./pages/list/List";
 import Kakao from "./pages/login/Kakao";

@@ -236,7 +236,7 @@ function Insight() {
         </S.ChartLayout>
       </S.PageLayout>
 
-      <S.PageLayout height="40vh" backgroundColor="#CDEA67">
+      <S.PageLayout height="46vh" backgroundColor="#CDEA67">
         <S.RowTextBox>
           <S.TitleEngText
             fontSize={50}
@@ -264,10 +264,16 @@ function Insight() {
             비거너는 환경을 생각하는, 건강한 채식 문화를 만들어 갈 여러분을
             환영합니다!
           </S.Text>
+          <S.ButtonBox>
+            <S.WithButton
+              onClick={(e) => {
+                navigate("/board");
+              }}
+            >
+              커뮤니티 가기
+            </S.WithButton>
+          </S.ButtonBox>
         </S.RowTextBox>
-        <S.WithButton onClick={(e) => {
-            navigate("/board");
-          }}>커뮤니티 가기</S.WithButton>
       </S.PageLayout>
     </S.Insight>
   );
