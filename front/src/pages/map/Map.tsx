@@ -135,7 +135,6 @@ function Map() {
           item.number === searchValue
         : item
     );
-    console.log(searchedStores);
     setResult(searchedStores);
     navigate("/explore");
   }

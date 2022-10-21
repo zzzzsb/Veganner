@@ -130,7 +130,7 @@ function PostViewComment({ post }: postProps) {
         const res = await Api.get(`user`);
         setUserData(res.data);
       } catch (err) {
-        console.log("유저 정보 가져오기에 실패했습니다.\n", err);
+        console.error(err);
       }
     }
     getUserData();
@@ -153,7 +153,7 @@ function PostViewComment({ post }: postProps) {
         const res = await Api.get(`board/${post.ID}/comments`);
         setComments([...res.data]);
       } catch (err) {
-        console.log("댓글 불러오기에 실패했습니다.\n", err);
+        console.error(err);
       }
     }
     getComments();
@@ -175,7 +175,7 @@ function PostViewComment({ post }: postProps) {
       res = await Api.get(`board/${post.ID}/comments`);
       setComments([...res.data]);
     } catch (err) {
-      console.log("댓글 작성에 실패했습니다.\n", err);
+      console.error(err);
     } finally {
       setComment("");
     }
@@ -196,7 +196,7 @@ function PostViewComment({ post }: postProps) {
       res = await Api.get(`board/${post.ID}/comments`);
       setComments([...res.data]);
     } catch (err) {
-      console.log("댓글 삭제에 실패했습니다.\n", err);
+      console.error(err);
     }
   }
 
@@ -205,7 +205,7 @@ function PostViewComment({ post }: postProps) {
       try {
         navigate("/login");
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
   }
@@ -219,16 +219,19 @@ function PostViewComment({ post }: postProps) {
       <Line></Line>
       <InputBox>
         {userData ? (
-
           <>
             <textarea
               placeholder="댓글을 입력해보세요."
               onChange={handleInput}
               value={comment}
             />
-          <button type="button" onClick={handleSubmit} style={{backgroundColor:"black",color:"white"}}>
-            작성
-          </button>
+            <button
+              type="button"
+              onClick={handleSubmit}
+              style={{ backgroundColor: "black", color: "white" }}
+            >
+              작성
+            </button>
           </>
         ) : (
           <>

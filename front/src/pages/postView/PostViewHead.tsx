@@ -86,19 +86,6 @@ interface postProps {
   handleLike: any;
 }
 function PostViewHead({ post, like, liked, handleLike }: postProps) {
-  // useEffect(() => {
-  //   async function getLikeData() {
-  //     try {
-  //       const res = await Api.get(`board/${post.ID}/like`);
-  //       post.Likes = res.data;
-  //       console.log("get like", post.Likes);
-  //     } catch (err) {
-  //       console.log("좋아요 수 조회에 실패했습니다.\n", err);
-  //     }
-  //   }
-  //   getLikeData();
-  // }, [post, post.Likes]);
-
   return (
     <>
       <ViewTitleBlock>
@@ -120,9 +107,9 @@ function PostViewHead({ post, like, liked, handleLike }: postProps) {
         </PostInfoBlock>
         <LikeBlock>
           {liked ? (
-            <FaThumbsUp onClick={handleLike} style={{cursor:"pointer"}} />
+            <FaThumbsUp onClick={handleLike} style={{ cursor: "pointer" }} />
           ) : (
-            <FaRegThumbsUp onClick={handleLike} style={{cursor:"pointer"}}/>
+            <FaRegThumbsUp onClick={handleLike} style={{ cursor: "pointer" }} />
           )}
           {/* <span className="count">{post.Likes ? post.Likes : 0}</span> */}
           <span className="count">{like}</span>

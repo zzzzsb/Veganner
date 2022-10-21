@@ -25,30 +25,13 @@ function AddPost({ tuiEditor }: AddPostProps) {
 
   // editor DOM 선택용
   const editorRef = useRef<Editor>(null);
-  // useEffect(() => {
-  //   if (editorRef.current) {
-  //     //console.log(editorRef.current?.getInstance().getHTML());
-  //     // console.log(editorRef.current?.getInstance().getMarkdown());
-  //     setContent(editorRef.current.getInstance().getHTML());
-  //   }
-  // }, [editorRef]);
 
   const handleThumbnail = async (e: any) => {
     setThumbnail(e.target.files[0]);
-    //console.log(typeof formData);
   };
 
   const handleRegister = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // if (editorRef.current) {
-    //   setContent(editorRef.current.getInstance().getHTML());
-    //   console.log(editorRef.current.getInstance().getHTML());
-    // }
-    // 예외처리(레시피는 주소 항목 없음.)
-
-    // if (group === 1) {
-    //   setAddress("");
-    // }
     const formData = new FormData();
     formData.append("Title", title);
     if (editorRef.current) {
@@ -58,7 +41,6 @@ function AddPost({ tuiEditor }: AddPostProps) {
     formData.append("Address", address);
     formData.append("Type", type);
     if (thumbnail) formData.append("Thumbnail", thumbnail);
-    console.log(formData);
     try {
       await axios
         .post("http://kdt-ai5-team01.elicecoding.com:5000/board/", formData, {
@@ -70,7 +52,7 @@ function AddPost({ tuiEditor }: AddPostProps) {
           navigate(`/board/${res.data.ID}`);
         });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

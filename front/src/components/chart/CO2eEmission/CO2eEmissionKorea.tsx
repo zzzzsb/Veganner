@@ -78,9 +78,6 @@ const data = {
 };
 
 function CO2eEmissionKorea() {
-  // console.log(Object.keys(worldData));
-  // console.log(Object.values(Object.values(worldData)[0]));
-  //console.log(Object.keys(koreaData));
   return (
     <Container>
       <Line options={options} data={data} />

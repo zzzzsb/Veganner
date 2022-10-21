@@ -10,10 +10,8 @@ export interface EditorProps {
 
 function TuiEditor(props: EditorProps) {
   const onUploadImage = async (blob: any, callback: any) => {
-    console.log(blob);
     const formData = new FormData();
     formData.append("Image", blob);
-    console.log(formData);
 
     const { data: url } = await axios.post(
       "http://kdt-ai5-team01.elicecoding.com:5000/board/img/",
@@ -22,8 +20,8 @@ function TuiEditor(props: EditorProps) {
         headers: { "Content-Type": "multipart/form-data" },
       }
     );
-    console.log(url["Image"]);
-    const imgSrc = "http://kdt-ai5-team01.elicecoding.com:5000/board" + url["Image"];
+    const imgSrc =
+      "http://kdt-ai5-team01.elicecoding.com:5000/board" + url["Image"];
     callback(imgSrc, "image");
   };
 

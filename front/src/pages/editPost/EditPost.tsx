@@ -33,7 +33,6 @@ function EditPost() {
 
   const handleThumbnail = async (e: any) => {
     setThumbnail(e.target.files[0]);
-    //console.log(typeof formData);
   };
 
   const handleRegister = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -69,7 +68,7 @@ function EditPost() {
           navigate(`/board/${res.data.ID}`);
         });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
