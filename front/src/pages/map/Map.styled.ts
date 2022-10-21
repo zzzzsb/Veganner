@@ -13,21 +13,21 @@ export const Title = styled.div`
 
 export const Title1 = styled.div`
   text-align: center;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 500;
   line-height: 30px;
   text-align: center;
   letter-spacing: -1.2px;
   color: #004d43;
-  margin-top: 2%;
+  margin-top: 3%;
   margin-bottom: 20px;
 `;
 
 export const Title2 = styled.div`
   text-align: center;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 18px;
+  line-height: 18px;
   letter-spacing: -1.2px;
   color: #212121;
   margin-top: 1%;
