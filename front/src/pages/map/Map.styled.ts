@@ -80,6 +80,9 @@ export const search = styled.input`
   margin: 20px 10px 10px 20px;
   padding: 0 20px 0 20px;
   width: 250px;
+  :focus {
+    outline: none;
+  }
 `;
 
 // 카테고리 버튼
@@ -132,24 +135,27 @@ export const optionList = styled.ul`
   // font-size: 5px;
   width: 64px;
   border-radius: 5px;
-  border: 2px lightgray solid;
+  border: 1px solid lightgray;
   margin: -20px 4px 0px -2px;
   background-color: #ffffff;
   transition: 0.3s ease-in;
 `;
 export const optionitem = styled.li`
-  border-bottom: 2px solid lightgray;
+  border-bottom: 1px solid lightgray;
   // display: inline-block;
-  padding: 5px;
+  padding: 3px;
   margin: auto;
   transition: 0.1s;
   height: 15px;
   text-align: center;
   font-size: 5px;
-  background-color: #ffffff;
+  line-height: 14px;
 
   :hover {
     background: #cdea67;
+  }
+  &:last-child {
+    border-bottom: none;
   }
 `;
 
