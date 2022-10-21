@@ -205,6 +205,10 @@ export const likeWrap = styled.div`
   top: 14px;
 `;
 
+export const searchWrap = styled.div`
+  text-align: center;
+`;
+
 export const FilterButton = styled.button<ListStyledProps>`
   width: 50px;
   height: 50px;

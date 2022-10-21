@@ -43,40 +43,42 @@ function ListSearch({ setKeyword, ...props }: Props) {
   };
 
   return (
-    <L.SearchWrapper>
-      <L.SearchBox>
-        <L.SearchInput
-          type="text"
-          placeholder="검색"
-          autoFocus={true}
-          value={inputState}
-          onChange={handleChangeKeyword}
-        />
-        <L.SearchButton type="button" onClick={() => setKeyword(inputState)}>
-          <FaSearch color="white" size="18" />
-        </L.SearchButton>
-      </L.SearchBox>
-      {props.group !== 2 && (
-        <>
-          {!isOpen ? (
-            <L.FilterButton
-              backgroundColor="#f1f1f1"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <RiFilter3Fill color="#212121" size="25" />
-            </L.FilterButton>
-          ) : (
-            <L.FilterButton
-              backgroundColor="#212121"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <RiFilter3Fill color="#f1f1f1" size="25" />
-            </L.FilterButton>
-          )}
-          {isOpen && <SearchFilter {...props} />}
-        </>
-      )}
-    </L.SearchWrapper>
+    <L.searchWrap>
+      <L.SearchWrapper>
+        <L.SearchBox>
+          <L.SearchInput
+            type="text"
+            placeholder="검색"
+            autoFocus={true}
+            value={inputState}
+            onChange={handleChangeKeyword}
+          />
+          <L.SearchButton type="button" onClick={() => setKeyword(inputState)}>
+            <FaSearch color="white" size="18" />
+          </L.SearchButton>
+        </L.SearchBox>
+        {props.group !== 2 && (
+          <>
+            {!isOpen ? (
+              <L.FilterButton
+                backgroundColor="#f1f1f1"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <RiFilter3Fill color="#212121" size="25" />
+              </L.FilterButton>
+            ) : (
+              <L.FilterButton
+                backgroundColor="#212121"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <RiFilter3Fill color="#f1f1f1" size="25" />
+              </L.FilterButton>
+            )}
+          </>
+        )}
+      </L.SearchWrapper>
+      {isOpen && <SearchFilter {...props} />}
+    </L.searchWrap>
   );
 }
 
