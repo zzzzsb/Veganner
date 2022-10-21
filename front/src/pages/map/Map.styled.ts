@@ -223,7 +223,7 @@ export const paging = styled.div`
   justify-content: center;
   text-align: center;
   padding: 7px;
-  margin-left: 17px;
+  margin-left: 15px;
   margin-top: -53px;
   // margin-bottom: 40px;
 `;

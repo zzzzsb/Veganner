@@ -4,7 +4,6 @@ import { useState } from "react";
 import * as S from "./DetailMap.styled";
 import closeicon from "../../assets/img/closeimg.png";
 import mark from "../../assets/img/marker.png";
-import roadview from "../../assets/img/roadview.png";
 interface Markerprops {
   location: Restaurant;
 }
