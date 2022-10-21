@@ -187,13 +187,13 @@ export const TabList = styled.li<{ active?: boolean }>`
 
 export const WriteButton = styled.button`
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: 30px;
+  right: 30px;
 
   // position: absolute;
   // right: 0;
-  width: 60px;
-  height: 30px;
+  width: 120px;
+  height: 40px;
 
   font-style: normal;
   font-weight: 400;
