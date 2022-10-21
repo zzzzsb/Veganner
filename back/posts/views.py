@@ -23,7 +23,7 @@ class PostAllGetAPI(APIView):
     def get(self, request):
         items = Posts.objects
         Page = 1
-        Sort = "CreationTime"
+        Sort = "-CreationTime"
         keys = request.GET.keys()
 
         q = Q()

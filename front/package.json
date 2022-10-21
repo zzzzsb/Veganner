@@ -15,8 +15,8 @@
     "@types/react-js-pagination": "^3.0.4",
     "@types/styled-components": "^5.1.26",
     "axios": "^1.1.2",
-    "date-fns": "^2.29.3",
     "chart.js": "^3.9.1",
+    "date-fns": "^2.29.3",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
@@ -60,5 +60,5 @@
   "devDependencies": {
     "@types/styled-components": "^5.1.26"
   },
-  "proxy": "https://veganner-back.herokuapp.com/"
+  "proxy": "http://kdt-ai5-team01.elicecoding.com:5000/"
 }

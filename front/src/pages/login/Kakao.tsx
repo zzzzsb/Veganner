@@ -34,7 +34,7 @@ function KakaoLogin() {
         if (data.access_token) {
           localStorage.setItem("token", data.access_token);
 
-          fetch(`https://veganner-back.herokuapp.com/kakao/login/`, {
+          fetch(`http://kdt-ai5-team01.elicecoding.com:5000/kakao/login/`, {
             credentials: "include",
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -44,7 +44,7 @@ function KakaoLogin() {
           }).then((res) => {
             localStorage.clear();
             window.sessionStorage.setItem("email", "kakao");
-            setUser({ email: "kakao", password: "" });
+            // setUser({ email: res.data.email, password: res.data.password });
             navigate("/", { state: pathname });
           });
         } else {
