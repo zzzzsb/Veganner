@@ -50,7 +50,7 @@ export const Position = styled.div`
 `;
 
 export const RegisterBox = styled.input`
-  width: 393px;
+  width: 378px;
   height: 52px;
   border: 1px solid #d9d9d9;
   border-radius: 5px;
@@ -58,12 +58,16 @@ export const RegisterBox = styled.input`
   margin: 0 auto;
   position: relative;
   margin-bottom: 3%;
+  padding-left: 20px;
+  :focus {
+    outline: none;
+  }
 `;
 
 export const SameBox = styled.button`
-  width: 110px;
-  height: 44px;
-  background: #004d43;
+  width: 80px;
+  height: 35px;
+  background: #b6b6b6;
   border-radius: 50px;
   border: none;
   color: white;
@@ -74,10 +78,11 @@ export const SameBox = styled.button`
   top: 86px;
   right: 0;
   z-index: 999;
+  margin-top: 4px;
 `;
 
 export const PasswordBox = styled.input`
-  width: 393px;
+  width: 378px;
   height: 52px;
   border: 1px solid #d9d9d9;
   border-radius: 5px;
@@ -86,6 +91,10 @@ export const PasswordBox = styled.input`
   position: relative;
   margin-bottom: 3%;
   margin-top: 2%;
+  padding-left: 20px;
+  :focus {
+    outline: none;
+  }
 `;
 
 export const LoginButton = styled.button`
@@ -101,7 +110,6 @@ export const LoginButton = styled.button`
   font-size: 18px;
   border: none;
   margin-top: 3%;
-      
 `;
 
 export const RegisterButton = styled.button`
