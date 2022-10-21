@@ -24,6 +24,7 @@ export const ListText = styled.div`
   line-height: 22px;
   letter-spacing: -1.2px;
   color: #212121;
+  margin-top: 1%;
 `;
 
 export const SearchWrapper = styled.div`
