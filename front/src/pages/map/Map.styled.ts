@@ -12,16 +12,25 @@ export const Title = styled.div`
 `;
 
 export const Title1 = styled.div`
-  margin: 15px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 34px;
+  text-align: center;
+  letter-spacing: -1.2px;
   color: #004d43;
-  height: 20px;
-  font-size: 25px;
-  // font-weight: bold;
+  margin-top: 2%;
 `;
 
 export const Title2 = styled.div`
-  margin: 20px 0 0 0;
-  font-size: 20px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 22px;
+  letter-spacing: -1.2px;
+  color: #212121;
+  margin-top: 1%;
+  margin-bottom:3%
 `;
 export const Layout = styled.section`
   display: flex;
@@ -33,6 +42,7 @@ export const Layout = styled.section`
   border-radius: 5px;
   font-family: Noto Sans KR;
   overflow: hidden;
+  margin-bottom:3%
 `;
 
 //

@@ -14,11 +14,12 @@ export const WholeLayout = styled.div`
   width: 1204px;
   margin: 0 auto;
   position: relative;
+  font-family: Noto Sans KR;
 `;
 
 export const ListTitle = styled.div`
   text-align: center;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 500;
   line-height: 34px;
   text-align: center;
@@ -30,11 +31,11 @@ export const ListTitle = styled.div`
 export const ListText = styled.div`
   text-align: center;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 22px;
   letter-spacing: -1.2px;
   color: #212121;
-  margin-top: 1%;
+  margin-top: 1.5%;
 `;
 
 export const SearchWrapper = styled.div`
