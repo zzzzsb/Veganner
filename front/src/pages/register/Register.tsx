@@ -55,7 +55,7 @@ function RegisterForm() {
     try {
       // "registration" 엔드포인트로 post요청함.
       await Api.post("registration/", formData);
-      alert("가입하신 이메일로 인증메일을 보냈습니다.");
+      alert("가입하신 이메일로 인증메일을 보냈습니다.\n인증해주시면 가입이 완료됩니다.");
       // 로그인 페이지로 이동함.
       navigate("/login");
     } catch (err) {
