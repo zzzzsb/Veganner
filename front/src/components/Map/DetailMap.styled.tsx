@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IoCloseSharp } from "react-icons/io5";
 
 export const DetailMap = styled.div`
   position: flex;
@@ -9,29 +10,22 @@ export const DetailMap = styled.div`
 
 export const wrap = styled.div`
   display: block;
-  height: 150px;
-  width: 300px;
-  border-radius: 10px;
+  height: 120px;
+  width: 210px;
   background-color: white;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
 `;
 
 export const info = styled.div`
-  display: flex;
-  height: 50px;
+  display: block;
+  height: 25px;
+  // float: right;
   background-color: #e2e2e2;
-  border-radius: 10px;
-`;
-export const title = styled.div`
-  width: 250px;
-  font-size: 20px;
-  flex-direction: row;
-  margin: 15px;
-  text-align: center;
 `;
 
-export const close = styled.img`
-  flex-direction: row;
-  width: 50px;
+export const close = styled(IoCloseSharp)`
+  float: right;
+  // text-align: right;
 `;
 
 export const body = styled.div`
@@ -39,13 +33,22 @@ export const body = styled.div`
 `;
 
 export const desc = styled.div`
-  display: flex;
+  display: block;
 `;
 
-export const ell = styled.div`
-  display: flex;
-  margin: 15px;
+export const title = styled.h2`
+  display: block;
+  width: 250px;
+  font-size: 14px;
+  // flex-direction: column;
+  margin: 13px 0 0 15px;
+  // text-align: center;
+`;
+export const ell = styled.p`
+  display: block;
+  margin: 10px 15px 15px 15px;
   word-break: keep-all;
+  font-size: 9px;
   white-space: normal;
   line-height: 1.5;
 `;

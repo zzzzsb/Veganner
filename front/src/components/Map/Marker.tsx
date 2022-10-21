@@ -4,6 +4,7 @@ import { useState } from "react";
 import * as S from "./DetailMap.styled";
 import closeicon from "../../assets/img/closeimg.png";
 import mark from "../../assets/img/marker.png";
+import { IoCloseSharp } from "react-icons/io5";
 interface Markerprops {
   location: Restaurant;
 }
@@ -31,15 +32,15 @@ function Marker({ location }: Markerprops) {
         <CustomOverlayMap position={{ lat: location.y, lng: location.x }}>
           <S.wrap>
             <S.info>
-              <S.title>{location.name}</S.title>
               <S.close
-                src={closeicon}
+                color="gray"
+                size="25"
                 onClick={() => setIsOpen(false)}
-                title="닫기"
-              ></S.close>
+              />
             </S.info>
             <S.body>
               <S.desc>
+                <S.title>{location.name}</S.title>
                 <S.ell>{location.location}</S.ell>
               </S.desc>
               {/* <S.road src={roadview} onClick={() => setRoadOpen(!roadOpen)} />

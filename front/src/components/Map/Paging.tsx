@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Pagination from "react-js-pagination";
 import * as S from "../../pages/map/Map.styled";
 import "./paging.css";
