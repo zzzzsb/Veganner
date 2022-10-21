@@ -5,7 +5,7 @@ import logo from "../../assets/img/Veganner_logo.png";
 export const HeaderWrapper = styled.header`
   width: 100%;
   height: 65px;
-  margin: 0 15px;
+  margin: 0 1.5vw;
   display: flex;
   align-items: center;
   font-family: "PP Neue Montreal";
@@ -19,7 +19,7 @@ export const HeaderLogo = styled(Link)`
   background-position: 50% 45%;
 `;
 
-export const Navbar = styled.div`
+export const Navbar = styled.nav`
   width: 200px;
   // background-color: #ffffff;
   font-size: 16px;
@@ -37,5 +37,11 @@ export const StyledLink = styled(Link)`
   text-align: center;
 
   &:last-child {
+    margin-left: 22vw;
+  }
+  @media (max-width: 1200px) {
+    &:last-child {
+      margin: 0 20px;
+    }
   }
 `;
