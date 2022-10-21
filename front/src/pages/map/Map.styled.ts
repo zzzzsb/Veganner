@@ -32,6 +32,7 @@ export const Layout = styled.section`
   height: 730px;
   border-radius: 5px;
   font-family: Noto Sans KR;
+  overflow: hidden;
 `;
 
 //
@@ -141,6 +142,7 @@ export const optionitem = styled.li`
   }
 `;
 
+//auto 건들지 말기
 export const resContainer = styled.div`
   position: block;
   width: 330px;
@@ -156,6 +158,15 @@ export const restaurant = styled.div`
   border-bottom: 2px solid #f1f1f1;
   padding: 20px 30px;
   height: 100px;
+`;
+
+export const detailres = styled.div`
+  display: block;
+  border-bottom: 2px solid #f1f1f1;
+  padding: 20px 30px;
+  height: 140px;
+  margin: 0 auto;
+  // width: 330px;
 `;
 
 export const stylelink = styled(Link)`
@@ -228,7 +239,7 @@ export const paging = styled.div`
 
 //
 export const icon = styled.div`
-  height: 30px;
+  height: 20px;
 `;
 export const backicon = styled.img`
   margin: 10px 0 0 10px;
