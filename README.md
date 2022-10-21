@@ -1,48 +1,136 @@
 # Veganner
+
+“지구를 위한 채식 실천, 비거너에서 함께해요!”
 - 비건 식당과 레시피를 공유하고, 지도에서 비건 식당 정보를 찾아볼 수 있는 웹사이트
-- 지구를 위한 채식 실천, 비거너에서 함께해요!
-
-## 프로젝트 구성 안내
-
-* `bullet point 에 적힌 내용을 수정해 주시면 됩니다.`
-
-* `초기 기획은 언제든 수정될 수 있으니 웹서비스 결과를 내는데 초점을 두시기 바랍니다.`
 
 ## 1. 프로젝트 소개
 
-**사용한 데이터셋과 도구 및 기술, 엔드유저에게 보이는 웹서비스에 대한 소개**
+**어떠한 데이터셋와 도구 및 기술을 사용했는지에 대한 설명과 엔드유저에게 보이는 웹서비스에 대한 소개**
 
-  - 사용한 데이터 명시, 이에 대한 설명
-  - **프론트엔드**: React, TypeScript, recoil, styled-component, react-query, Axios, Chartjs, 카카오 지도 API
-  - **백엔드**: Django, Django REST Framework, dj_rest_auth, MySQL(ERD Cloud 사용하여 설계,Oracle Cloud 사용하여 구축)
-  - **데이터분석**: python, pandas, numpy, matplotlib 사용
-  - 추가 ) **웹서비스에 대한 자세한 개요**
+### 사용한 데이터 셋
+
+- 사용하려는 데이터(제안된 데이터 중 하나 또는 선택한 다른 데이터 세트)를 명시, 이에 대한 설명
+  - 기술 스택 (python, d3, pandas, jupyter, javascript, MySQL 등)
+  - 사용된 라이브러리 (numpy, matplotlib, wordcloud 등)
+  - 웹서비스에 대한 자세한 개요
+
+**[메인, 소개페이지에서 사용할 육류, 자동차, 온실가스 관련 데이터 세트]**
+
+- FoodEmissions
+    - [https://www.kaggle.com/datasets/amandaroseknudsen/foodproductemissions](https://www.kaggle.com/datasets/amandaroseknudsen/foodproductemissions)
+    - 음식 종류별 온실가스 배출량
+    - 육류별 자동차 주행거리
+- GLEAM livestock emissions
+    - [https://www.kaggle.com/datasets/amandaroseknudsen/gleamlivestockemissions](https://www.kaggle.com/datasets/amandaroseknudsen/gleamlivestockemissions)
+    - 축산업에서 온실가스 종류별 배출량
+- 현대자동차 그랜저 CO2 배출량
+    - [https://bpms.kemco.or.kr:444/transport_2012/car/car_choice.aspx?serorigin=1&serecode=100&serfuel=&sergear=&sercartype=&sergrade=&sertypegb=&sertab=&otype=&ptype=&f=system&sermileage1=&sermileage2=&serco21=&serco22=&seramt1=&seramt2=&sermname=&serstyear=#search_top](https://bpms.kemco.or.kr:444/transport_2012/car/car_choice.aspx?serorigin=1&serecode=100&serfuel=&sergear=&sercartype=&sergrade=&sertypegb=&sertab=&otype=&ptype=&f=system&sermileage1=&sermileage2=&serco21=&serco22=&seramt1=&seramt2=&sermname=&serstyear=#search_top)
+- 한국 연도별 육류 소비량
+    - [http://www.kmta.or.kr/kr/data/stats_spend.php](http://www.kmta.or.kr/kr/data/stats_spend.php)
+    - 연도별 / 종류별 전체소비량
+    - 연도별 / 종류별 1인당소비량
+
+**[비건 식당 지도 데이터세트]**
+
+- 서울시 채식전문/가능 식당
+    - [https://www.data.go.kr/data/15054128/fileData.do](https://www.data.go.kr/data/15054128/fileData.do)
+    - 식당이름, 장소, 채식가능/채식전문, 업종(한식, 중식, 양식… etc)
+
+### 기술스택
+
+**데이터분석**
+
+- jupyter notebook에서 python, numpy, matplotlib 등 사용해 데이터 분석
+
+**프론트엔드**
+
+- React, TypeScript, Recoil, styled-component
+- Chart.js(react-chartjs-2) 라이브러리 사용해 데이터 시각화
+- 카카오맵 API 사용하여 지도 구현
+
+**백엔드**
+
+- Django, Django REST Framework, dj_rest_auth
+- MySQL(ERD Cloud 사용하여 설계,Oracle Cloud 사용하여 구축)
 
 ## 2. 프로젝트 목표
 
 **데이터 분석 결과로 도출되는 인사이트와 웹서비스의 해결과제에 대한 논의 (50자 이상)**
-  - 프로젝트 아이디어 동기
+
+- 프로젝트 아이디어 동기
   - 문제를 해결하기 위한 특정 질문 명시
   - 데이터를 통해 탐색하려는 문제를 구체적으로 작성
+
+인사이트:
+
+데이터 분석 결과 온실가스 배출량은 계속해서 증가하는 추세였습니다.
+
+그중에서도 식품 생산 과정 중 온실가스 배출량 1위 품목이 “육류"인 것에 주목했습니다.
+
+심지어, 상대적으로 연비가 좋아 친환경 모델로 평가받는 현대 그랜저 하이브리드 모델과 육류의 온실가스 배출량을 비교해봐도,
+
+소고기 1kg를 생산할 때 배출되는 온실가스 량과 해당 자동차가 약 1000km 주행했을때 배출되는 온실가스 배출량과 같았습니다.
+
+더불어 가축 생산시에도 메탄과 이산화탄소 등 온실효과를 유발하는 유해물질이 많이 배출되고 있음을 확인했습니다.
+
+이처럼 육류 생산으로 인해 환경이 파괴되고 있지만, 세계/국내 육류 소비량은 계속해서 증가하는 양상을 보였습니다.
+
+**Giving up meat just one day a week can help save the Earth**
+
+**일주일에 하루만 고기를 안먹어도 지구를 살릴수있다.**
+
+비거너의 개발 동기가 되었던 문장입니다. 
+
+육류 소비를 줄인다면, 온실가스 배출을 줄여 환경을 보호할 수 있지 않을까요?
+
+이런 인사이트와 결론을 마음에 새기며, 
+
+함께하는 비건라이프를 주제로 비건 식당과 레시피를 공유하고, 지도에서 비건 식당을 찾아볼 수 있는 웹사이트를 개발하게 되었습니다.
+
+Veganner는 일상에서 육류 식단 대신 채식을 실천하면, 환경보호에 동참할 수 있다는 가치를 전달하고자 합니다.
 
 ## 3. 프로젝트 기능 설명
 
 **웹서비스의 유용성, 편의성 및 시각화의 실용성에 대한 설명**
-  - 주요 기능: 커뮤니티를 통한 비건 식당/레시피 공유, 지도를 통해 비건 식당 목록 조회, 필터 기반 검색(지역별, 종류별, 상황별)
-  - 프로젝트만의 차별점, 기대 효과: 
+
+### 주요기능
+
+- 커뮤니티를 통한 비건 식당/레시피 게시물 작성 및 공유
+- 지도를 통해 서울시 비건 식당 목록 조회, 필터 기반 검색 구현(지역,종류,상황별)
+- 데이터 시각화를 통해 육류 생산과 소비가 환경에 악영향을 준다는 메시지 제공
+
+### 서브기능
+
+- 회원가입(+카카오 로그인), 로그인
+- 게시글 수정, 삭제 가능
+- 게시글 댓글 작성, 수정, 삭제 가능
+- 게시글 좋아요 누르기
+
+### 프로젝트만의 차별점, 기대 효과
 
 ## 4. 프로젝트 구성도
-  - 와이어프레임/스토리보드 추가
+
+- 와이어프레임(Figma): [https://www.figma.com/file/05xxQrYEBIVL5WNOFSqnKu/데이터분석-프로젝트-(Copy)?node-id=1%3A2](https://www.figma.com/file/05xxQrYEBIVL5WNOFSqnKu/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-(Copy)?node-id=1%3A2)
 
 ## 5. 프로젝트 팀원 역할 분담
+
 | 이름 | 담당 업무 |
 | ------ | ------ |
-| 지수빈 | 팀장/프론트엔드 개발/디자인/기획 |
+| 지수빈 | 팀장/프론트엔드 개발/디자인/기획/데이터시각화 |
 | 문동규 | 백엔드 개발/기획 |
 | 김현정 | 프론트엔드 개발/데이터 분석/디자인/기획 |
 | 이재경 | 프론트엔드 개발/디자인/기획 |
 | 김진우 | 백엔드 개발/기획 |
 | 김예린 | 프론트엔드 개발/데이터 분석/ 기획
+
+| 이름 | 담당 업무 |
+| --- | --- |
+| 지수빈 | 프론트엔드/디자인/기획/데이터시각화/팀장 |
+| 김진우 | 백엔드/기획 |
+| 김예린 | 프론트엔드/데이터 분석/ 기획 |
+| 김현정 | 프론트엔드/데이터 분석/디자인/기획 |
+| 문동규 | 백엔드/기획 |
+| 이재경 | 프론트엔드/디자인/기획 |
 
 **멤버별 responsibility**
 
@@ -58,7 +146,7 @@
 - 개발 단계: 와이어프레임을 기반으로 구현, 데이터 처리 및 시각화 담당, UI 디자인 완성
 - 수정 단계: 피드백 반영해서 프론트 디자인 수정
 
- 3. 백엔드 & 데이터 담당  
+ 3. 백엔드 & 데이터 담당
 
 - 기획 단계: 기획 데이터 분석을 통해 해결하고자 하는 문제를 정의
 - 개발 단계: 웹 서버 사용자가 직접 백엔드에 저장할수 있는 기능 구현, 데이터 베이스 구축 및 API 활용, 데이터 분석 개념 총동원하기
