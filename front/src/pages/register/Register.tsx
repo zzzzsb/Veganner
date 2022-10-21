@@ -83,7 +83,7 @@ function RegisterForm() {
       <R.WholeLayout>
         <R.Wrapper>
           <R.RegisterTitle>회원가입</R.RegisterTitle>
-          <R.SameBox onClick={isEmailSame}>중복확인</R.SameBox>
+          <R.SameBox onClick={isEmailSame} disabled={!isEmailValid}>중복확인</R.SameBox>
         </R.Wrapper>
         <R.LayoutForm onSubmit={handleSubmit}>
           <R.Position>
@@ -97,7 +97,7 @@ function RegisterForm() {
             ></R.RegisterBox>
 
             {!isEmailValid && formData.email && (
-              <div className="text-success">
+              <div className="text-success" style={{textAlign:"center"}}>
                 이메일 형식이 올바르지 않습니다.
               </div>
             )}
@@ -113,7 +113,7 @@ function RegisterForm() {
               placeholder="비밀번호 입력"
             />
             {!isPasswordValid && formData.password1 && (
-              <div className="text-success">
+              <div className="text-success" style={{textAlign:"center"}}>
                 비밀번호는 8글자 이상으로 설정해 주세요.
               </div>
             )}
@@ -129,7 +129,7 @@ function RegisterForm() {
               placeholder="비밀번호 확인"
             />
             {!isPasswordSame && (
-              <div className="text-success">비밀번호가 일치하지 않습니다.</div>
+              <div className="text-success" style={{textAlign:"center"}}>비밀번호가 일치하지 않습니다.</div>
             )}
           </R.Position>
 

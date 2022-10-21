@@ -57,6 +57,7 @@ export const RegisterBox = styled.input`
   display: block;
   margin: 0 auto;
   position: relative;
+  margin-bottom: 3%;
 `;
 
 export const SameBox = styled.button`
@@ -100,6 +101,7 @@ export const LoginButton = styled.button`
   font-size: 18px;
   border: none;
   margin-top: 3%;
+      
 `;
 
 export const RegisterButton = styled.button`
