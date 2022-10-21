@@ -58,6 +58,7 @@ export const SearchInput = styled.input`
   border: 1px solid #000000;
   border-radius: 30px;
   padding-left: 6%;
+  font-size: 16px;
   box-sizing: border-box;
   :focus {
     outline: none;
