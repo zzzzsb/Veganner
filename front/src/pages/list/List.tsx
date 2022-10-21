@@ -51,7 +51,7 @@ function ViewList() {
         params.Address = region;
       }
       if (group == 2) {
-        setType("전체")
+        setType("전체");
         setRegion("전체");
       }
       if (group !== 2) {
