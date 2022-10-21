@@ -168,14 +168,14 @@ export const restaurant = styled.div`
   display: block;
   border-bottom: 2px solid #f1f1f1;
   padding: 20px 30px;
-  height: 100px;
+  height: 90px;
 `;
 
 export const detailres = styled.div`
   display: block;
   border-bottom: 2px solid #f1f1f1;
   padding: 20px 30px;
-  height: 140px;
+  height: 120px;
   margin: 0 auto;
   // width: 330px;
 `;
@@ -183,6 +183,8 @@ export const detailres = styled.div`
 export const stylelink = styled(Link)`
   text-decoration-line: none;
 `;
+
+export const resitemtitle = styled.h2``;
 
 export const h2 = styled.h2`
   display: block;
@@ -197,7 +199,7 @@ export const h2 = styled.h2`
 export const p = styled.p`
   display: block;
   margin-block-start: 1em;
-  height: 40px;
+  // height: 40px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   color: rgb(58, 58, 58);
@@ -207,7 +209,7 @@ export const p = styled.p`
 
 export const boxdiv = styled.div`
   display: block;
-  margin: 5px 0;
+  margin: 10px 0;
   height: 30px;
 `;
 
