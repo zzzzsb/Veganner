@@ -255,7 +255,7 @@ function PostViewComment({ post }: postProps) {
               </span>
             </CommentsInfo>
             <div className="comment">{comment.Comment}</div>
-            <button>답글</button>
+            {/* <button>답글</button> */}
             {userData && userData.email === comment.User_id && (
               <button
                 type="button"
