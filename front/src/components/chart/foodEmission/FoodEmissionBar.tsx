@@ -126,5 +126,5 @@ function FoodEmissionBar() {
 export default FoodEmissionBar;
 
 const Container = styled.div`
-  width: 550px;
+  width: 500px;
 `;

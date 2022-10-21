@@ -48,5 +48,5 @@ function CowLivestockEmission() {
 export default CowLivestockEmission;
 
 const Container = styled.div`
-  width: 300px;
+  width: 400px;
 `;

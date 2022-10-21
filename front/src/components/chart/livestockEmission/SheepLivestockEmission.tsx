@@ -48,5 +48,5 @@ function SheepLivestockEmission() {
 export default SheepLivestockEmission;
 
 const Container = styled.div`
-  width: 300px;
+  width: 400px;
 `;

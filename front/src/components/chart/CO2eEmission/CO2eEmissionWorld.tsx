@@ -138,5 +138,5 @@ function CO2eEmissionWorld() {
 export default CO2eEmissionWorld;
 
 const Container = styled.div`
-  width: 800px;
+  width: 750px;
 `;

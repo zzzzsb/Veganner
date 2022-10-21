@@ -91,5 +91,5 @@ function CO2eEmissionKorea() {
 export default CO2eEmissionKorea;
 
 const Container = styled.div`
-  width: 800px;
+  width: 750px;
 `;

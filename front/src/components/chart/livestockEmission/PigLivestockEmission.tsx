@@ -48,5 +48,5 @@ function PigLivestockEmission() {
 export default PigLivestockEmission;
 
 const Container = styled.div`
-  width: 300px;
+  width: 400px;
 `;

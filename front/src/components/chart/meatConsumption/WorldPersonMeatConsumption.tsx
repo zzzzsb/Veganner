@@ -115,5 +115,5 @@ function WorldPersonMeatConsumption() {
 export default WorldPersonMeatConsumption;
 
 const Container = styled.div`
-  width: 800px;
+  width: 600px;
 `;

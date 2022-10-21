@@ -48,5 +48,5 @@ function TotalLivestockEmission() {
 export default TotalLivestockEmission;
 
 const Container = styled.div`
-  width: 300px;
+  width: 400px;
 `;
