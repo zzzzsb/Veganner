@@ -66,30 +66,23 @@ const Line = styled.div`
 
 interface postProps {
   post: any;
+  like: number;
+  liked: boolean;
+  handleLike: any;
 }
-function PostViewHead({ post }: postProps) {
-  const [liked, setLiked] = useState(false);
-
-  async function handleLike() {
-    try {
-      let res = await Api.post(`board/${post.ID}/like/`);
-      liked ? setLiked(false) : setLiked(true);
-    } catch (err) {
-      console.log("좋아요 실패\n", err);
-    }
-  }
-
-  useEffect(() => {
-    async function getLikeData() {
-      try {
-        const res = await Api.get(`board/${post.ID}/like`);
-        post.Likes = res.data;
-      } catch (err) {
-        console.log("좋아요 수 조회에 실패했습니다.\n", err);
-      }
-    }
-    getLikeData();
-  }, [post, post.Likes]);
+function PostViewHead({ post, like, liked, handleLike }: postProps) {
+  // useEffect(() => {
+  //   async function getLikeData() {
+  //     try {
+  //       const res = await Api.get(`board/${post.ID}/like`);
+  //       post.Likes = res.data;
+  //       console.log("get like", post.Likes);
+  //     } catch (err) {
+  //       console.log("좋아요 수 조회에 실패했습니다.\n", err);
+  //     }
+  //   }
+  //   getLikeData();
+  // }, [post, post.Likes]);
 
   return (
     <>
@@ -116,7 +109,8 @@ function PostViewHead({ post }: postProps) {
           ) : (
             <FaRegThumbsUp onClick={handleLike} />
           )}
-          <span className="count">{post.Likes ? post.Likes : 0}</span>
+          {/* <span className="count">{post.Likes ? post.Likes : 0}</span> */}
+          <span className="count">{like}</span>
         </LikeBlock>
       </ViewInfoBlock>
       <Line></Line>

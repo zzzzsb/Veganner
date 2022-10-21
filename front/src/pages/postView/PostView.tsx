@@ -29,31 +29,41 @@ const ErrorPage = styled.div`
   margin-top: 100px;
 `;
 
+interface Post {
+  ID?: number;
+  User: string;
+  Title: string;
+  Content: string;
+  Thumbnail?: string;
+  Type?: string;
+  Hashtag?: string;
+  CreationTime?: string;
+  Groups: number;
+  RestaurantId?: number;
+  Address?: string;
+  // Likes: number;
+}
+
 function PostView() {
   const navigate = useNavigate();
   const { postId } = useParams();
-  interface Post {
-    ID?: number;
-    User: string;
-    Title: string;
-    Content: string;
-    Thumbnail?: string;
-    Type?: string;
-    Hashtag?: string;
-    CreationTime?: string;
-    Groups: number;
-    RestaurantId?: number;
-    Address?: string;
-    Likes?: number;
-  }
 
   const [post, setPost] = useState<Post | null>(null);
+  const [like, setLike] = useState(0);
 
   useEffect(() => {
     async function getPost() {
       try {
-        let res = await Api.get(`board/${postId}`);
-        setPost(res.data);
+        const board = await Api.get(`board/${postId}`);
+        setPost(board.data);
+        console.log("get board", board.data);
+        const like = await Api.get(`board/${postId}/like`);
+        console.log("get like in board", like.data);
+        // setPost({
+        //   ...board.data,
+        //   Likes: like.data,
+        // });
+        setLike(like.data);
       } catch (err) {
         console.log("글 불러오기를 실패했습니다.\n", err);
         // navigate("/share", { replace: true });
@@ -62,10 +72,34 @@ function PostView() {
     getPost();
   }, [postId, navigate]);
 
+  const [liked, setLiked] = useState(false);
+
+  async function handleLike() {
+    try {
+      const res = await Api.post(`board/${postId}/like/`);
+      console.log("post like", res.data);
+      const like = await Api.get(`board/${postId}/like`);
+      setLike(like.data);
+      // post.Likes = like.data;
+      // setPost({
+      //   ...post,
+      //   Likes: like.data,
+      // })
+      liked ? setLiked(false) : setLiked(true);
+    } catch (err) {
+      console.log("좋아요 실패\n", err);
+    }
+  }
+
   if (post) {
     return (
       <PostViewLayout>
-        <PostViewHead post={post}></PostViewHead>
+        <PostViewHead
+          post={post}
+          like={like}
+          liked={liked}
+          handleLike={handleLike}
+        ></PostViewHead>
         <PostViewContent post={post}></PostViewContent>
         <PostViewComment post={post}></PostViewComment>
       </PostViewLayout>
