@@ -193,8 +193,6 @@ export const box = styled.div`
   display: flex;
   float: left;
   text-align: center;
-  word-break:break-all
-  height: 30px;
   border-radius: 9999px;
   border: 2px solid #cdea67;
   background: #cdea67;
