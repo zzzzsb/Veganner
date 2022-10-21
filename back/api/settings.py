@@ -121,7 +121,7 @@ WSGI_APPLICATION = 'api.wsgi.application'
 CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000',
                          'http://localhost:3000',
                          'http://kdt-ai5-team01.elicecoding.com:3000',
-                         'http://kdt-ai5-team01.elicecoding.com']
+                         'http://kdt-ai5-team01.elicecoding.com:80']
 CORS_ALLOW_CREDENTIALS = True
 
 # Database
