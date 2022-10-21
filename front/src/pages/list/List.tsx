@@ -98,9 +98,9 @@ function ViewList() {
         />
         {postList.length !== 0 && <ListCard postList={postList} />}
         {email === null ? (
-          <L.WriteButton onClick={handleNoSubmit}>글쓰기</L.WriteButton>
+          <L.WriteButton onClick={handleNoSubmit}>글 작성하기</L.WriteButton>
         ) : (
-          <L.WriteButton onClick={navigateToAddPost}>글쓰기</L.WriteButton>
+          <L.WriteButton onClick={navigateToAddPost}>글 작성하기</L.WriteButton>
         )}
       </L.WholeLayout>
       <div>

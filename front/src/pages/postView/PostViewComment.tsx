@@ -218,23 +218,32 @@ function PostViewComment({ post }: postProps) {
       </CommentLabel>
       <Line></Line>
       <InputBox>
-        <textarea
-          placeholder="로그인하고 댓글을 입력해보세요."
-          onChange={handleInput}
-          value={comment}
-        />
         {userData ? (
-          <button type="button" onClick={handleSubmit}>
-            작성
-          </button>
+          <>
+            <textarea
+              placeholder="댓글을 입력해보세요."
+              onChange={handleInput}
+              value={comment}
+            />
+            <button type="button" onClick={handleSubmit}>
+              작성
+            </button>
+          </>
         ) : (
-          <button
-            type="button"
-            // onClick={() => alert("로그인하고 댓글을 남겨주세요.")}
-            onClick={handleNoSubmit}
-          >
-            작성
-          </button>
+          <>
+            <textarea
+              placeholder="로그인하고 댓글을 입력해보세요."
+              onChange={handleInput}
+              value={comment}
+            />
+            <button
+              type="button"
+              // onClick={() => alert("로그인하고 댓글을 남겨주세요.")}
+              onClick={handleNoSubmit}
+            >
+              작성
+            </button>
+          </>
         )}
       </InputBox>
       {comments.map((comment: Comment): any => {

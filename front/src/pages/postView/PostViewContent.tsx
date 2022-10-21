@@ -48,6 +48,7 @@ export const ButtonBlock = styled.div`
     border-radius: 30px;
     color: #004d43;
     box-sizing: border-box;
+    margin: auto 5px;
   }
 `;
 
