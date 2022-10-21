@@ -37,7 +37,7 @@
 
 **프론트엔드**
 
-- React, TypeScript, Recoil, styled-component
+- React, TypeScript, Recoil, styled-components
 - Chart.js(react-chartjs-2) 라이브러리 사용해 데이터 시각화
 - 카카오맵 API 사용하여 지도 구현
 
