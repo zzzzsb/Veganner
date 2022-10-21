@@ -23,8 +23,8 @@ function ResitemDetail({ detail }: ItemProps) {
             <Link to="/explore">
               <S.backicon
                 src={back}
-                width="24"
-                height="24"
+                width="22"
+                height="22"
                 className="backIcon"
               />
             </Link>
@@ -32,8 +32,14 @@ function ResitemDetail({ detail }: ItemProps) {
           <S.resContainer>
             <S.detailres>
               <S.h2>{`${matched.name}`}</S.h2>
-              <S.p>주소 : {`${matched.location}`}</S.p>
-              <S.p>전화번호 : {`${matched.number}`}</S.p>
+              <S.p>
+                주소 : {`${matched.location}`}
+                <br />
+                <br />
+                전화번호 : {`${matched.number}`}
+              </S.p>
+              <br />
+              <br />
               <S.boxdiv>
                 <S.box>{matched.industry}</S.box>
                 <S.box>{matched.food}</S.box>
