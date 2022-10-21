@@ -107,9 +107,9 @@ function PostViewContent({ post }: postProps) {
         {<div dangerouslySetInnerHTML={{ __html: post.Content }}></div>}
       </ViewContentBlock>
       <ViewBottomBlock>
-        <HashtagBlock>
+        {/* <HashtagBlock>
           <div className="hashtag">{post.Hashtag ? post.Hashtag : "#"}</div>
-        </HashtagBlock>
+        </HashtagBlock> */}
         {userData && userData.email === post.User && (
           <ButtonBlock>
             <button type="button" onClick={handleEditButton}>
