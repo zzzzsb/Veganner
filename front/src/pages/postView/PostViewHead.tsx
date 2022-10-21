@@ -120,9 +120,9 @@ function PostViewHead({ post, like, liked, handleLike }: postProps) {
         </PostInfoBlock>
         <LikeBlock>
           {liked ? (
-            <FaThumbsUp onClick={handleLike} />
+            <FaThumbsUp onClick={handleLike} style={{cursor:"pointer"}} />
           ) : (
-            <FaRegThumbsUp onClick={handleLike} />
+            <FaRegThumbsUp onClick={handleLike} style={{cursor:"pointer"}}/>
           )}
           {/* <span className="count">{post.Likes ? post.Likes : 0}</span> */}
           <span className="count">{like}</span>
