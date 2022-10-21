@@ -16,14 +16,14 @@ function TuiEditor(props: EditorProps) {
     console.log(formData);
 
     const { data: url } = await axios.post(
-      "http://kdt-ai5-team01.elicecoding.com:5000/board/img/",
+      "http://localhost:5000/board/img/",
       formData,
       {
         headers: { "Content-Type": "multipart/form-data" },
       }
     );
     console.log(url["Image"]);
-    const imgSrc = "http://kdt-ai5-team01.elicecoding.com:5000/board" + url["Image"];
+    const imgSrc = "http://localhost:5000/board" + url["Image"];
     callback(imgSrc, "image");
   };
 

@@ -57,7 +57,7 @@ function EditPost() {
     try {
       await axios
         .put(
-          `http://kdt-ai5-team01.elicecoding.com:5000/board/${post.ID}/`,
+          `http://localhost:5000/board/${post.ID}/`,
           formData,
           {
             headers: {
