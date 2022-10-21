@@ -59,7 +59,7 @@
 더불어 가축 생산시에도 메탄과 이산화탄소 등 온실효과를 유발하는 유해물질이 많이 배출되고 있음을 확인했습니다.<br />
 이처럼 육류 생산으로 인해 환경이 파괴되고 있지만, 세계/국내 육류 소비량은 계속해서 증가하는 양상을 보였습니다.
 
-**Giving up meat just one day a week can help save the Earth**<br />
+**"Giving up meat just one day a week can help save the Earth"**<br />
 **일주일에 하루만 고기를 안먹어도 지구를 살릴수있다.**
 
 비거너의 개발 동기가 되었던 문장입니다. 
