@@ -81,7 +81,7 @@ function ViewList() {
   return (
     <>
       <L.WholeLayout>
-        <L.ListTitle>Share Your Experience</L.ListTitle>
+        <L.ListTitle>Share Your Experience.</L.ListTitle>
         <L.ListText>여러분의 채식 경험을 자유롭게 공유해 보세요</L.ListText>
         <ListTab group={group} setGroup={setGroup} />
         <Search

@@ -150,7 +150,7 @@ function Map() {
     <>
       <S.Title>
         <S.Title1>Explore the Vegan World.</S.Title1>
-        <S.Title2>비거너의 비건 맛집 지도를 자유롭게 이용해 보세요.</S.Title2>
+        <S.Title2>비거너의 비건 맛집 지도를 자유롭게 이용해 보세요</S.Title2>
       </S.Title>
       <S.Layout>
         <S.resMenu>

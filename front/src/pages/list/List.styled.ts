@@ -19,7 +19,7 @@ export const WholeLayout = styled.div`
 
 export const ListTitle = styled.div`
   text-align: center;
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 500;
   line-height: 34px;
   text-align: center;
@@ -31,8 +31,8 @@ export const ListTitle = styled.div`
 export const ListText = styled.div`
   text-align: center;
   font-weight: 400;
-  font-size: 22px;
-  line-height: 22px;
+  font-size: 20px;
+  line-height: 20px;
   letter-spacing: -1.2px;
   color: #212121;
   margin-top: 1.5%;
