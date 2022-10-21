@@ -77,7 +77,7 @@ export const search = styled.input`
   // box-sizing: border-box;
   font-size: 16px;
   height: 42px;
-  margin: 28px 10px 10px 28px;
+  margin: 20px 10px 10px 28px;
   padding: 0 20px 0 20px;
   width: 240px;
 `;
