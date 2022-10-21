@@ -135,6 +135,7 @@ export const imgWrapper = styled.div<listStyledProps>`
   width: 88%;
   height: 250px;
   margin: 0 auto;
+  padding-top: 10px;
   border-top: 0.5px solid rgba(33, 33, 33, 0.3);
   background-position: center;
   background-size: cover;
