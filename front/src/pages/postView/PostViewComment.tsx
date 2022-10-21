@@ -219,15 +219,16 @@ function PostViewComment({ post }: postProps) {
       <Line></Line>
       <InputBox>
         {userData ? (
+
           <>
             <textarea
               placeholder="댓글을 입력해보세요."
               onChange={handleInput}
               value={comment}
             />
-            <button type="button" onClick={handleSubmit}>
-              작성
-            </button>
+          <button type="button" onClick={handleSubmit} style={{backgroundColor:"black",color:"white"}}>
+            작성
+          </button>
           </>
         ) : (
           <>

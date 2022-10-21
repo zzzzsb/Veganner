@@ -34,7 +34,7 @@ function KakaoLogin() {
         if (data.access_token) {
           localStorage.setItem("token", data.access_token);
 
-          fetch(`http://kdt-ai5-team01.elicecoding.com:5000/kakao/login/`, {
+          fetch(`https://veganner-back.herokuapp.com/kakao/login/`, {
             credentials: "include",
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -44,7 +44,8 @@ function KakaoLogin() {
           }).then((res) => {
             localStorage.clear();
             window.sessionStorage.setItem("email", "kakao");
-            // setUser({ email: res.data.email, password: res.data.password });
+            console.log(res);
+            // setUser({ email: "kakao", password: "" });
             navigate("/", { state: pathname });
           });
         } else {
@@ -58,7 +59,12 @@ function KakaoLogin() {
     getKakaoToken();
   }, []);
 
-  return <div>KakaoLogin</div>;
+  return (
+    <div>
+      <p>카카오로 로그인 중입니다.</p>
+      <p>잠시만 기다려 주세요...</p>
+    </div>
+  );
 }
 
 export default KakaoLogin;
