@@ -23,9 +23,7 @@ function ListCard({ postList }: Props) {
 
   return (
     <L.CardLayout>
-    
       {postList.map((post) => {
-        
         return (
           <>
             <L.Card key={post.ID} onClick={() => navigate(`/board/${post.ID}`)}>
@@ -39,7 +37,9 @@ function ListCard({ postList }: Props) {
                   </L.likeWrap>
                 </L.CardWrap>
               </L.CardHeader>
-              <L.imgWrapper backgroundImage={`https://veganner-back.herokuapp.com/board/img/${post.Thumbnail}`} />
+              <L.imgWrapper
+                backgroundImage={`https://veganner-back.herokuapp.com/board/img/${post.Thumbnail}`}
+              />
 
               <L.CardBottom>
                 <L.CardBottomTitle>{post.Title}</L.CardBottomTitle>

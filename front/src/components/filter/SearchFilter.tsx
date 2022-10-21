@@ -116,14 +116,12 @@ function SearchFilter({ setRegion, setType, region, type, group }: Props) {
   });
 
   return (
-    <>
-      <S.FilterLayout>
-        {group === 0 && <S.FilterBox>지역별 | {locationButtons}</S.FilterBox>}
-        {(group === 0 || group === 1) && (
-          <S.FilterBox>종류별 | {typeButtons}</S.FilterBox>
-        )}
-      </S.FilterLayout>
-    </>
+    <S.FilterLayout>
+      {group === 0 && <S.FilterBox>지역별 | {locationButtons}</S.FilterBox>}
+      {(group === 0 || group === 1) && (
+        <S.FilterBox>종류별 | {typeButtons}</S.FilterBox>
+      )}
+    </S.FilterLayout>
   );
 }
 

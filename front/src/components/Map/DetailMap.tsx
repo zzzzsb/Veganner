@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Map, CustomOverlayMap, MapMarker } from "react-kakao-maps-sdk";
 import { Restaurant } from "../../types/restaurant";
 import * as S from "./DetailMap.styled";
@@ -23,7 +23,7 @@ function DetailMap({ item }: itemProps) {
           // 지도의 크기
           position: "relative",
           width: "100%",
-          height: "90%",
+          height: "100%",
         }}
         level={4} // 지도의 확대 레벨
       >

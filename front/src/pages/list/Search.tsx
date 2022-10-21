@@ -56,7 +56,6 @@ function ListSearch({ setKeyword, ...props }: Props) {
           <FaSearch color="white" size="18" />
         </L.SearchButton>
       </L.SearchBox>
-
       {props.group !== 2 && (
         <>
           {!isOpen ? (

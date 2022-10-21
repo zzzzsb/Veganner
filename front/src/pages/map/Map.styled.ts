@@ -32,6 +32,7 @@ export const Layout = styled.section`
   height: 730px;
   border-radius: 5px;
   font-family: Noto Sans KR;
+  overflow: hidden;
 `;
 
 //
@@ -60,29 +61,29 @@ export const searchForm = styled.form`
 
 export const search = styled.input`
   display: block;
-  border: 2px solid lightgray;
+  border: 1px solid lightgray;
   border-radius: 9999px;
   // box-sizing: border-box;
   font-size: 16px;
   height: 42px;
   margin: 28px 10px 10px 28px;
   padding: 0 20px 0 20px;
-  width: 230px;
+  width: 240px;
 `;
 
 // 카테고리 버튼
 export const selectContainer = styled.div`
   display: flex;
   justify-content: end;
-  width: 330px;
+  width: 325px;
   padding: 0 0 5px 5px;
 `;
 export const selectBox = styled.div<buttonProps>`
   width: 64px;
   height: 25px;
 
-  border-radius: 9999px;
-  border: 2px solid #004d43;
+  border-radius: 50px;
+  border: 1px solid #004d43;
   background: #ffffff calc(100% - 7px) center no-repeat;
   background-size: 10px;
   margin: 5px 20px 0px -10px;
@@ -141,6 +142,7 @@ export const optionitem = styled.li`
   }
 `;
 
+//auto 건들지 말기
 export const resContainer = styled.div`
   position: block;
   width: 330px;
@@ -156,6 +158,15 @@ export const restaurant = styled.div`
   border-bottom: 2px solid #f1f1f1;
   padding: 20px 30px;
   height: 100px;
+`;
+
+export const detailres = styled.div`
+  display: block;
+  border-bottom: 2px solid #f1f1f1;
+  padding: 20px 30px;
+  height: 140px;
+  margin: 0 auto;
+  // width: 330px;
 `;
 
 export const stylelink = styled(Link)`
@@ -228,7 +239,7 @@ export const paging = styled.div`
 
 //
 export const icon = styled.div`
-  height: 30px;
+  height: 20px;
 `;
 export const backicon = styled.img`
   margin: 10px 0 0 10px;
