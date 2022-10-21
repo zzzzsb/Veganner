@@ -31,6 +31,8 @@ border: 1px solid #D9D9D9;
 border-radius: 5px;
 display:block;
 margin:0 auto;
+margin-top:1%;
+margin-bottom:1%
 `;
 
 export const LoginButton = styled.button`

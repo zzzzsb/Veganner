@@ -19,29 +19,27 @@ function ResitemDetail({ detail }: ItemProps) {
 
       <S.Layout>
         <S.resMenu>
-          <S.searchContainer>
-            <S.icon>
-              <Link to="/explore">
-                <S.backicon
-                  src={back}
-                  width="24"
-                  height="24"
-                  className="backIcon"
-                />
-              </Link>
-            </S.icon>
-            <S.resContainer>
-              <S.restaurant>
-                <S.h2>{`${matched.name}`}</S.h2>
-                <S.p>주소 : {`${matched.location}`}</S.p>
-                <S.p>전화번호 : {`${matched.number}`}</S.p>
-                <S.boxdiv>
-                  <S.box>{matched.industry}</S.box>
-                  <S.box>{matched.food}</S.box>
-                </S.boxdiv>
-              </S.restaurant>
-            </S.resContainer>
-          </S.searchContainer>
+          <S.icon>
+            <Link to="/explore">
+              <S.backicon
+                src={back}
+                width="24"
+                height="24"
+                className="backIcon"
+              />
+            </Link>
+          </S.icon>
+          <S.resContainer>
+            <S.detailres>
+              <S.h2>{`${matched.name}`}</S.h2>
+              <S.p>주소 : {`${matched.location}`}</S.p>
+              <S.p>전화번호 : {`${matched.number}`}</S.p>
+              <S.boxdiv>
+                <S.box>{matched.industry}</S.box>
+                <S.box>{matched.food}</S.box>
+              </S.boxdiv>
+            </S.detailres>
+          </S.resContainer>
         </S.resMenu>
         <DetailMap item={matched} />
       </S.Layout>
