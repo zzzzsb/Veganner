@@ -49,12 +49,13 @@ export const searchContainer = styled.div`
   margin-bottom: 100px;
   border-radius: 20px;
   width: 330px;
+  height: 100px;
 `;
 
 export const searchForm = styled.form`
   border-bottom: 2px solid #f1f1f1;
   width: 330px;
-  height: 11.5vh;
+  height: 100px;
 `;
 
 export const search = styled.input`
@@ -143,7 +144,7 @@ export const optionitem = styled.li`
 export const resContainer = styled.div`
   position: block;
   width: 330px;
-  height: 55vh;
+  height: 520px;
   background: #ffffff;
   border-radius: 20px;
   overflow: auto;
@@ -200,7 +201,6 @@ export const box = styled.div`
   background-size: 10px;
   padding: 4px 6px;
   margin: 4px 9px 4px 0;
-  color: light gray;
   font-size: 13px;
 `;
 
