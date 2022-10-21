@@ -60,5 +60,5 @@
   "devDependencies": {
     "@types/styled-components": "^5.1.26"
   },
-  "proxy": "http://localhost:5000/"
+  "proxy": "http://kdt-ai5-team01.elicecoding.com:5000/"
 }
