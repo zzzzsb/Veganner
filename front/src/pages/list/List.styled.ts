@@ -186,17 +186,25 @@ export const TabList = styled.li<{ active?: boolean }>`
 `;
 
 export const WriteButton = styled.button`
-  position: absolute;
-  right: 0;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+
+  // position: absolute;
+  // right: 0;
   width: 60px;
   height: 30px;
+
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
+
   line-height: 30px;
   background: #004d43;
+
   border-radius: 30px;
   border: none;
+
   margin-top: 2%;
   cursor: pointer;
   color: #f1f1f1;
