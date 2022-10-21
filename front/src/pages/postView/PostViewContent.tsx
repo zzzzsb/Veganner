@@ -21,23 +21,25 @@ const ViewBottomBlock = styled.div`
   display: flex;
 `;
 
-const HashtagBlock = styled.div`
-  flex: none;
-  margin: 0 0 25px 5px;
+// const HashtagBlock = styled.div`
+//   flex: none;
+//   margin: 0 0 25px 5px;
 
-  .hashtag {
-    display: inline-block;
-    padding: 6px 10px 5px 10px;
-    border: 1px solid #212121;
-    border-radius: 20px;
-    color: #212121;
-    box-sizing: border-box;
-    font-size: 12px;
-  }
-`;
+//   .hashtag {
+//     display: inline-block;
+//     padding: 6px 10px 5px 10px;
+//     border: 1px solid #212121;
+//     border-radius: 20px;
+//     color: #212121;
+//     box-sizing: border-box;
+//     font-size: 12px;
+//   }
+// `;
 
 export const ButtonBlock = styled.div`
   margin-left: auto;
+  // display: flex;
+  // justify-content: space-around;
 
   button {
     width: 60px;
@@ -94,7 +96,7 @@ function PostViewContent({ post }: postProps) {
 
       try {
         let res = await Api.delete(`board/${post.ID}`);
-        navigate("/share", { replace: true });
+        navigate("/board", { replace: true });
       } catch (err) {
         console.log("글 삭제에 실패했습니다.\n", err);
       }

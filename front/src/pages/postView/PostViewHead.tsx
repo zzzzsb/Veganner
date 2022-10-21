@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
-import { useState, useEffect } from "react";
-import * as Api from "../../api/api";
+// import { useState, useEffect } from "react";
+// import * as Api from "../../api/api";
+import profile from "../../assets/img/profile.png";
 
 const ViewTitleBlock = styled.div`
   margin: 50px;
@@ -19,6 +20,8 @@ const ViewTitleBlock = styled.div`
     height: 27px;
     font-weight: 600;
     color: #004d43;
+    font-size: 20px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -39,14 +42,26 @@ const PostInfoBlock = styled.div`
     border: 0.5px solid #21212180;
     transform: rotate(0.95deg);
   }
-  .pic {
-    width: 20px;
-    height: 20px;
-    background-color: #21212180;
-    border-radius: 50%;
-    float: left;
-    // margin-right: 10px;
-  }
+  // .pic {
+  //   width: 20px;
+  //   height: 20px;
+  //   background-color: #21212180;
+  //   border-radius: 50%;
+  //   float: left;
+  //   // margin-right: 10px;
+  // }
+`;
+
+const UserProfile = styled.span`
+  width: 30.37px;
+  height: 30px;
+  background: #a5a5a5;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 3%;
+  background-image: url(${profile});
+  background-size: cover;
 `;
 
 const LikeBlock = styled.div`
@@ -92,7 +107,7 @@ function PostViewHead({ post, like, liked, handleLike }: postProps) {
       </ViewTitleBlock>
       <ViewInfoBlock>
         <PostInfoBlock>
-          <span className="pic"></span>
+          <UserProfile></UserProfile>
           <span>{post.User}</span>
           <span className="infoline"></span>
           <span>
