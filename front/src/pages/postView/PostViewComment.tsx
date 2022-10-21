@@ -4,6 +4,7 @@ import * as Api from "../../api/api";
 import userState from "../../atoms/user";
 import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
+// import profile from "../../assets/img/profile.png";
 
 const ViewCommentBlock = styled.div`
   width: 100%;
@@ -79,7 +80,7 @@ const Line = styled.div`
 
 const CommentsWrapper = styled.div`
   .comment {
-    margin: 15px 0 15px 5px;
+    margin: 15px 0 15px 8px;
   }
 
   button {
@@ -91,24 +92,41 @@ const CommentsWrapper = styled.div`
 
 const CommentsInfo = styled.div`
   display: flex;
-  margin: 25px 5px 10px 5px;
+  align-items: center;
+  margin: 25px 5px 10px 0px;
 
-  .pic {
-    width: 20px;
-    height: 20px;
-    background-color: #21212180;
-    border-radius: 50%;
-    float: left;
-    // margin-right: 10px;
-  }
+  // .pic {
+  //   width: 20px;
+  //   height: 20px;
+  //   background-color: #21212180;
+  //   border-radius: 50%;
+  //   float: left;
+  //   // margin-right: 10px;
+  // }
   p {
     margin: 0 10px 0 10px;
+    color: #004d43;
+    font-weight: 600;
   }
   .date {
-    margin: 0 5px 0 5px;
+    margin: 1px 2px 0 2px;
     color: #21212180;
+    font-size: 14px;
   }
 `;
+
+// const UserProfile = styled.span`
+//   width: 20px;
+//   height: 20px;
+//   background: #a5a5a5;
+//   border-radius: 50%;
+//   float: left;
+//   // display: inline-block;
+//   // vertical-align: middle;
+//   // margin-right: 3%;
+//   background-image: url(${profile});
+//   background-size: cover;
+// `;
 
 interface postProps {
   post: any;
@@ -219,16 +237,19 @@ function PostViewComment({ post }: postProps) {
       <Line></Line>
       <InputBox>
         {userData ? (
-
           <>
             <textarea
               placeholder="댓글을 입력해보세요."
               onChange={handleInput}
               value={comment}
             />
-          <button type="button" onClick={handleSubmit} style={{backgroundColor:"black",color:"white"}}>
-            작성
-          </button>
+            <button
+              type="button"
+              onClick={handleSubmit}
+              style={{ backgroundColor: "black", color: "white" }}
+            >
+              작성
+            </button>
           </>
         ) : (
           <>
@@ -249,32 +270,35 @@ function PostViewComment({ post }: postProps) {
       </InputBox>
       {comments.map((comment: Comment): any => {
         return (
-          <CommentsWrapper>
-            <CommentsInfo>
-              <span className="pic"></span>
-              <p>{comment.User_id}</p>
-              <span className="date">
-                {typeof comment.CreationTime === "string"
-                  ? comment.CreationTime.split("T")[0]
-                  : comment.CreationTime}
-              </span>
-              <span className="date">
-                {typeof comment.CreationTime === "string"
-                  ? comment.CreationTime.split("T")[1].substring(0, 5)
-                  : comment.CreationTime}
-              </span>
-            </CommentsInfo>
-            <div className="comment">{comment.Comment}</div>
-            {/* <button>답글</button> */}
-            {userData && userData.email === comment.User_id && (
-              <button
-                type="button"
-                onClick={(e) => handleDelete(e, comment.CommentId)}
-              >
-                삭제
-              </button>
-            )}
-          </CommentsWrapper>
+          <>
+            <CommentsWrapper>
+              <CommentsInfo>
+                {/* <UserProfile></UserProfile> */}
+                <p>{comment.User_id}</p>
+                <span className="date">
+                  {typeof comment.CreationTime === "string"
+                    ? comment.CreationTime.split("T")[0]
+                    : comment.CreationTime}
+                </span>
+                <span className="date">
+                  {typeof comment.CreationTime === "string"
+                    ? comment.CreationTime.split("T")[1].substring(0, 5)
+                    : comment.CreationTime}
+                </span>
+              </CommentsInfo>
+              <div className="comment">{comment.Comment}</div>
+              {/* <button>답글</button> */}
+              {userData && userData.email === comment.User_id && (
+                <button
+                  type="button"
+                  onClick={(e) => handleDelete(e, comment.CommentId)}
+                >
+                  삭제
+                </button>
+              )}
+            </CommentsWrapper>
+            {/* <Line></Line> */}
+          </>
         );
       })}
     </ViewCommentBlock>
