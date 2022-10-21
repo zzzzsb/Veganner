@@ -9,8 +9,9 @@ export const FilterLayout = styled.div`
   display: block;
   margin-bottom: 20px;
 `;
+
 export const FilterBox = styled.div`
-margin: 0 auto;
+  margin: 0 auto;
   font-size: 14px;
 `;
 
