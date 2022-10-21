@@ -4,6 +4,7 @@ import { FaRegThumbsUp } from "react-icons/fa";
 import { format, formatDistanceToNow } from "date-fns";
 import { ko } from "date-fns/locale";
 
+
 interface Props {
   postList: {
     ID: number;
@@ -33,7 +34,7 @@ function ListCard({ postList }: Props) {
                   <L.CardHeaderProfile></L.CardHeaderProfile>
                   <L.CardHeaderText>{post.User}</L.CardHeaderText>
                   <L.likeWrap>
-                    <FaRegThumbsUp size="20" style={{ marginTop: "4px" }} />
+                    <FaRegThumbsUp size="16" style={{ marginTop: "4px" }} />
                     {post.Likes}
                   </L.likeWrap>
                 </L.CardWrap>

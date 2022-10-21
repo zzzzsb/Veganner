@@ -23,6 +23,7 @@ const locations = [
 const types = [
   "전체",
   "한식",
+  "일식",
   "양식",
   "카페",
   "분식",

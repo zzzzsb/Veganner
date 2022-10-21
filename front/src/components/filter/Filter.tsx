@@ -29,6 +29,7 @@ function Filter(props: FilterProps) {
   ];
   const type = [
     "한식",
+    "일식",
     "양식",
     "카페",
     "분식",

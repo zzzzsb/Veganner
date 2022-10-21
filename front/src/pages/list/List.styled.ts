@@ -1,7 +1,13 @@
 import styled, { css } from "styled-components";
+import profile from "../../assets/img/profile.png";
 
 export interface listStyledProps {
   backgroundImage?: string;
+}
+
+export interface ListStyledProps {
+  backgroundImage?: string;
+  backgroundColor?: string;
 }
 
 export const WholeLayout = styled.div`
@@ -52,6 +58,9 @@ export const SearchInput = styled.input`
   border-radius: 30px;
   padding-left: 6%;
   box-sizing: border-box;
+  :focus {
+    outline: none;
+  }
 `;
 
 export const SearchButton = styled.button`
@@ -106,6 +115,8 @@ export const CardHeaderProfile = styled.span`
   display: inline-block;
   vertical-align: middle;
   margin-right: 3%;
+  background-image: url(${profile});
+  background-size: cover;
 `;
 
 export const CardHeaderText = styled.span`
@@ -194,4 +205,20 @@ export const likeWrap = styled.div`
   position: absolute;
   right: 6%;
   top: 14px;
+`;
+
+export const FilterButton = styled.button<ListStyledProps>`
+  width: 50px;
+  height: 50px;
+  border: none;
+  border: 1px solid #212121;
+  border-radius: 50px;
+  text-align: center;
+  background-color: ${(props) => props.backgroundColor};
+  :active {
+    border: none;
+  }
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
