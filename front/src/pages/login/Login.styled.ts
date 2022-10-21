@@ -40,6 +40,7 @@ export const LoginButton = styled.button`
   width: 394px;
   height: 51px;
   background: #004d43;
+  border: none;
   border-radius: 25px;
   color: white;
   display: block;

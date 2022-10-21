@@ -50,11 +50,11 @@ export const WithButton = styled.button`
   margin-top: 15px;
   font-size: 20px;
   color: #f1f1f1;
-  cursor:pointer;
-  &:hover{
-    background-color: #004D43;
-    color:white;
-    transition:1s all;
+  cursor: pointer;
+  &:hover {
+    background-color: #004d43;
+    color: white;
+    transition: 1s all;
   }
 `;
 
@@ -143,7 +143,7 @@ export const CardLayout = styled.div`
 export const Card = styled.div`
   width: 450px;
   height: 350px;
-  margin: 0 70px;
+  /* margin: 0 70px; */
 `;
 
 export const CardImgBox = styled.div<MainStyledProps>`
@@ -166,5 +166,5 @@ export const CardButton = styled.button<MainStyledProps>`
   float: right;
   margin-top: 30px;
   background-color: transparent;
-  cursor:pointer
+  cursor: pointer;
 `;

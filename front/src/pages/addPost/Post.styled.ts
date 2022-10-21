@@ -52,7 +52,7 @@ export const ButtonBox = styled.div`
   float: right;
   width: 150px;
   height: 30px;
-  margin-bottom: 50px;
+  margin: 30px 0 50px 0;
 `;
 export const Button = styled.button`
   width: 60px;
