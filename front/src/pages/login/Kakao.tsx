@@ -44,7 +44,7 @@ function KakaoLogin() {
           }).then((res) => {
             localStorage.clear();
             window.sessionStorage.setItem("email", "kakao");
-            setUser({ email: res.data.email, password: res.data.password });
+            // setUser({ email: res.data.email, password: res.data.password });
             navigate("/", { state: pathname });
           });
         } else {
