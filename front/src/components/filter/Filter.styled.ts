@@ -7,7 +7,7 @@ export interface FilterStyledProps {
 
 export const FilterLayout = styled.div`
   float: left;
-  margin-bottom: 20px;
+  margin: 20px auto;
 `;
 export const FilterBox = styled.div`
   width: 1020px;
