@@ -56,17 +56,14 @@ function PostView() {
       try {
         const board = await Api.get(`board/${postId}`);
         setPost(board.data);
-        console.log("get board", board.data);
         const like = await Api.get(`board/${postId}/like`);
-        console.log("get like in board", like.data);
         // setPost({
         //   ...board.data,
         //   Likes: like.data,
         // });
         setLike(like.data);
       } catch (err) {
-        console.log("글 불러오기를 실패했습니다.\n", err);
-        // navigate("/share", { replace: true });
+        console.error(err);
       }
     }
     getPost();
@@ -77,7 +74,6 @@ function PostView() {
   async function handleLike() {
     try {
       const res = await Api.post(`board/${postId}/like/`);
-      console.log("post like", res.data);
       const like = await Api.get(`board/${postId}/like`);
       setLike(like.data);
       // post.Likes = like.data;
@@ -87,7 +83,7 @@ function PostView() {
       // })
       liked ? setLiked(false) : setLiked(true);
     } catch (err) {
-      console.log("좋아요 실패\n", err);
+      console.error(err);
     }
   }
 

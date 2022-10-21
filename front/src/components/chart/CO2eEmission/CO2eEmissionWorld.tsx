@@ -126,8 +126,6 @@ const data = {
 };
 
 function CO2eEmissionWorld() {
-  // console.log(Object.keys(worldData));
-  // console.log(Object.values(Object.values(worldData)[0]));
   return (
     <Container>
       <Line options={options} data={data} />

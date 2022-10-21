@@ -70,18 +70,11 @@ function PostViewContent({ post }: postProps) {
         const res = await Api.get(`user`);
         setUserData(res.data);
       } catch (err) {
-        console.log("유저 정보 가져오기에 실패했습니다.\n", err);
+        console.error(err);
       }
     }
     getUserData();
   }, [user]);
-
-  // console.log(user); //로그인: undefined, 로그아웃: null
-  // if (user) console.log("로그인한 유저:", userData);
-  // console.log("글 작성자:", post.User);
-  // if (userData && userData.email === post.User) {
-  //   console.log("같은 유저입니다.");
-  // }
 
   const handleEditButton = () => {
     navigate("edit", {
@@ -99,7 +92,7 @@ function PostViewContent({ post }: postProps) {
         let res = await Api.delete(`board/${post.ID}`);
         navigate("/board", { replace: true });
       } catch (err) {
-        console.log("글 삭제에 실패했습니다.\n", err);
+        console.error(err);
       }
     }
   }
