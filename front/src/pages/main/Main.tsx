@@ -86,10 +86,10 @@ function Main() {
               Share your experience.
             </S.Text>
             <br />
-            <S.Text fontSize={18} color={"#212121"} textAlign={"left"}>
+            <S.Text fontSize={16} color={"#212121"} textAlign={"left"}>
               비거너의 커뮤니티에서는
             </S.Text>
-            <S.Text fontSize={18} color={"#212121"} textAlign={"left"}>
+            <S.Text fontSize={16} color={"#212121"} textAlign={"left"}>
               비건 식당과 레시피를 자유롭게 공유할 수 있어요.
             </S.Text>
             <S.CardButton
@@ -104,8 +104,12 @@ function Main() {
               Explore your world.
             </S.Text>
             <br />
-            <S.Text fontSize={18} color={"#212121"} textAlign={"left"}>
+            <S.Text fontSize={16} color={"#212121"} textAlign={"left"}>
               비거너에서는 지도에서 비건 식당을 쉽게 찾을 수 있어요.
+            </S.Text>
+            <S.Text fontSize={14} color={"#828282"} textAlign={"left"}>
+              *현재는 서울시 비건 식당 정보만 제공 중 (나머지 지역 추후 업데이트
+              예정)
             </S.Text>
             <S.CardButton
               onClick={(e) => {
