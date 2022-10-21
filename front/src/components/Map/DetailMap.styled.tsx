@@ -13,7 +13,7 @@ export const wrap = styled.div`
   height: 120px;
   width: 210px;
   background-color: white;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.4);
 `;
 
 export const info = styled.div`
