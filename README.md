@@ -7,11 +7,6 @@
 
 ### 사용한 데이터 셋
 
-- 사용하려는 데이터(제안된 데이터 중 하나 또는 선택한 다른 데이터 세트)를 명시, 이에 대한 설명
-  - 기술 스택 (python, d3, pandas, jupyter, javascript, MySQL 등)
-  - 사용된 라이브러리 (numpy, matplotlib, wordcloud 등)
-  - 웹서비스에 대한 자세한 개요
-
 **[메인, 소개페이지에서 사용할 육류, 자동차, 온실가스 관련 데이터 세트]**
 
 - FoodEmissions
