@@ -143,7 +143,7 @@ export const CardLayout = styled.div`
 export const Card = styled.div`
   width: 450px;
   height: 350px;
-  /* margin: 0 70px; */
+  margin: 0 30px;
 `;
 
 export const CardImgBox = styled.div<MainStyledProps>`
