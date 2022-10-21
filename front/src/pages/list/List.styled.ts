@@ -157,12 +157,10 @@ export const CardBottomDate = styled.div`
   margin-top: 2%;
 `;
 export const TabSection = styled.section`
-  
-width: 30%;
-margin: 0 auto;
-margin-top: 4%;
-    margin-bottom: 3%;
-}
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 4%;
+  margin-bottom: 3%;
 `;
 
 export const TabListGroup = styled.ul`

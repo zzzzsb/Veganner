@@ -73,7 +73,7 @@ function SearchFilter({ setRegion, setType, region, type, group }: Props) {
     }else if (v.length === 4) {
       return (
         <S.FilterButton
-          width={80}
+          width={60}
           onClick={(e) => {
             e.preventDefault();
             setRegion(v);
