@@ -38,7 +38,7 @@ function ListCard({ postList }: Props) {
                 </L.CardWrap>
               </L.CardHeader>
               <L.imgWrapper
-                backgroundImage={`http://kdt-ai5-team01.elicecoding.com/board/img/${post.Thumbnail}`}
+                backgroundImage={`http://kdt-ai5-team01.elicecoding.com:5000/board/img/${post.Thumbnail}`}
               />
 
               <L.CardBottom>
