@@ -6,6 +6,7 @@ export interface FilterStyledProps {
 }
 
 export const FilterLayout = styled.div`
+  display: block;
   float: left;
   margin-bottom: 20px;
 `;
@@ -13,7 +14,7 @@ export const FilterBox = styled.div`
   width: 1020px;
   height: 30px;
   display: flex;
-  justify-content:flex-start ;
+  justify-content: flex-start;
   line-height: 30px;
   font-size: 14px;
 `;

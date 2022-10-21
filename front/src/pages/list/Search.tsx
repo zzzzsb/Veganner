@@ -16,6 +16,7 @@ import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 import { BsFilterCircle } from "react-icons/bs";
 import { BsFillFilterCircleFill } from "react-icons/bs";
+import { RiFilter3Fill, RiH3 } from "react-icons/ri";
 import SearchFilter from "../../components/filter/SearchFilter";
 
 interface Props {
@@ -55,21 +56,22 @@ function ListSearch({ setKeyword, ...props }: Props) {
           <FaSearch color="white" size="18" />
         </L.SearchButton>
       </L.SearchBox>
-
       {props.group !== 2 && (
         <>
           {!isOpen ? (
-            <BsFilterCircle
-              size="50"
-              style={filterStyle}
+            <L.FilterButton
+              backgroundColor="#f1f1f1"
               onClick={() => setIsOpen(!isOpen)}
-            />
+            >
+              <RiFilter3Fill color="#212121" size="25" />
+            </L.FilterButton>
           ) : (
-            <BsFillFilterCircleFill
-              size="50"
-              style={filterStyle}
+            <L.FilterButton
+              backgroundColor="#212121"
               onClick={() => setIsOpen(!isOpen)}
-            />
+            >
+              <RiFilter3Fill color="#f1f1f1" size="25" />
+            </L.FilterButton>
           )}
           {isOpen && <SearchFilter {...props} />}
         </>
