@@ -11,7 +11,7 @@ function Resitem({ item }: ItemProps) {
       <S.restaurant>
         <S.stylelink to={`./detail/${item.index}`} text-decoration="none">
           <S.h2>{item.name}</S.h2>
-          <S.p>주소 : {item.location}</S.p>
+          <S.p>{item.location}</S.p>
         </S.stylelink>
         <S.boxdiv>
           <S.box>{item.industry}</S.box>
