@@ -1,70 +1,109 @@
-import React from "react";
 import { useState, useEffect } from "react";
-import * as Api from "../../api/api";
-import styled from "styled-components";
 import Search from "./Search";
 import ListCard from "./ListCard";
 import ListTab from "./ListTab";
-import listsState from "../../atoms/search";
-import { useRecoilValue, useResetRecoilState, useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import * as L from "./List.styled";
 import Pagination from "react-js-pagination";
 import "./Pagination.css";
-import pagingState from "../../atoms/paging";
-import userState from "../../atoms/user";
+import axios from "axios";
+import * as Api from "../../api/api";
 
 function ViewList() {
   const navigate = useNavigate();
   const navigateToAddPost = () => {
     navigate("/addPost");
   };
-  // const [lists,setLists] = useRecoilState(listsState);
-  const user = useRecoilValue(userState);
-  const lists = useRecoilValue(listsState);
-  const [page, setPage] = useRecoilState(pagingState);
+  const email = window.sessionStorage.getItem("email");
+
+  const [group, setGroup] = useState<number>(2);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [keyword, setKeyword] = useState<string>("");
+  const [region, setRegion] = useState<string>("전체");
+  const [type, setType] = useState<string>("전체");
+
   const handlePageChange = (page: number) => {
-    console.log("page", page);
-    setPage(page);
+    setCurrentPage(page);
   };
 
-  /*pagination*/
+  const [postList, setPostList] = useState([]);
+  const [totalPage, setTotalPage] = useState(50);
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [currentPosts, setCurrentPosts] = useState([]);
-  const postsPerPage = 10;
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  function handleNoSubmit() {
+    if (window.confirm("로그인하고 글을 남겨주세요.")) {
+      try {
+        navigate("/login");
+      } catch (err) {
+        // console.log(err);
+      }
+    }
+  }
 
   useEffect(() => {
-    console.log("list", lists);
-    // const lists=useRecoilValue(listsState)
-  }, [lists]);
+    const makeParam = () => {
+      let params: any = {
+        Page: currentPage,
+      };
+      if (type !== "전체") {
+        params.Type = type;
+      }
+      if (region !== "전체") {
+        params.Address = region;
+      }
+      if (group !== 2) {
+        params.Groups = group;
+      }
+      if (keyword !== "") {
+        params.Title = keyword;
+      }
+      return params;
+    };
+    const getList = async () => {
+      // await Api.get("board/", makeParam()).then((res) => {
+      //       setPostList(res.data.list);
+      //     });
+
+      await axios
+        .get("https://veganner-back.herokuapp.com/board", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          params: makeParam(),
+        })
+        .then((res) => {
+          setPostList(res.data.list);
+          setTotalPage(res.data.page["num_pages"]);
+        });
+    };
+    getList();
+  }, [currentPage, group, keyword, region, type]);
 
   return (
     <>
       <L.WholeLayout>
         <L.ListTitle>Share Your Experience</L.ListTitle>
         <L.ListText>여러분의 채식 경험을 자유롭게 공유해 보세요</L.ListText>
-        <ListTab />
-        <Search />
-        <ListCard />
-
-        {/* <div>
-      {lists.map((list, index) => {
-        console.log(list);
-        return <div key={index}>{list["Title"]}</div>;
-      })}
-    </div> */}
-        {user ? (
+        <ListTab group={group} setGroup={setGroup} />
+        <Search
+          setKeyword={setKeyword}
+          setRegion={setRegion}
+          setType={setType}
+          region={region}
+          type={type}
+          group={group}
+        />
+        {postList.length !== 0 && <ListCard postList={postList} />}
+        {email === null ? (
+          <L.WriteButton onClick={handleNoSubmit}>글쓰기</L.WriteButton>
+        ) : (
           <L.WriteButton onClick={navigateToAddPost}>글쓰기</L.WriteButton>
-        ) : null}
+        )}
       </L.WholeLayout>
       <div>
         <Pagination
-          activePage={page}
-          itemsCountPerPage={10}
-          totalItemsCount={50}
+          activePage={currentPage}
+          itemsCountPerPage={12}
+          totalItemsCount={totalPage * 12}
           pageRangeDisplayed={5}
           prevPageText="‹"
           nextPageText="›"
