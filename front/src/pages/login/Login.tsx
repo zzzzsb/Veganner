@@ -106,9 +106,9 @@ function LoginForm() {
         <L.RegisterButton onClick={() => navigate("/register")}>
           회원가입하기
         </L.RegisterButton>
-        <L.KaKaoButton type="button" onClick={kakaoLogin}>
+        {/* <L.KaKaoButton type="button" onClick={kakaoLogin}>
           카카오로 로그인하기
-        </L.KaKaoButton>
+        </L.KaKaoButton> */}
       </L.LoginForm>
     </L.WholeLayout>
   );
