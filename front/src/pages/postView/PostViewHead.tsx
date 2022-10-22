@@ -89,7 +89,7 @@ function PostViewHead({ post, like, liked, handleLike }: postProps) {
   return (
     <>
       <ViewTitleBlock>
-        <div className="label">{post.Groups === 1 ? "식당" : "레시피"}</div>
+        <div className="label">{post.Groups === 0 ? "식당" : "레시피"}</div>
         <h1>{post.Title}</h1>
       </ViewTitleBlock>
       <ViewInfoBlock>
