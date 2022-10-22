@@ -137,6 +137,7 @@ interface UserData {
 }
 
 function PostViewComment({ post }: postProps) {
+  const email = window.sessionStorage.getItem("email");
   const navigate = useNavigate();
   const user = useRecoilValue(userState);
 
@@ -236,7 +237,7 @@ function PostViewComment({ post }: postProps) {
       </CommentLabel>
       <Line></Line>
       <InputBox>
-        {userData ? (
+        {email ? (
           <>
             <textarea
               placeholder="댓글을 입력해보세요."
@@ -288,7 +289,7 @@ function PostViewComment({ post }: postProps) {
               </CommentsInfo>
               <div className="comment">{comment.Comment}</div>
               {/* <button>답글</button> */}
-              {userData && userData.email === comment.User_id && (
+              {email && email === comment.User_id && (
                 <button
                   type="button"
                   onClick={(e) => handleDelete(e, comment.CommentId)}
